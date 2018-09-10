@@ -11,17 +11,19 @@
 
 ## 亲测 IDEA、WebStorm 可用
 
-### 准备条件：
+##### 准备条件：
 下载JetbrainsCrack-3.1-release-enc.jar保存到本地，并记住保存路径
-
 
 1. 进入到软件安装目录，打开安装目录下的bin目录
 2. 打开 *.vmoptions 文件，准备进行编辑
     1. IDEA 是 idea.vmoptions 和 idea64.vmoptions 文件
     2. WebStorm 是 webstorm.vmoptions 和 webstorm64.vmoptions 文件
 3. 在 *.vmoptions 文件末尾添加一行代码，然后保存文件
-    > -javaagent:/home/JetbrainsCrack-3.1-release-enc.jar \
-    解释：其中 -javaagent: 破解jar包的全路径(或者相对路径)
+```
+-javaagent:/home/JetbrainsCrack-3.1-release-enc.jar
+
+解释：其中 -javaagent: 破解jar包的全路径(或者相对路径)
+```
 4. 开始运行软件，在运行到激活步骤的时候，选择 Activation code 激活方式，然后在输入框里面输入下面代码
 
 ```
@@ -54,5 +56,4 @@
     "autoProlongated":false
 }
 ```
-    
 5. OK，激活完成！
