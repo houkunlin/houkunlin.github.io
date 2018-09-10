@@ -19,11 +19,13 @@
     1. IDEA 是 idea.vmoptions 和 idea64.vmoptions 文件
     2. WebStorm 是 webstorm.vmoptions 和 webstorm64.vmoptions 文件
 3. 在 *.vmoptions 文件末尾添加一行代码，然后保存文件
+
 ```
 -javaagent:/home/JetbrainsCrack-3.1-release-enc.jar
 
 解释：其中 -javaagent: 破解jar包的全路径(或者相对路径)
 ```
+
 4. 开始运行软件，在运行到激活步骤的时候，选择 Activation code 激活方式，然后在输入框里面输入下面代码
 
 ```
@@ -56,4 +58,5 @@
     "autoProlongated":false
 }
 ```
+
 5. OK，激活完成！
