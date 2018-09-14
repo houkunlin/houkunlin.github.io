@@ -36,7 +36,7 @@
     "assigneeEmail":"随便填，随便填",
     "licenseRestriction":"随便填，随便填",
     "checkConcurrentUse":false,
-    "products":\[
+    "products":[
         {"code":"II","paidUpTo":"2099-12-31"},
         {"code":"DM","paidUpTo":"2099-12-31"},
         {"code":"AC","paidUpTo":"2099-12-31"},
