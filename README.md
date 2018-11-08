@@ -1,6 +1,8 @@
 # 侯坤林博客
 - [学习git的一点东西](./study.md)
 - [IDEA激活的一点记录](./idea.md)
+- [学习任务](./company/181108.task.md)
+- [个人总结敏捷开发](./company/agile-development.md)
 
 #### 码云特技
 
