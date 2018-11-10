@@ -5,15 +5,20 @@
 # Site
 title: 侯坤林博客
 subtitle: 用双手改变世界，梦想成就未来。
-description: 侯坤林的个人博客，用双手改变世界，梦想成就未来。
-keywords: 侯坤林,侯坤林博客
+description: "广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。"
+keywords: "侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验"
 author: 侯坤林
-language: zh-cn
+language:
 timezone:
 
+
+excerpt:
+  depth: 3
+  excerpt_excludes: []
+  more_excludes: []
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://houkunlin.gitee.io
+url: //houkunlin.gitee.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,9 +78,28 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: yilia
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: true
+    comments: false
+    link: true
+    permalink: false
+    excerpt: true
+    categories: true
+    tags: true
