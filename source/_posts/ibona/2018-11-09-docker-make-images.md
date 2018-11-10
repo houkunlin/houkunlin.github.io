@@ -1,6 +1,7 @@
 ---
 title: 把SpringBoot项目部署到docker中创建自己的镜像
 date: 2018-11-09 17:59
+updated: 2018-11-10 11:18:34
 categories:
  - 深圳博纳移动
  - 学习
@@ -38,6 +39,11 @@ tags:
  - `ENV AppName my-web-server` 设置一个系统环境变量
 - `CMD` 在启动容器的时候执行一条命令，通常用于启动我们的服务
  - `CMD java -jar app.jar --server.port=80` 在容器启动的时候执行我们的SpringBoot jar包
+ - `CMD ["python", "app.py"]` 网上有些代码的CMD呈这种格式，但是该命令格式无法执行java命令。
+ 判断原因：这表明CMD执行了两次命令，首先执行`python`然后再执行`app.py`，之所以在Python能够成功，是因为执行完`python`命令后会进行
+ 交互状态，此时执行`app.py`时会使Python执行该文件，因而不会出现错误。但是java命令，执行完后会直接退出，而不是进入java终端交互状态，
+ 也就是说在执行`CMD ["java","-jar app.jar"]`命令时，先执行完java后会退回终端，再执行`-jar app.jar`这条命令就会因为找不到命令而报错。
+ 
 
 通过以上的原语，我们可以完全从一个全新的Ubuntu容器镜像制作出一个可以直接运行我们web程序的容器镜像，并可以把这个镜像放到不同的机器直接运行，而不需要重新配置任何环境。
 #### 操作步骤
