@@ -24,22 +24,22 @@ tags:
 使用到Dockerfile的时候需要用到一些原语操作，接下来说一个等下会用到的的原语。
 
 - `FROM` 使用一个基础镜像。
- - `FROM ubuntu:latest` 使用最新版的Ubuntu镜像为基础镜像
- - `FROM my-create-images-name:tag-name` 使用一个本地已经搭建好相关环境的镜像。
+    - `FROM ubuntu:latest` 使用最新版的Ubuntu镜像为基础镜像
+    - `FROM my-create-images-name:tag-name` 使用一个本地已经搭建好相关环境的镜像。
 - `WORKDIR` 切换工作目录
- - `WORKDIR /var/www` 切换工作目录到 `/var/www` 会创建该目录，之后的所有操作命令操作都会基于该路径
+    - `WORKDIR /var/www` 切换工作目录到 `/var/www` 会创建该目录，之后的所有操作命令操作都会基于该路径
 - `ADD` 向容器中复制文件
- - `ADD ./app.jar /var/www` 把宿主机当前目录的 app.jar 复制到容器的 /var/www目录中
+    - `ADD ./app.jar /var/www` 把宿主机当前目录的 app.jar 复制到容器的 /var/www目录中
 - `RUN` 在镜像创建的过程中运行一个特定的命令
- - `RUN apt update -y` 在制作镜像的过程中，给镜像更新系统
- - `RUN apt install openjdk-8-jre -y` 在制作镜像的过程中，给镜像安装 java 环境
+    - `RUN apt update -y` 在制作镜像的过程中，给镜像更新系统
+    - `RUN apt install openjdk-8-jre -y` 在制作镜像的过程中，给镜像安装 java 环境
 - `EXPOSE` 向外界暴露一个端口
- - `EXPOSE 80` 向外界暴露一个80端口，允许外界访问容器的80端口
+    - `EXPOSE 80` 向外界暴露一个80端口，允许外界访问容器的80端口
 - `ENV` 设置环境变量
- - `ENV AppName my-web-server` 设置一个系统环境变量
+    - `ENV AppName my-web-server` 设置一个系统环境变量
 - `CMD` 在启动容器的时候执行一条命令，通常用于启动我们的服务
- - `CMD java -jar app.jar --server.port=80` 在容器启动的时候执行我们的SpringBoot jar包
- - `CMD ["python", "app.py"]` 网上有些代码的CMD呈这种格式，但是该命令格式无法执行java命令。
+    - `CMD java -jar app.jar --server.port=80` 在容器启动的时候执行我们的SpringBoot jar包
+    - `CMD ["python", "app.py"]` 网上有些代码的CMD呈这种格式，但是该命令格式无法执行java命令。
  判断原因：这表明CMD执行了两次命令，首先执行`python`然后再执行`app.py`，之所以在Python能够成功，是因为执行完`python`命令后会进行
  交互状态，此时执行`app.py`时会使Python执行该文件，因而不会出现错误。但是java命令，执行完后会直接退出，而不是进入java终端交互状态，
  也就是说在执行`CMD ["java","-jar app.jar"]`命令时，先执行完java后会退回终端，再执行`-jar app.jar`这条命令就会因为找不到命令而报错。
@@ -99,9 +99,9 @@ Dockerfile参考内容：
 
 - 创建并启动一个容器：`docker run -it ubuntu:18.04 /bin/bash`此时会同时进入到容器的bash中
 - 在容器中手动安装所需环境
- - `apt update -y`
- - `apt upgrade -y`
- - `apt install openjdk-8-jre -y`
+    - `apt update -y`
+    - `apt upgrade -y`
+    - `apt install openjdk-8-jre -y`
 - 退出到宿主机的bash中
 - 把容器提交创建本地镜像：`docker commit [ContainerID] [ImagesName]`，此时我们可以运行`docker images`看到刚刚创建好的镜像`[ImagesName]`
 - 然后再使用Dockerfile来构建镜像（同上方法）
