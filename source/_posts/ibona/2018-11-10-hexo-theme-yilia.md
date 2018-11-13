@@ -2,9 +2,9 @@
 title: hexo 博客系统更换主题：yilia
 date: 2018-11-10 16:00:26
 categories:
- - 深圳博纳移动
- - 学习
- - 教程
+- 深圳博纳移动
+- 学习
+- 教程
 tags: 
 - 教程
 - hexo

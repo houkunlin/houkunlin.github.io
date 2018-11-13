@@ -3,11 +3,11 @@ title: 激活Jetbrains系列产品(2018 2.x可用)
 date: 2018-08-23 10:24
 updated: 2018-09-10 13:20
 categories:
- - 开发工具
- - Jetbrains
+- 开发工具
+- Jetbrains
 tags: 
- - IDEA
- - WebStorm
+- IDEA
+- WebStorm
 ---
 
 - 记录一个IDEA激活服务器的相关地址 [rover12421.com](https://rover12421.com/)

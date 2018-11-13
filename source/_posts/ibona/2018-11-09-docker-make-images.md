@@ -3,15 +3,15 @@ title: 把SpringBoot项目部署到docker中创建自己的镜像
 date: 2018-11-09 17:59
 updated: 2018-11-10 11:18:34
 categories:
- - 深圳博纳移动
- - 学习
- - 教程
+- 深圳博纳移动
+- 学习
+- 教程
 tags: 
- - 博纳
- - 学习计划
- - docker
- - spring
- - SpringBoot
+- 博纳
+- 学习计划
+- docker
+- spring
+- SpringBoot
 ---
 
 ## 把SpringBoot打包成jar包并部署到docker容器中
