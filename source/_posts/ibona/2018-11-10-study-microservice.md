@@ -36,7 +36,21 @@ tags:
   - 可以采用不同的数据库操作技术（连接池、数据库框架）
 
 #### 主流的软件
-
+##### 主流微服务框架
+- Spring Cloud
+- Dubbo
+##### 主流微服务注册中心
+- Eureka
+- Zookeeper
+- Consul
+##### 主流微服务路由网关
+[参考文章](https://blog.csdn.net/zhangbijun1230/article/details/81660834)
+- Zuul
+- Nginx
+- Spring Cloud Gateway
+- Linkerd
+- Envoy
+- UnderTow
 
 
 #### 未完....
