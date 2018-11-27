@@ -1,7 +1,7 @@
 ---
-title: 激活Jetbrains系列产品(2018 2.x可用)
+title: 激活 Jetbrains 系列产品(2018 2.x/3.x可用)
 date: 2018-08-23 10:24
-updated: 2018-09-10 13:20
+updated: 2018-11-27 09:33:44
 categories:
 - 开发工具
 - Jetbrains
@@ -9,15 +9,19 @@ tags:
 - IDEA
 - WebStorm
 ---
+> 2018年11月27日更新记录：添加破解补丁3.4版本。
+    在下载2018.3.x版本的GoLang时，使用3.1版本破解补丁无法破解，此时更换破解补丁为3.4版本即可。破解过程与3.1版本一致并无变化。
 
 - 记录一个IDEA激活服务器的相关地址 [rover12421.com](https://rover12421.com/)
-- 相关网站 [idea.lanyus.com](http://idea.lanyus.com/)
+- 相关网站，Jetbrains激活相关网站 [idea.lanyus.com](http://idea.lanyus.com/)
 - 相关教程 
   - [https://blog.ouyanglol.com/article/details/258366](https://blog.ouyanglol.com/article/details/258366)
   - [https://blog.csdn.net/zwj1030711290/article/details/81635167](https://blog.csdn.net/zwj1030711290/article/details/81635167)
 - 相关文件
-  - 本地下载 [JetbrainsCrack-3.1-release-enc.jar](./JetbrainsCrack-3.1-release-enc.jar)
-  - 其他网站下载 [http://idea.lanyus.com/jar/JetbrainsCrack-3.1-release-enc.jar](http://idea.lanyus.com/jar/JetbrainsCrack-3.1-release-enc.jar)
+  - 本地下载(2018 2.x可用) [JetbrainsCrack-3.1-release-enc.jar](./JetbrainsCrack-3.1-release-enc.jar)
+  - 本地下载(2018 3.x可用) [JetbrainsIdesCrack-3.4-release-enc.jar](./JetbrainsIdesCrack-3.4-release-enc.jar)
+  - 其他网站下载(2018 2.x可用) [http://idea.lanyus.com/jar/JetbrainsCrack-3.1-release-enc.jar](http://idea.lanyus.com/jar/JetbrainsCrack-3.1-release-enc.jar)
+  - 其他网站下载(2018 3.x可用) [http://idea.lanyus.com/jar/JetbrainsIdesCrack-3.4-release-enc.jar](http://idea.lanyus.com/jar/JetbrainsIdesCrack-3.4-release-enc.jar)
 
 ## 亲测 IDEA、WebStorm 可用
 
