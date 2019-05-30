@@ -4,6 +4,7 @@
 menu:
   首页: /
   档案: /archives
+  个人域名: https://www.houkunlin.cn/
 subnav:
   github: "https://github.com/houkunlin"
 #  gitee: "https://gitee.com/houkunlin"
@@ -117,20 +118,24 @@ slider:
 #  friends: false
 smart_menu:
   innerArchive: '所有文章'
-  friends: false
+  friends: '友情链接'
   aboutme: '关于我'
 
 friends:
-  友情链接1: http://localhost:4000/
-  友情链接2: http://localhost:4000/
-  友情链接3: http://localhost:4000/
-  友情链接4: http://localhost:4000/
-  友情链接5: http://localhost:4000/
-  友情链接6: http://localhost:4000/
+  个人域名: https://www.houkunlin.cn/
 
-aboutme: "拥抱中国共产党。<br>
-争当热爱祖国、理想远大的好少年；<br>
-争当勤奋学习、追求上进的好少年；<br>
-争当品德优良、团结友爱的好少年；<br>
-争当体魄强健、活泼开朗的好少年。
+aboutme: "
+          社会主义核心价值观
+          <br>
+          富强、民主、文明、和谐<br>
+          自由、平等、公正、法治<br>
+          爱国、敬业、诚信、友善
+          <br>
+          <br>
+          拥抱中国共产党
+          <br>
+          争当热爱祖国、理想远大的好少年；<br>
+          争当勤奋学习、追求上进的好少年；<br>
+          争当品德优良、团结友爱的好少年；<br>
+          争当体魄强健、活泼开朗的好少年。
 "
