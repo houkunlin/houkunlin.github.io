@@ -70,3 +70,26 @@ docker run --name ipsec-vpn-server --env-file ./vpn.env -p 500:500/udp -p 4500:4
 docker run -it --name teamcity-server-instance -v /opt/teamcity/data:/data/teamcity_server/datadir -v /opt/teamcity/logs:/opt/teamcity/logs -p 8111:8111 jetbrains/teamcity-server
 ```
 
+
+
+### Shadowsocks
+
+```bash
+#!/bin/bash
+
+docker run --name shadowsocks --restart always -e PASSWORD=密码 -p 8388:8388 -p 8388:8388/udp -d shadowsocks/shadowsocks-libev
+```
+
+
+
+### Squid 代理服务器
+
+```bash
+#!/bin/bash
+
+docker run --name squid --restart always -p 3128:3128 -p 3128:3128/udp -v /opt/squid/cache/:/var/spool/squid -v /opt/squid/squid.conf:/etc/squid/squid.conf -d sameersbn/squid
+
+# 要在正在运行的实例上重新加载Squid配置，可以将HUP信号发送到容器。 https://hub.docker.com/r/sameersbn/squid
+# docker kill -s HUP squid
+```
+
