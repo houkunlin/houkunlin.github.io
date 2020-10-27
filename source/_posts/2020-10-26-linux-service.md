@@ -154,6 +154,8 @@ StandardOutput=null
 # 设置工作路径 http://www.jinbuguo.com/systemd/systemd.exec.html#WorkingDirectory=
 WorkingDirectory=/application/
 ExecStart=/usr/bin/java -Xms512m -Xmx512m -jar /application/app.jar --spring.profiles.active=dev
+# 其实这里还可以向下面这样写，java执行的jar不写全路径，直接写文件名，因为设置了 WorkingDirectory 会在该路径下找相应的文件
+#ExecStart=/usr/bin/java -Xms512m -Xmx512m -jar app.jar --spring.profiles.active=dev
 
 [Install]
 WantedBy=multi-user.target
