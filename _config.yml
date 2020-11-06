@@ -83,7 +83,10 @@ theme: hexo-theme-yilia
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://gitee.com/houkunlin/houkunlin.git
+  branch: [ gh-pages ]
+#  message: [ message ]
 
 jsonContent:
   meta: false
