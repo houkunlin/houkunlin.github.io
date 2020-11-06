@@ -1,31 +1,36 @@
 {
-  "name": "hexo-site",
+  "name": "houkunlin-blog",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "hexo server": "hexo server"
+    "server": "hexo server",
+    "generate": "hexo generate",
+    "deploy": "hexo deploy",
+    "clean": "hexo clean",
+    "list": "hexo list post",
+    "version": "hexo version"
   },
   "hexo": {
     "version": "5.2.0"
   },
   "dependencies": {
     "hexo": "^5.2.0",
-    "hexo-excerpt": "^1.1.3",
-    "hexo-generator-archive": "1.0.0",
-    "hexo-generator-category": "1.0.0",
-    "hexo-generator-index": "2.0.0",
-    "hexo-generator-json-content": "4.2.3",
-    "hexo-generator-tag": "1.0.0",
-    "hexo-renderer-ejs": "1.0.0",
-    "hexo-renderer-marked": "3.2.0",
-    "hexo-renderer-stylus": "2.0.1",
-    "hexo-server": "2.0.0",
     "hexo-deployer-git": "2.1.0",
     "hexo-deployer-rsync": "1.0.0",
+    "hexo-excerpt": "^1.1.3",
+    "hexo-generator-archive": "1.0.0",
     "hexo-generator-baidu-sitemap": "^0.1.2",
+    "hexo-generator-category": "1.0.0",
     "hexo-generator-feed": "3.0.0",
+    "hexo-generator-index": "2.0.0",
+    "hexo-generator-json-content": "4.2.3",
     "hexo-generator-json-feed": "2.0.4",
     "hexo-generator-sitemap": "2.1.0",
-    "hexo-helper-qrcode": "^1.0.1"
+    "hexo-generator-tag": "1.0.0",
+    "hexo-helper-qrcode": "^1.0.1",
+    "hexo-renderer-ejs": "1.0.0",
+    "hexo-renderer-marked": "3.3.0",
+    "hexo-renderer-stylus": "2.0.1",
+    "hexo-server": "2.0.0"
   }
 }
