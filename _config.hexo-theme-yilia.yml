@@ -4,7 +4,10 @@
 menu:
   首页: /
   档案: /archives
-  个人域名: https://www.houkunlin.cn/
+  个人网站: https://www.houkunlin.cn/
+  个人博客: https://houkunlin.gitee.io/
+  个人简历: https://houkunlin.gitee.io/resume/
+  个人工具: https://houkunlin.gitee.io/web-tools/
 subnav:
   github: "https://github.com/houkunlin"
   #  gitee: "https://gitee.com/houkunlin"
@@ -118,11 +121,11 @@ slider:
 #  friends: false
 smart_menu:
   innerArchive: '所有文章'
-  friends: '友情链接'
+  friends: false
   aboutme: '关于我'
 
 friends:
-  个人域名: https://www.houkunlin.cn/
+  个人网站: https://www.houkunlin.cn/
 
 aboutme: "
           社会主义核心价值观
