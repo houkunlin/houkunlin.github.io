@@ -6,7 +6,7 @@
   <link href="https://houkunlin.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://houkunlin.gitee.io/"/>
-  <updated>2023-02-09T02:35:57.000Z</updated>
+  <updated>2023-02-09T02:48:45.000Z</updated>
   <id>https://houkunlin.gitee.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>提交软著文档时清理源代码注释的正则表达式</title>
+    <link href="https://houkunlin.gitee.io/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://houkunlin.gitee.io/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
+    <published>2023-02-09T02:48:45.000Z</published>
+    <updated>2023-02-09T02:48:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>适用于 Java </p><ul><li><code>.*//.*\n</code> 删除单行的注释内容</li><li><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</li><li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;适用于 Java &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.*//.*\n&lt;/code&gt; 删除单行的注释内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.*/\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125;&lt;/code&gt; 删除多行的注释内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\n+&lt;/code&gt; 替换成 &lt;code&gt;\n&lt;/code&gt; 删除空白行&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>关于柳州市市区摩托车限行区域相关信息</title>
@@ -472,26 +495,6 @@
     <summary type="html">&lt;p&gt;今天升级了我ubuntu的谷歌浏览器，最新版本74.0.3729.169，具体为&lt;code&gt;版本 74.0.3729.169（正式版本）Built on Ubuntu , running on Ubuntu 18.04 （64 位）&lt;/code&gt;，升级后出问题了，我的谷歌浏览器无法访问走代理了。&lt;/p&gt;
 &lt;p&gt;原始的pac路径为：file:///opt/autoproxy.pac&lt;/p&gt;
 &lt;img src=&quot;/2019/05/30/chrome-pac-error/pac-local-file.png&quot; class title=&quot;Ubuntu代理配置&quot;&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Eclipse和IDEA同时开发WEB项目配置教程(springline)</title>
-    <link href="https://houkunlin.gitee.io/2019/05/22/gxcerc-2019-05-22-study-03/"/>
-    <id>https://houkunlin.gitee.io/2019/05/22/gxcerc-2019-05-22-study-03/</id>
-    <published>2019-05-22T07:29:11.000Z</published>
-    <updated>2019-05-22T07:29:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>时隔两天才更新日志，前两天偷了点懒，没有什么输出，也就没有什么可以写的。<br>今天写一下如何使用Eclipse和IDEA同时开发公司的这个demo项目，直接导入项目肯定多少是有一点问题的，因此需要做一些相关的配置，这篇日志就是说明如何更改和设置这些配置。</p><img src="/2019/05/22/gxcerc-2019-05-22-study-03/dir-info.png" class="" title="demo目录结构"><h2 id="Eclipse-开发工具"><a href="#Eclipse-开发工具" class="headerlink" title="Eclipse 开发工具"></a>Eclipse 开发工具</h2><p>步骤一肯定是导入了，这里就不说了。说点其他的东西。</p><h6 id="更改项目编码"><a href="#更改项目编码" class="headerlink" title="更改项目编码"></a>更改项目编码</h6><p>选中项目，右键》properties（快捷键Alt+Enter），进入到左侧Resource，修改项目编码为GBK</p><img src="/2019/05/22/gxcerc-2019-05-22-study-03/eclipse-properties-resource.png" class="" title="设置项目编码"><h6 id="设置项目Web部署相关配置"><a href="#设置项目Web部署相关配置" class="headerlink" title="设置项目Web部署相关配置"></a>设置项目Web部署相关配置</h6><p>在左侧Deployment Assembly选项卡中，设置项目路径对应的功能</p><img src="/2019/05/22/gxcerc-2019-05-22-study-03/eclipse-properties-deployment.png" class="" title="Deployment Assembly"><h6 id="设置项目JDK信息"><a href="#设置项目JDK信息" class="headerlink" title="设置项目JDK信息"></a>设置项目JDK信息</h6><p>在项目属性中，设置JDK版本信息</p><img src="/2019/05/22/gxcerc-2019-05-22-study-03/eclipse-properties-java-compiler.png" class="" title="JDK编译版本"><img src="/2019/05/22/gxcerc-2019-05-22-study-03/eclipse-properties-project-facets.png" class="" title="项目版本"><h6 id="设置项目依赖"><a href="#设置项目依赖" class="headerlink" title="设置项目依赖"></a>设置项目依赖</h6><p>在左侧 Java Build Path 选项卡中，设置项目的依赖信息，主要添加<code>JRE System Library</code>和<code>Server Runtime</code>和<code>Web App Libraries</code>，它们分别为：</p><ul><li>JRE System Library ：JDK环境的依赖</li><li>Server Runtime ：Tomcat环境的依赖</li><li>Web App Libraries：WEB-INF/lib依赖</li></ul><img src="/2019/05/22/gxcerc-2019-05-22-study-03/eclipse-properties-java-build-path.png" class="" title="Java Build Path Library"><img src="/2019/05/22/gxcerc-2019-05-22-study-03/eclipse-properties-java-build-path-add-library.png" class="" title="Java Build Path Add Library"><h6 id="配置Tomcat启动项，启动项目"><a href="#配置Tomcat启动项，启动项目" class="headerlink" title="配置Tomcat启动项，启动项目"></a>配置Tomcat启动项，启动项目</h6><p>关于这个步骤这里就不说了</p><h2 id="IDEA-开发工具"><a href="#IDEA-开发工具" class="headerlink" title="IDEA 开发工具"></a>IDEA 开发工具</h2><p>IDEA有很强的提示功能，如果项目配置不正确会在一些关键的地方报警告并且弹出修复提示，同时提供“修复”按钮，很多配置可以直接使用修复按钮解决</p><h6 id="更改项目编码-1"><a href="#更改项目编码-1" class="headerlink" title="更改项目编码"></a>更改项目编码</h6><p>选择菜单：File》Settings进入到设置（快捷键Ctrl+Alt+S），在左侧进入Editor》File Encodings选项，配置项目的编码</p><img src="/2019/05/22/gxcerc-2019-05-22-study-03/idea-settings-editor-file-encodings.png" class="" title="设置项目编码"><h6 id="设置项目信息"><a href="#设置项目信息" class="headerlink" title="设置项目信息"></a>设置项目信息</h6><p>选择菜单：File》Project Structure进入到项目配置（快捷键Ctrl+Alt+Shift+S）</p><ul><li>在左侧Project选项卡中设置项目SDK版本</li><li>在左侧Modules选项卡中设置项目编译输出路径和依赖</li><li>在左侧Libraries选项卡中管理项目的依赖信息，其实就是一个开发时的Classpath</li><li>在左侧Facets选项卡中配置项目的Web部署相关配置，注意好路径问题，在IDEA中默认时web路径，需要更改为dist路径</li><li>在左侧Artifacts选项卡中设置项目编译输出的相关配置</li></ul><img src="/2019/05/22/gxcerc-2019-05-22-study-03/idea-project-project.png" class="" title="idea-project-project"><img src="/2019/05/22/gxcerc-2019-05-22-study-03/idea-project-modules-output.png" class="" title="idea-project-modules-output"><img src="/2019/05/22/gxcerc-2019-05-22-study-03/idea-project-modules-dependencies.png" class="" title="idea-project-modules-dependencies"><img src="/2019/05/22/gxcerc-2019-05-22-study-03/idea-project-modules-dependencies-add.png" class="" title="idea-project-modules-dependencies-add">]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;时隔两天才更新日志，前两天偷了点懒，没有什么输出，也就没有什么可以写的。&lt;br&gt;今天写一下如何使用Eclipse和IDEA同时开发公司的这个demo项目，直接导入项目肯定多少是有一点问题的，因此需要做一些相关的配置，这篇日志就是说明如何更改和设置这些配置。&lt;/p&gt;
-&lt;img src=&quot;/2019/05/22/gxcerc-2019-05-22-study-03/dir-info.png&quot; class title=&quot;demo目录结构&quot;&gt;
-
-&lt;h2 id=&quot;Eclipse-开发工具&quot;&gt;&lt;a href=&quot;#Eclipse-开发工具&quot; class=&quot;headerlink&quot; title=&quot;Eclipse 开发工具&quot;&gt;&lt;/a&gt;Eclipse 开发工具&lt;/h2&gt;</summary>
     
     
     

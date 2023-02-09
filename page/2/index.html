@@ -158,6 +158,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-socks5-to-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/07/socks5-to-http/">通过 Privoxy 把 Shadowsocks 转成 Http 代理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/07/socks5-to-http/" class="archive-article-date">
+  	<time datetime="2020-11-06T18:18:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个脚本放在草稿里面很久了，今天放出来。</p>
+<p>通过一个脚本一键把一个普通的 <code>Ubuntu Docker</code> 容器变成一个代理转发 <code>Socks5</code> 的服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># https://qastack.cn/superuser/423563/convert-http-requests-to-socks5</span></span><br><span class="line"><span class="comment"># https://gist.github.com/xwsg/5ecd015be95a61875d43df87c451aca4</span></span><br><span class="line"><span class="comment"># https://edxi.github.io/2018/07/09/Shadowsocks_Privoxy_Squid_GFWlist/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件</span></span><br><span class="line">apt update &amp;&amp; apt install shadowsocks-libev privoxy systemctl -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换 Privoxy 配置文件</span></span><br><span class="line"><span class="comment"># 去除注释内容</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="subst">$(awk &#x27;/^[^#]/&#x27; /etc/privoxy/config)</span>&quot;</span> &gt;/etc/privoxy/config</span><br><span class="line"><span class="comment"># 替换监听IP配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="subst">$(sed &#x27;s/127.0.0.1/0.0.0.0/g&#x27; /etc/privoxy/config | sed &#x27;/listen.*\[.*/&#x27;d)</span>&quot;</span> &gt;/etc/privoxy/config</span><br><span class="line"><span class="comment"># 加入转发配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;forward-socks5t / 127.0.0.1:1080 .&quot;</span> &gt;&gt;/etc/privoxy/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换 ss-local 配置文件</span></span><br><span class="line">cat &lt;&lt;<span class="string">EOF &gt;/etc/shadowsocks-libev/config.json</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;server&quot;:&quot;server.host&quot;,</span></span><br><span class="line"><span class="string">    &quot;mode&quot;:&quot;tcp_and_udp&quot;,</span></span><br><span class="line"><span class="string">    &quot;server_port&quot;:8044,</span></span><br><span class="line"><span class="string">    &quot;local_port&quot;:1080,</span></span><br><span class="line"><span class="string">    &quot;local_address&quot;:&quot;0.0.0.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;password&quot;:&quot;my password&quot;,</span></span><br><span class="line"><span class="string">    &quot;timeout&quot;:60,</span></span><br><span class="line"><span class="string">    &quot;method&quot;:&quot;aes-256-cfb&quot;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地 SS</span></span><br><span class="line">nohup ss-local -c /etc/shadowsocks-libev/config.json &gt;sslocal.log &amp;</span><br><span class="line"><span class="comment"># 启动 Privoxy</span></span><br><span class="line">/etc/init.d/privoxy start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/11/07/socks5-to-http/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/07/socks5-to-http/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux-service" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -812,74 +890,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/05/30/chrome-pac-error/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-gxcerc-2019-05-22-study-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/22/gxcerc-2019-05-22-study-03/">Eclipse和IDEA同时开发WEB项目配置教程(springline)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/22/gxcerc-2019-05-22-study-03/" class="archive-article-date">
-  	<time datetime="2019-05-22T07:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>时隔两天才更新日志，前两天偷了点懒，没有什么输出，也就没有什么可以写的。<br>今天写一下如何使用Eclipse和IDEA同时开发公司的这个demo项目，直接导入项目肯定多少是有一点问题的，因此需要做一些相关的配置，这篇日志就是说明如何更改和设置这些配置。</p>
-<img src="/2019/05/22/gxcerc-2019-05-22-study-03/dir-info.png" class title="demo目录结构">
-
-<h2 id="Eclipse-开发工具"><a href="#Eclipse-开发工具" class="headerlink" title="Eclipse 开发工具"></a>Eclipse 开发工具</h2>
-        
-          <a class="article-more-a" href="/2019/05/22/gxcerc-2019-05-22-study-03/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/22/gxcerc-2019-05-22-study-03/">展开全文 >></a>
         </p>
       
 

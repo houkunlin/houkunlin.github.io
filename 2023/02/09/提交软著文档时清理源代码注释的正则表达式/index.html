@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
-  <title>侯坤林博客</title>
+  <title>提交软著文档时清理源代码注释的正则表达式 | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="侯坤林博客">
-<meta property="og:url" content="https://houkunlin.gitee.io/page/3/index.html">
+  <meta name="description" content="适用于 Java   .*&#x2F;&#x2F;.*\n 删除单行的注释内容 .*&#x2F;\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125; 删除多行的注释内容 \n+ 替换成 \n 删除空白行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提交软著文档时清理源代码注释的正则表达式">
+<meta property="og:url" content="https://houkunlin.gitee.io/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
+<meta property="og:description" content="适用于 Java   .*&#x2F;&#x2F;.*\n 删除单行的注释内容 .*&#x2F;\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125; 删除多行的注释内容 \n+ 替换成 \n 删除空白行">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-09T02:48:45.000Z">
+<meta property="article:modified_time" content="2023-02-09T02:48:45.000Z">
 <meta property="article:author" content="侯坤林">
 <meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
 <meta name="twitter:card" content="summary">
@@ -156,175 +158,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-gxcerc-2019-05-22-study-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-提交软著文档时清理源代码注释的正则表达式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/22/gxcerc-2019-05-22-study-03/">Eclipse和IDEA同时开发WEB项目配置教程(springline)</a>
+    <h1 class="article-title" itemprop="name">
+      提交软著文档时清理源代码注释的正则表达式
     </h1>
   
 
         
-        <a href="/2019/05/22/gxcerc-2019-05-22-study-03/" class="archive-article-date">
-  	<time datetime="2019-05-22T07:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
+        <a href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2023-02-09T02:48:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>时隔两天才更新日志，前两天偷了点懒，没有什么输出，也就没有什么可以写的。<br>今天写一下如何使用Eclipse和IDEA同时开发公司的这个demo项目，直接导入项目肯定多少是有一点问题的，因此需要做一些相关的配置，这篇日志就是说明如何更改和设置这些配置。</p>
-<img src="/2019/05/22/gxcerc-2019-05-22-study-03/dir-info.png" class title="demo目录结构">
-
-<h2 id="Eclipse-开发工具"><a href="#Eclipse-开发工具" class="headerlink" title="Eclipse 开发工具"></a>Eclipse 开发工具</h2>
-        
-          <a class="article-more-a" href="/2019/05/22/gxcerc-2019-05-22-study-03/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/22/gxcerc-2019-05-22-study-03/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-gxcerc-2019-05-19-study-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/18/gxcerc-2019-05-19-study-02/">实习总结-接触demo第二天</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/18/gxcerc-2019-05-19-study-02/" class="archive-article-date">
-  	<time datetime="2019-05-17T16:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨晚上玩手机有点晚，两点多才睡，结果今天睡到中午12点，洗漱吃完饭，下午1点钟了。</p>
-<p>该开始今天的计划了，接着昨晚上的项目。先把昨晚上发现的项目情况记录一下，都有下面这些东西。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/05/18/gxcerc-2019-05-19-study-02/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/18/gxcerc-2019-05-19-study-02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-gxcerc-2019-05-18-study-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/17/gxcerc-2019-05-18-study-01/">实习总结-初次接触项目</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/17/gxcerc-2019-05-18-study-01/" class="archive-article-date">
-  	<time datetime="2019-05-17T15:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天早上9点多的时候，老师在微信群里面发了实习任务，是一个压缩包，里面包含公司的所用框架开发文档和一个demo。<br>其中有四个开发文档和一个demo压缩包</p>
+        <p>适用于 Java </p>
 <ul>
-<li>一个UI的文档</li>
-<li>一个Java编码规范文档</li>
-<li>一个Velocity用户手册</li>
-<li>一个公司自主框架的开发框架培训手册</li>
-<li>一个公司自主框架的开发指引</li>
+<li><code>.*//.*\n</code> 删除单行的注释内容</li>
+<li><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</li>
+<li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li>
 </ul>
-<p>这几个文档的更新时间是2017-12-11到2017-12-18，距离今天19-05-17时间有点久远。</p>
-        
-          <a class="article-more-a" href="/2019/05/17/gxcerc-2019-05-18-study-01/#more">查看更多 >></a>
-        
+
       
 
       
@@ -335,16 +195,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/17/gxcerc-2019-05-18-study-01/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,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" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/09/liuzhou-moto-disable-run-area/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于柳州市市区摩托车限行区域相关信息</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -359,581 +278,33 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-flutter-start" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/flutter-start/">开始 flutter hello word 遇到问题记录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/flutter-start/" class="archive-article-date">
-  	<time datetime="2018-12-28T01:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h3><ul>
-<li>flutter中文网: <a target="_blank" rel="noopener" href="https://flutterchina.club/get-started/install/">https://flutterchina.club/get-started/install/</a></li>
-</ul>
-<h4 id="基本步骤跟着中文网教程走就行-下面记录一些在过程中遇到的问题"><a href="#基本步骤跟着中文网教程走就行-下面记录一些在过程中遇到的问题" class="headerlink" title="基本步骤跟着中文网教程走就行,下面记录一些在过程中遇到的问题"></a>基本步骤跟着中文网教程走就行,下面记录一些在过程中遇到的问题</h4>
-        
-          <a class="article-more-a" href="/2018/12/28/flutter-start/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/flutter-start/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-work-git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/22/work-git/">总结我在这几周工作中常用到的一些git命令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/22/work-git/" class="archive-article-date">
-  	<time datetime="2018-12-22T09:50:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="克隆一个远端仓库到本地"><a href="#克隆一个远端仓库到本地" class="headerlink" title="克隆一个远端仓库到本地"></a>克隆一个远端仓库到本地</h2><ul>
-<li><code>git clone &#123;url&#125;</code> 克隆一个地址{url}的仓库代码到本地</li>
-</ul>
-<h2 id="把文件添加进缓存"><a href="#把文件添加进缓存" class="headerlink" title="把文件添加进缓存"></a>把文件添加进缓存</h2>
-        
-          <a class="article-more-a" href="/2018/12/22/work-git/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/22/work-git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-microservice-story" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/05/microservice-story/">微服务组件之间的故事</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/05/microservice-story/" class="archive-article-date">
-  	<time datetime="2018-12-05T02:08:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>微服务组件: 服务治理/注册中心,网关,微服务,服务调用</p>
-</blockquote>
-<ul>
-<li>大宅院: 整个应用</li>
-<li>宅院管家: 服务治理/注册中心</li>
-<li>管家助理: 网关</li>
-<li>跑腿: 服务调用</li>
-</ul>
-<p>有个富豪,就是我,有一个大宅院,需要对外提供各种各样的服务,现在我的宅院里面拥有各种人才,可以为别人提供它们所需要的服务,但是我一个人忙不过来.<br>因此我需要请一个管家(注册中心/服务治理),让他帮我管理宅院的人才,所有的人才上下班都去管家那里报道.<br>后来我发现,我们需要一个前台来对客人提供基础的帮助以及辅助我们的管家和其他专业人才,因此决定给管家招一个助理(网关),由助理对来访人员进行筛选,以及任务分配.<br>用户来到前台,跟助理说我找张三给我办理出过手续,这是材料,助理问管家</p>
-        
-          <a class="article-more-a" href="/2018/12/05/microservice-story/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/05/microservice-story/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ge-task" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/27/ge-task/">考级任务</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/27/ge-task/" class="archive-article-date">
-  	<time datetime="2018-11-27T02:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="任务涉及内容"><a href="#任务涉及内容" class="headerlink" title="任务涉及内容"></a>任务涉及内容</h1><h2 id="C端任务"><a href="#C端任务" class="headerlink" title="C端任务"></a>C端任务</h2><ul>
-<li>学校信息：详情、介绍<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>学校列表：查询功能》有一个科目扩展表（t_grade_subject_school）关联着相关的数据<ul>
-<li>按照类型、科目、等级搜索</li>
-</ul>
-</li>
-<li>学校老师介绍：获取学校详情和评审老师信息<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>考生信息：用户考生编辑<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>用户信息：我的一级分销客户信息<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>佣金明细：新建一个表来记录每一笔佣金信息，同时在订单里面也要有相关的信息（关联订单）<br>》有一个：交易记录表（t_grade_transaction_record）存储这这个信息<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>意见反馈：小程序用户反馈功能、A端用户反馈管理功能<ul>
-<li>数据库表：</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/11/27/ge-task/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/27/ge-task/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-say" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/say/">2018年11月16日分享-解说词（对应PPT在制作当中）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/15/say/" class="archive-article-date">
-  	<time datetime="2018-11-15T07:41:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/18o6t8r4eAZ-8Q3y_9BtGWf1uJdcILCRT2ZFcB8FVbbo/edit?usp=sharing">PPT下载（谷歌幻灯片）</a></p>
-<h3 id="开头语"><a href="#开头语" class="headerlink" title="开头语"></a>开头语</h3><p>各位同事们好，我叫侯坤林，非常感谢各位同事百忙之中抽出时间来听我汇报这两周的学习情况，我感到十分荣幸，我若有什么表达得不对的地方，还请各位同事多多包涵和指正，谢谢！</p>
-        
-          <a class="article-more-a" href="/2018/11/15/say/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/15/say/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-study-spring-cloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/study-spring-cloud/">study-spring-cloud</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/15/study-spring-cloud/" class="archive-article-date">
-  	<time datetime="2018-11-15T02:59:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>分享大纲</p>
-<ul>
-<li>描述我进公司前在学校的状态<ul>
-<li>计算机网络</li>
-<li>数据结构与算法</li>
-<li>单打独斗，使用 gradle</li>
-<li>学习 kotlin</li>
-</ul>
-</li>
-<li>讲我这一周的状态<ul>
-<li>[[x]]学习敏捷开发</li>
-<li>学习容器</li>
-<li>学习 MyBatis</li>
-<li>学习 SpringCloud</li>
-<li>学习 git 、 git flow</li>
-<li>阿里代码规范</li>
-</ul>
-</li>
-<li>总结我这一周为什么有这些变化<ul>
-<li>学习得越多，只能表明我以前不够好</li>
-<li>对我来说，初入社会，一切从头开始</li>
-</ul>
-</li>
-</ul>
-
-        
-          <a class="article-more-a" href="/2018/11/15/study-spring-cloud/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/15/study-spring-cloud/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ibona-2018-11-13-update-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/13/ibona-2018-11-13-update-code/">我在代码规范踩的坑</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/13/ibona-2018-11-13-update-code/" class="archive-article-date">
-  	<time datetime="2018-11-13T09:53:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
-<li>最大的坑：前期没有写注释，后面得一个一个的补回来</li>
-<li>类注释：注释作者、注释类功能</li>
-<li>方法注释：说明、参数（变量名、解释）、返回值</li>
-<li>字段注释：不能尾行注释，数据对象字段不能加默认值</li>
-<li>多余的代码注释未删掉，这个需要删掉</li>
-<li>临时注释代码（可能会取消注释继续使用）使用三斜杠注释</li>
-<li>所有的接口必须注释</li>
-</ul>
-<h3 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h3>
-        
-          <a class="article-more-a" href="/2018/11/13/ibona-2018-11-13-update-code/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/13/ibona-2018-11-13-update-code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">« Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next »</a>
-    </nav>
   
 
+  
+
+  
+
+  
 
 
           </div>
@@ -955,8 +326,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
