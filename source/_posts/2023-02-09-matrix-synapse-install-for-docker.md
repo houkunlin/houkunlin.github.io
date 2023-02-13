@@ -11,8 +11,6 @@ tags:
 mkdir -p /var/matrix-synapse-data/
 ```
 
-
-
 ## 2. 生成 Synapse 配置文件
 
 ```bash
@@ -41,13 +39,41 @@ docker exec -it synapse register_new_matrix_user http://localhost:8008 -c /data/
 docker run -d -p 12234:80 awesometechnologies/synapse-admin
 ```
 
-## 6. 配置用户可注册
+## 6. 配置 synapse
 
-编辑 `/var/matrix-synapse-data/homeserver.yaml` 增加两行配置：
+编辑 `/var/matrix-synapse-data/homeserver.yaml` 
+
+配置可注册：
 
 ```yaml
+# 为新用户启用注册。
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#enable_registration
 enable_registration: true
+# 无需电子邮件或验证码验证即可启用注册。
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#enable_registration_without_verification
 enable_registration_without_verification: true
+```
+
+配置其他服务器与我们的服务器通信（更多详情可参考 [Delegation of incoming federation traffic](https://matrix-org.github.io/synapse/latest/delegate.html) ）：
+
+```yaml
+# 客户端用于访问此 Homeserver 的面向公众的基本 URL，这与用户可能在其客户端的“自定义主服务器 URL”字段中输入的 URL 相同。如果您将 Synapse 与反向代理一起使用，这应该是通过代理访问 Synapse 的 URL。
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#public_baseurl
+public_baseurl: https://matrix.houkunlin.cn
+# 默认情况下，其他服务器将尝试通过端口 8448 访问我们的服务器，告诉其他服务器将流量发送到端口 443
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#serve_server_wellknown
+serve_server_wellknown: true
+# 是否应阻止对该服务器上用户的房间邀请（本地服务器管理员发送的除外）
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#block_non_admin_invites
+block_non_admin_invites: false
+```
+
+配置访客匿名查看公开房间：
+
+```yaml
+# 允许用户在没有密码/电子邮件/等的情况下注册为访客，并参与此服务器上托管的房间，匿名用户可以访问这些房间。
+# https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#allow_guest_access
+allow_guest_access: true
 ```
 
 更多的配置请查阅 [官方文档](https://matrix-org.github.io/synapse/latest/welcome_and_overview.html)
@@ -105,9 +131,8 @@ server {
         try_files $uri $uri/ =404;
     }
 
-    # 把 /_matrix/ 路径下的请求都转发给后端服务器
-    # 会有几个 /.well-known/matrix/client 的请求，但实际这不归 synapse 服务管，因此这个路径的内容可以不转发给 synapse 服务
-    location /_matrix/ {
+    # 把 /.well-known/ 和 /_matrix/ 路径下的请求都转发给后端服务器
+    location ~ ^/(_matrix|.well-known)/ {
         proxy_pass                          http://127.0.0.1:8008;
         proxy_set_header Host               $http_host;
         proxy_set_header Upgrade            $http_upgrade;
@@ -150,9 +175,8 @@ server {
         try_files $uri $uri/ =404;
     }
 
-    # 把 /_matrix/ 路径下的请求都转发给后端服务器
-    # 会有几个 /.well-known/matrix/client 的请求，但实际这不归 synapse 服务管，因此这个路径的内容可以不转发给 synapse 服务
-    location /_matrix/ {
+    # 把 /.well-known/ 和 /_matrix/ 路径下的请求都转发给后端服务器
+    location ~ ^/(_matrix|.well-known)/ {
         proxy_pass                          http://127.0.0.1:8008;
         proxy_set_header Host               $http_host;
         proxy_set_header Upgrade            $http_upgrade;
