@@ -52,9 +52,9 @@ enable_registration_without_verification: true
 
 更多的配置请查阅 [官方文档](https://matrix-org.github.io/synapse/latest/welcome_and_overview.html)
 
-## 7. 反向代理
+## 7. 反向代理（HTTP+HTTPS）
 
-Element App 和 [Element Web](https://app.element.io/) 版需要启用 HTTPS 功能
+Element App 和 [Element Web](https://app.element.io/) 版需要启用 HTTPS 功能，下面是 HTTP+HTTPS 合并配置：
 
 ```
 map $http_upgrade $connection_upgrade {
@@ -121,6 +121,49 @@ server {
         proxy_ssl_protocols                 TLSv1.2 TLSv1.3;
     }
 }
-
 ```
 
+下面提供一个 HTTP 的配置（删掉了HTTPS配置），在使用 [cloudflare.com](http://cloudflare.com) 来保护我们的网站的时候可以免掉 HTTPS 的配置
+
+```
+map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ''      close;
+}
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name matrix.houkunlin.cn;
+
+    ignore_invalid_headers off;
+    client_max_body_size 0;
+    proxy_read_timeout 600s;
+
+    error_page 403 404 500 502 503 504 /index.html;
+
+    index index.htm index.html;
+
+    # 访问 Element.io 的 WEB 客户端
+    location / {
+        alias /var/www/matrix/;
+        try_files $uri $uri/ =404;
+    }
+
+    # 把 /_matrix/ 路径下的请求都转发给后端服务器
+    # 会有几个 /.well-known/matrix/client 的请求，但实际这不归 synapse 服务管，因此这个路径的内容可以不转发给 synapse 服务
+    location /_matrix/ {
+        proxy_pass                          http://127.0.0.1:8008;
+        proxy_set_header Host               $http_host;
+        proxy_set_header Upgrade            $http_upgrade;
+        proxy_set_header Connection         $connection_upgrade;
+        proxy_set_header X-Proxy-Host       $proxy_host;
+        proxy_set_header X-Forwarded-Host   $host;
+        proxy_set_header X-Forwarded-Server $host:$server_port;
+        proxy_set_header X-Forwarded-Proto  $scheme;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP          $remote_addr;
+        proxy_ssl_protocols                 TLSv1.2 TLSv1.3;
+    }
+}
+```
