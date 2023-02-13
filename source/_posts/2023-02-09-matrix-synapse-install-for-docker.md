@@ -14,11 +14,11 @@ mkdir -p /var/matrix-synapse-data/
 ## 2. 生成 Synapse 配置文件
 
 ```bash
-docker run -it --rm -v /var/matrix-synapse-data/:/data/ -e SYNAPSE_SERVER_NAME=matrix.houkunlin.cn -e SYNAPSE_REPORT_STATS=no matrixdotorg/synapse:latest generate
+docker run -it --rm -v /var/matrix-synapse-data/:/data/ -e SYNAPSE_SERVER_NAME=houkunlin.cn -e SYNAPSE_REPORT_STATS=no matrixdotorg/synapse:latest generate
 ```
 
 - `-v /var/matrix-synapse-data/:/data/` 映射的具体路径，按需修改
-- `-e SYNAPSE_SERVER_NAME=matrix.houkunlin.cn` 域名
+- `-e SYNAPSE_SERVER_NAME=houkunlin.cn` 域名
 - `-e SYNAPSE_REPORT_STATS=no` 是否发送匿名统计数据
 
 ### 3. 安装运行
@@ -59,7 +59,7 @@ enable_registration_without_verification: true
 ```yaml
 # 客户端用于访问此 Homeserver 的面向公众的基本 URL，这与用户可能在其客户端的“自定义主服务器 URL”字段中输入的 URL 相同。如果您将 Synapse 与反向代理一起使用，这应该是通过代理访问 Synapse 的 URL。
 # https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#public_baseurl
-public_baseurl: https://matrix.houkunlin.cn
+public_baseurl: https://houkunlin.cn
 # 默认情况下，其他服务器将尝试通过端口 8448 访问我们的服务器，告诉其他服务器将流量发送到端口 443
 # https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#serve_server_wellknown
 serve_server_wellknown: true
@@ -93,7 +93,7 @@ server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
 
-    server_name matrix.houkunlin.cn;
+    server_name houkunlin.cn;
 
     ssl_session_timeout 1d;
     ssl_session_cache shared:SSL:10m;
@@ -159,7 +159,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    server_name matrix.houkunlin.cn;
+    server_name houkunlin.cn;
 
     ignore_invalid_headers off;
     client_max_body_size 0;
