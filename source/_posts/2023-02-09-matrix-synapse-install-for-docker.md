@@ -97,6 +97,14 @@ server {
 
     error_page 403 404 500 502 503 504 /index.html;
 
+    index index.htm index.html;
+
+    # 访问 Element.io 的 WEB 客户端
+    location / {
+        alias /var/www/matrix/;
+        try_files $uri $uri/ =404;
+    }
+
     # 把 /_matrix/ 路径下的请求都转发给后端服务器
     # 会有几个 /.well-known/matrix/client 的请求，但实际这不归 synapse 服务管，因此这个路径的内容可以不转发给 synapse 服务
     location /_matrix/ {
