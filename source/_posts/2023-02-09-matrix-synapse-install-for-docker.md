@@ -97,8 +97,9 @@ server {
 
     error_page 403 404 500 502 503 504 /index.html;
 
-    # 其他的所有请求都转发给后端服务器
-    location / {
+    # 把 /_matrix/ 路径下的请求都转发给后端服务器
+    # 会有几个 /.well-known/matrix/client 的请求，但实际这不归 synapse 服务管，因此这个路径的内容可以不转发给 synapse 服务
+    location /_matrix/ {
         proxy_pass                          http://127.0.0.1:8008;
         proxy_set_header Host               $http_host;
         proxy_set_header Upgrade            $http_upgrade;
