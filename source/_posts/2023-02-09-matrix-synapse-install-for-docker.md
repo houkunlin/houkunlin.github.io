@@ -27,6 +27,8 @@ docker run -it --rm -v /var/matrix-synapse-data/:/data/ -e SYNAPSE_SERVER_NAME=h
 docker run -d --name synapse -v /var/matrix-synapse-data/:/data/ -p 8008:8008 -p 8009:8009 -p 8448:8448 matrixdotorg/synapse:latest
 ```
 
+默认情况下，其他服务器将尝试通过端口 8448 访问我们的服务器，参见文档：https://matrix-org.github.io/synapse/latest/usage/configuration/config_documentation.html#serve_server_wellknown 如果使用了反向代理，则可以忽略 8448 端口的绑定
+
 ## 4. 创建用户
 
 ```bash
@@ -70,7 +72,7 @@ serve_server_wellknown: true
 block_non_admin_invites: false
 ```
 
-`serve_server_wellknown: true` 配置实际主要是为了访问 `https://houkunlin.cn/.well-known/matrix/server` 路径内容返回 `{"m.server":"houkunlin.cn:443"}` 格式的内容，告诉其他服务器我的通信地址和端口。
+`serve_server_wellknown: true` 配置实际主要是为了访问 `https://houkunlin.cn/.well-known/matrix/server` 路径内容返回 `{"m.server":"houkunlin.cn:443"}` 格式的内容，告诉其他服务器我的通信地址和端口，**请注意，这个端口是需要使用 HTPPS 协议通信的，也就是说如果填写了 HTTP 端口，则会出现与其他服务的通信问题**。
 
 `public_baseurl: https://houkunlin.cn` 配置是为了告诉客户端我们 `synapse` 服务的真实通信地址，客户端会访问 `https://houkunlin.cn/.well-known/matrix/client` 拿到 `{"m.homeserver":{"base_url":"https://houkunlin.cn/"}}` 服务器地址信息。
 
@@ -160,7 +162,7 @@ server {
 }
 ```
 
-下面提供一个 HTTP 的配置（删掉了HTTPS配置），在使用 [cloudflare.com](http://cloudflare.com) 来保护我们的网站的时候可以免掉 HTTPS 的配置
+下面提供一个 HTTP 的配置（删掉了HTTPS配置），在使用 [cloudflare.com](http://cloudflare.com) 来保护我们的网站的时候可以免掉 HTTPS 的配置，**未经验证的判断：在与其他服务通信时（这里指的是默认的8448端口的功能）依旧需要在我们的服务器上设置 HTTPS 配置**
 
 ```nginx
 map $http_upgrade $connection_upgrade {
@@ -246,6 +248,7 @@ server {
     # 配置 /.well-known/matrix/server 内容
     location /.well-known/matrix/server {
         default_type application/json;
+        # 请注意，下面返回的端口是需要使用HTTPS协议进行通信的，如果返回了HTTP协议端口，在与其他服务器通信时会出现通信问题
         return 200 '{"m.server":"matrix.houkunlin.cn:443"}';
     }
     # 配置 /.well-known/matrix/client 内容
@@ -259,7 +262,7 @@ server {
 }
 ```
 
-`/.well-known/matrix/server` 返回的JSON中的服务地址必须指向 `matrix.houkunlin.cn:443` 
+`/.well-known/matrix/server` 返回的JSON中的服务地址必须指向 `matrix.houkunlin.cn:443` ，**请注意，这个端口是需要使用HTTPS协议进行通信的，如果返回了HTTP协议端口，在与其他服务器通信时会出现通信问题**
 
 `/.well-known/matrix/client` 返回的JSON中的服务地址必须指向 `https://matrix.houkunlin.cn/` 
 
@@ -398,6 +401,7 @@ server {
     # 配置 /.well-known/matrix/server 内容
     location /.well-known/matrix/server {
         default_type application/json;
+        # 请注意，下面返回的端口是需要使用HTTPS协议进行通信的，如果返回了HTTP协议端口，在与其他服务器通信时会出现通信问题
         return 200 '{"m.server":"matrix.houkunlin.cn:443"}';
     }
     # 配置 /.well-known/matrix/client 内容
