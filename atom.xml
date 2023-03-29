@@ -23,7 +23,7 @@
     <published>2023-02-09T02:48:45.000Z</published>
     <updated>2023-02-09T02:48:45.000Z</updated>
     
-    <content type="html"><![CDATA[<p>适用于 Java </p><ul><li><code>.*//.*\n</code> 删除单行的注释内容</li><li><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</li><li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>适用于 Java </p><ul><li><code>.*//.*\n</code> 删除单行的注释内容</li><li><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</li><li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li></ul><p>合并多个文件的代码内容：<code>type *.java &gt; code.txt</code> ，注意：<strong>必须使用 CMD 执行，请不要使用 Windows PowerShell 执行</strong>，在 Windows PowerShell 中会出现中文乱码，而在 CMD 中正常</p>]]></content>
     
     
     <summary type="html">&lt;p&gt;适用于 Java &lt;/p&gt;
@@ -32,7 +32,7 @@
 &lt;li&gt;&lt;code&gt;.*/\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125;&lt;/code&gt; 删除多行的注释内容&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;\n+&lt;/code&gt; 替换成 &lt;code&gt;\n&lt;/code&gt; 删除空白行&lt;/li&gt;
 &lt;/ul&gt;
-</summary>
+&lt;p&gt;合并多个文件的代码内容：&lt;code&gt;type *.java &amp;gt; code.txt&lt;/code&gt; ，注意：&lt;strong&gt;必须使用 CMD 执行，请不要使用 Windows PowerShell 执行&lt;/strong&gt;，在 Windows PowerShell 中会出现中文乱码，而在 CMD 中正常&lt;/p&gt;</summary>
     
     
     
