@@ -158,6 +158,166 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux-sysctl-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/20/linux-sysctl-config/">Linux sysctl 内核参数配置</a>
+    </h1>
+  
+
+        
+        <a href="/2023/04/20/linux-sysctl-config/" class="archive-article-date">
+  	<time datetime="2023-04-20T09:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在安装完 Linux 后，通常需要对内核做一些优化配置，以下是一些示例配置，创建 <code>/etc/sysctl.d/user.conf</code> 文件并编辑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vm.max_map_count&#x3D;65530 # 默认最大虚拟内存</span><br><span class="line">vm.max_map_count&#x3D;262144</span><br></pre></td></tr></table></figure>
+
+<p>然后执行命令 <code>sysctl -p /etc/sysctl.d/user.conf</code> 应用修改</p>
+        
+          <a class="article-more-a" href="/2023/04/20/linux-sysctl-config/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/04/20/linux-sysctl-config/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-boot-elk-logstash-config-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/20/spring-boot-elk-logstash-config-xml/">SpringBoot ELK 日志部署和配置示例</a>
+    </h1>
+  
+
+        
+        <a href="/2023/04/20/spring-boot-elk-logstash-config-xml/" class="archive-article-date">
+  	<time datetime="2023-04-20T07:31:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ElasticSearch-部署配置（8-7-0版本）"><a href="#ElasticSearch-部署配置（8-7-0版本）" class="headerlink" title="ElasticSearch 部署配置（8.7.0版本）"></a>ElasticSearch 部署配置（8.7.0版本）</h2><p>从 <a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">ElasticSearch官网</a> 下载安装包</p>
+<p>它不允许在 root 下运行，如果当前是 root 用户，则需要创建一个单独的用户：</p>
+        
+          <a class="article-more-a" href="/2023/04/20/spring-boot-elk-logstash-config-xml/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ELK</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">logstash</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/04/20/spring-boot-elk-logstash-config-xml/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-提交软著文档时清理源代码注释的正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -464,7 +624,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>先放一个可行的配置信息，后面再说过程。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">globalcors:</span></span><br><span class="line">        <span class="comment"># 一个全局默认的跨域配置，但是单独配置这个还是无法解决跨域问题</span></span><br><span class="line">        <span class="attr">cors-configurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOriginPatterns:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">default-filters:</span></span><br><span class="line">        <span class="comment"># 为了防止后端未配置跨域导致浏览器提示缺少跨域配置信息而请求失败，因此加上了默认的跨域Header配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Origin,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Methods,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Headers,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Credentials,</span> <span class="literal">true</span></span><br><span class="line">        <span class="comment"># 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DedupeResponseHeader=Vary</span> <span class="string">Access-Control-Allow-Origin</span> <span class="string">Access-Control-Allow-Credentials,</span> <span class="string">RETAIN_FIRST</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">globalcors:</span></span><br><span class="line">        <span class="comment"># 一个全局默认的跨域配置，但是单独配置这个还是无法解决跨域问题</span></span><br><span class="line">        <span class="attr">cors-configurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOriginPatterns:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">default-filters:</span></span><br><span class="line">        <span class="comment"># 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度</span></span><br><span class="line">        <span class="comment"># 升级 SpringBoot 3.0 之后，发现这个配置得写在前面才行，写在前面的最后执行</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DedupeResponseHeader=Vary</span> <span class="string">Access-Control-Allow-Origin</span> <span class="string">Access-Control-Allow-Credentials,</span> <span class="string">RETAIN_LAST</span></span><br><span class="line">        <span class="comment"># 为了防止后端未配置跨域导致浏览器提示缺少跨域配置信息而请求失败，因此加上了默认的跨域Header配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Origin,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Methods,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Headers,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Credentials,</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -788,183 +948,6 @@
 
 
   
-    <article id="post-docker-fonts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/23/docker-fonts/">Docker 容器中文字体乱码、无法加载中文字体</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/23/docker-fonts/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:38:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在使用 <code>java:8-alpine</code> 镜像打包 java 项目运行后发现有些需要生成含中文文字图片的接口出现异常，或者生成的中文乱码，主要是容器没有中文字体导致的。</p>
-<p>可以在打包容器的使用增加字体安装命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk add ttf-dejavu fontconfig</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/12/23/docker-fonts/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容器字体</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/23/docker-fonts/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-level-3-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/23/linux-level-3-bug/">Linux三级等保踩坑日记</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/23/linux-level-3-bug/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:28:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="踩坑1：服务器无法登录"><a href="#踩坑1：服务器无法登录" class="headerlink" title="踩坑1：服务器无法登录"></a>踩坑1：服务器无法登录</h2><ol>
-<li>禁用 <code>root</code> 帐号登录<ol>
-<li>修改 <code>/etc/ssh/sshd_config</code> 文件增加 <code>PermitRootLogin no</code> 配置</li>
-</ol>
-</li>
-<li>设置密码有效期；例如：设置密码有效期30天，30天后密码过期，必须修改密码才能登录<ol>
-<li>修改 <code>/etc/login.defs</code> 文件增加 <code>PASS_MAX_DAYS 30</code> 配置</li>
-</ol>
-</li>
-<li>设置文件属性：<code>chattr +i /etc/shadow</code></li>
-</ol>
-<p>静候30天你会发现惊喜：登录服务器提示必须修改密码，但是修改密码失败</p>
-        
-          <a class="article-more-a" href="/2021/12/23/linux-level-3-bug/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">三级等保</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安全基线</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/23/linux-level-3-bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
@@ -1194,6 +1177,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
               </li>
             
             <div class="clearfix"></div>

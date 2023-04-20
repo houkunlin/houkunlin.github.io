@@ -158,6 +158,183 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-docker-fonts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/23/docker-fonts/">Docker 容器中文字体乱码、无法加载中文字体</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/23/docker-fonts/" class="archive-article-date">
+  	<time datetime="2021-12-23T02:38:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在使用 <code>java:8-alpine</code> 镜像打包 java 项目运行后发现有些需要生成含中文文字图片的接口出现异常，或者生成的中文乱码，主要是容器没有中文字体导致的。</p>
+<p>可以在打包容器的使用增加字体安装命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk add ttf-dejavu fontconfig</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/12/23/docker-fonts/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容器字体</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/23/docker-fonts/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-level-3-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/23/linux-level-3-bug/">Linux三级等保踩坑日记</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/23/linux-level-3-bug/" class="archive-article-date">
+  	<time datetime="2021-12-23T02:28:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="踩坑1：服务器无法登录"><a href="#踩坑1：服务器无法登录" class="headerlink" title="踩坑1：服务器无法登录"></a>踩坑1：服务器无法登录</h2><ol>
+<li>禁用 <code>root</code> 帐号登录<ol>
+<li>修改 <code>/etc/ssh/sshd_config</code> 文件增加 <code>PermitRootLogin no</code> 配置</li>
+</ol>
+</li>
+<li>设置密码有效期；例如：设置密码有效期30天，30天后密码过期，必须修改密码才能登录<ol>
+<li>修改 <code>/etc/login.defs</code> 文件增加 <code>PASS_MAX_DAYS 30</code> 配置</li>
+</ol>
+</li>
+<li>设置文件属性：<code>chattr +i /etc/shadow</code></li>
+</ol>
+<p>静候30天你会发现惊喜：登录服务器提示必须修改密码，但是修改密码失败</p>
+        
+          <a class="article-more-a" href="/2021/12/23/linux-level-3-bug/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">三级等保</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安全基线</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/23/linux-level-3-bug/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-socks5-to-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -410,7 +587,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="acme-sh"><a href="#acme-sh" class="headerlink" title="acme.sh"></a>acme.sh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 acme.sh</span></span><br><span class="line">curl  https://get.acme.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露阿里云DNS的KEY，请到阿里云控制台申请</span></span><br><span class="line"><span class="built_in">export</span> Ali_Key=<span class="string">&quot;***&quot;</span></span><br><span class="line"><span class="built_in">export</span> Ali_Secret=<span class="string">&quot;***&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用阿里云DNS验证域名来生成 SSL 证书，acme.sh暂时无法为中文域名签发证书</span></span><br><span class="line">acme.sh --issue --dns dns_ali -d houkunlin.cn -d *.houkunlin.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 acme.sh 生成 SSL 证书后，把 SSL 证书安装到 Nginx</span></span><br><span class="line">acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd <span class="string">&quot;service nginx force-reload&quot;</span></span><br></pre></td></tr></table></figure>
+        <h3 id="acme-sh"><a href="#acme-sh" class="headerlink" title="acme.sh"></a>acme.sh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 acme.sh</span></span><br><span class="line">curl  https://get.acme.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露阿里云DNS的KEY，请到阿里云控制台申请</span></span><br><span class="line"><span class="built_in">export</span> Ali_Key=<span class="string">&quot;***&quot;</span></span><br><span class="line"><span class="built_in">export</span> Ali_Secret=<span class="string">&quot;***&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用阿里云DNS验证域名来生成 SSL 证书，acme.sh暂时无法为中文域名签发证书</span></span><br><span class="line">acme.sh --issue --dns dns_ali -d houkunlin.cn -d *.houkunlin.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 acme.sh 生成 SSL 证书后，把 SSL 证书安装到 Nginx</span></span><br><span class="line">acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd <span class="string">&quot;systemctl force-reload nginx&quot;</span></span><br></pre></td></tr></table></figure>
 
 
         
@@ -719,7 +896,7 @@
       
         <p>参考博客：<a target="_blank" rel="noopener" href="https://www.zhaofeida.com/articles/2019/10/15/1571131822791.html">https://www.zhaofeida.com/articles/2019/10/15/1571131822791.html</a></p>
 <p>官网地址：<a target="_blank" rel="noopener" href="https://start.spring.io/actuator/info">https://start.spring.io/actuator/info</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&quot;Finchley.M2&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M3 and &lt;2.0.0.M5&quot;,</span><br><span class="line">&quot;Finchley.M3&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M5 and &lt;&#x3D;2.0.0.M5&quot;,</span><br><span class="line">&quot;Finchley.M4&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M6 and &lt;&#x3D;2.0.0.M6&quot;,</span><br><span class="line">&quot;Finchley.M5&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M7 and &lt;&#x3D;2.0.0.M7&quot;,</span><br><span class="line">&quot;Finchley.M6&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RC1 and &lt;&#x3D;2.0.0.RC1&quot;,</span><br><span class="line">&quot;Finchley.M7&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RC2 and &lt;&#x3D;2.0.0.RC2&quot;,</span><br><span class="line">&quot;Finchley.M9&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RELEASE and &lt;&#x3D;2.0.0.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.RC1&quot;: &quot;Spring Boot &gt;&#x3D;2.0.1.RELEASE and &lt;2.0.2.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.RC2&quot;: &quot;Spring Boot &gt;&#x3D;2.0.2.RELEASE and &lt;2.0.3.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.SR4&quot;: &quot;Spring Boot &gt;&#x3D;2.0.3.RELEASE and &lt;2.0.999.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Finchley.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.0.999.BUILD-SNAPSHOT and &lt;2.1.0.M3&quot;,</span><br><span class="line">&quot;Greenwich.M1&quot;: &quot;Spring Boot &gt;&#x3D;2.1.0.M3 and &lt;2.1.0.RELEASE&quot;,</span><br><span class="line">&quot;Greenwich.SR3&quot;: &quot;Spring Boot &gt;&#x3D;2.1.0.RELEASE and &lt;2.1.11.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Greenwich.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.1.11.BUILD-SNAPSHOT and &lt;2.2.0.M4&quot;,</span><br><span class="line">&quot;Hoxton.RC2&quot;: &quot;Spring Boot &gt;&#x3D;2.2.0.M4 and &lt;2.2.2.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Hoxton.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.2.2.BUILD-SNAPSHOT&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 2019年11月15日</span><br><span class="line">&quot;Finchley.M2&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M3 and &lt;2.0.0.M5&quot;,</span><br><span class="line">&quot;Finchley.M3&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M5 and &lt;&#x3D;2.0.0.M5&quot;,</span><br><span class="line">&quot;Finchley.M4&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M6 and &lt;&#x3D;2.0.0.M6&quot;,</span><br><span class="line">&quot;Finchley.M5&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M7 and &lt;&#x3D;2.0.0.M7&quot;,</span><br><span class="line">&quot;Finchley.M6&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RC1 and &lt;&#x3D;2.0.0.RC1&quot;,</span><br><span class="line">&quot;Finchley.M7&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RC2 and &lt;&#x3D;2.0.0.RC2&quot;,</span><br><span class="line">&quot;Finchley.M9&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RELEASE and &lt;&#x3D;2.0.0.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.RC1&quot;: &quot;Spring Boot &gt;&#x3D;2.0.1.RELEASE and &lt;2.0.2.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.RC2&quot;: &quot;Spring Boot &gt;&#x3D;2.0.2.RELEASE and &lt;2.0.3.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.SR4&quot;: &quot;Spring Boot &gt;&#x3D;2.0.3.RELEASE and &lt;2.0.999.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Finchley.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.0.999.BUILD-SNAPSHOT and &lt;2.1.0.M3&quot;,</span><br><span class="line">&quot;Greenwich.M1&quot;: &quot;Spring Boot &gt;&#x3D;2.1.0.M3 and &lt;2.1.0.RELEASE&quot;,</span><br><span class="line">&quot;Greenwich.SR3&quot;: &quot;Spring Boot &gt;&#x3D;2.1.0.RELEASE and &lt;2.1.11.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Greenwich.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.1.11.BUILD-SNAPSHOT and &lt;2.2.0.M4&quot;,</span><br><span class="line">&quot;Hoxton.RC2&quot;: &quot;Spring Boot &gt;&#x3D;2.2.0.M4 and &lt;2.2.2.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Hoxton.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.2.2.BUILD-SNAPSHOT&quot;</span><br><span class="line"></span><br><span class="line"># 2023年4月20日</span><br><span class="line">&quot;Hoxton.SR12&quot;: &quot;Spring Boot &gt;&#x3D;2.2.0.RELEASE and &lt;2.4.0.M1&quot;,</span><br><span class="line">&quot;2020.0.6&quot;: &quot;Spring Boot &gt;&#x3D;2.4.0.M1 and &lt;2.6.0-M1&quot;,</span><br><span class="line">&quot;2021.0.0-M1&quot;: &quot;Spring Boot &gt;&#x3D;2.6.0-M1 and &lt;2.6.0-M3&quot;,</span><br><span class="line">&quot;2021.0.0-M3&quot;: &quot;Spring Boot &gt;&#x3D;2.6.0-M3 and &lt;2.6.0-RC1&quot;,</span><br><span class="line">&quot;2021.0.0-RC1&quot;: &quot;Spring Boot &gt;&#x3D;2.6.0-RC1 and &lt;2.6.1&quot;,</span><br><span class="line">&quot;2021.0.6&quot;: &quot;Spring Boot &gt;&#x3D;2.6.1 and &lt;3.0.0-M1&quot;,</span><br><span class="line">&quot;2022.0.0-M1&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M1 and &lt;3.0.0-M2&quot;,</span><br><span class="line">&quot;2022.0.0-M2&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M2 and &lt;3.0.0-M3&quot;,</span><br><span class="line">&quot;2022.0.0-M3&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M3 and &lt;3.0.0-M4&quot;,</span><br><span class="line">&quot;2022.0.0-M4&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M4 and &lt;3.0.0-M5&quot;,</span><br><span class="line">&quot;2022.0.0-M5&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M5 and &lt;3.0.0-RC1&quot;,</span><br><span class="line">&quot;2022.0.0-RC1&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-RC1 and &lt;3.0.0-RC2&quot;,</span><br><span class="line">&quot;2022.0.0-RC2&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-RC2 and &lt;3.0.0&quot;,</span><br><span class="line">&quot;2022.0.2&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0 and &lt;3.1.0-M1&quot;</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2019/11/15/spring-cloud-version/#more">查看更多 >></a>
         
@@ -735,161 +912,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/11/15/spring-cloud-version/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-database-dameng" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/database-dameng/">达梦数据库培训内容操作记录</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/16/database-dameng/" class="archive-article-date">
-  	<time datetime="2019-09-16T08:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-数据库安装准备"><a href="#1-数据库安装准备" class="headerlink" title="1. 数据库安装准备 "></a>1. 数据库安装准备 <span id="index01"></span></h2><h3 id="1-1-系统参数检验："><a href="#1-1-系统参数检验：" class="headerlink" title="1.1 系统参数检验："></a>1.1 系统参数检验：<span id="index01.01"></span></h3><ul>
-<li>检验最大可打开文件数目 <ul>
-<li><code>ulimit -n</code> 检查可打开文件最大数目</li>
-<li><code>ulimit -n $&#123;number&#125;</code> 设置可打开文件最大数目</li>
-<li><code>vi /etc/security/limits.conf</code> 在里面添加  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 给所有用户添加最大文件打开数目，该方式无法对root用户生效，root用户需要单独配置</span><br><span class="line">*   soft    nofile  65535</span><br><span class="line">*   hard    nofile  65536</span><br><span class="line"></span><br><span class="line"># 给root用户添加最大文件打开数目，root用户需要单独的配置</span><br><span class="line">root    soft    nofile  65535</span><br><span class="line">root    hard    nofile  65536</span><br></pre></td></tr></table></figure>
-  这个操作对root用户和其他所有用户设置最大文件打开数目，设置完后注销当前用户即可生效。</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/09/16/database-dameng/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/database-dameng/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-chrome-pac-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/30/chrome-pac-error/">Ubuntu下使用本地PAC文件代理导致谷歌浏览器无法走代理问题解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/30/chrome-pac-error/" class="archive-article-date">
-  	<time datetime="2019-05-30T08:31:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天升级了我ubuntu的谷歌浏览器，最新版本74.0.3729.169，具体为<code>版本 74.0.3729.169（正式版本）Built on Ubuntu , running on Ubuntu 18.04 （64 位）</code>，升级后出问题了，我的谷歌浏览器无法访问走代理了。</p>
-<p>原始的pac路径为：file:///opt/autoproxy.pac</p>
-<img src="/2019/05/30/chrome-pac-error/pac-local-file.png" class title="Ubuntu代理配置">
-        
-          <a class="article-more-a" href="/2019/05/30/chrome-pac-error/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/30/chrome-pac-error/">展开全文 >></a>
         </p>
       
 
@@ -1148,6 +1170,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
               </li>
             
             <div class="clearfix"></div>

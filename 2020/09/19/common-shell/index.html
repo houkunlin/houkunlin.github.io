@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="acme-sh"><a href="#acme-sh" class="headerlink" title="acme.sh"></a>acme.sh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 acme.sh</span></span><br><span class="line">curl  https://get.acme.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露阿里云DNS的KEY，请到阿里云控制台申请</span></span><br><span class="line"><span class="built_in">export</span> Ali_Key=<span class="string">&quot;***&quot;</span></span><br><span class="line"><span class="built_in">export</span> Ali_Secret=<span class="string">&quot;***&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用阿里云DNS验证域名来生成 SSL 证书，acme.sh暂时无法为中文域名签发证书</span></span><br><span class="line">acme.sh --issue --dns dns_ali -d houkunlin.cn -d *.houkunlin.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 acme.sh 生成 SSL 证书后，把 SSL 证书安装到 Nginx</span></span><br><span class="line">acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd <span class="string">&quot;service nginx force-reload&quot;</span></span><br></pre></td></tr></table></figure>
+        <h3 id="acme-sh"><a href="#acme-sh" class="headerlink" title="acme.sh"></a>acme.sh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 acme.sh</span></span><br><span class="line">curl  https://get.acme.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露阿里云DNS的KEY，请到阿里云控制台申请</span></span><br><span class="line"><span class="built_in">export</span> Ali_Key=<span class="string">&quot;***&quot;</span></span><br><span class="line"><span class="built_in">export</span> Ali_Secret=<span class="string">&quot;***&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用阿里云DNS验证域名来生成 SSL 证书，acme.sh暂时无法为中文域名签发证书</span></span><br><span class="line">acme.sh --issue --dns dns_ali -d houkunlin.cn -d *.houkunlin.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 acme.sh 生成 SSL 证书后，把 SSL 证书安装到 Nginx</span></span><br><span class="line">acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd <span class="string">&quot;systemctl force-reload nginx&quot;</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -544,6 +544,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
               </li>
             
             <div class="clearfix"></div>
