@@ -22,14 +22,14 @@ spring:
             allowedMethods: "*"
             allowCredentials: true
       default-filters:
+        # 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度
+        # 升级 SpringBoot 3.0 之后，发现这个配置得写在前面才行，写在前面的最后执行
+        - DedupeResponseHeader=Vary Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_LAST
         # 为了防止后端未配置跨域导致浏览器提示缺少跨域配置信息而请求失败，因此加上了默认的跨域Header配置
         - AddResponseHeader=Access-Control-Allow-Origin, *
         - AddResponseHeader=Access-Control-Allow-Methods, *
         - AddResponseHeader=Access-Control-Allow-Headers, *
         - AddResponseHeader=Access-Control-Allow-Credentials, true
-        # 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度
-        - DedupeResponseHeader=Vary Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
-
 ```
 
 

@@ -26,7 +26,7 @@ docker run --name portainer -d -p 8000:8000 -p 9000:9000 -v /var/run/docker.sock
 # 无WEB管理界面
 docker run --name rabbitmq -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 25672:25672 -e TZ=Asia/Shanghai -d rabbitmq
 # 有WEB管理界面
-docker run --name rabbitmq -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 25672:25672 -e TZ=Asia/Shanghai -d rabbitmq:3.8.7-management
+docker run --name rabbitmq -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 -e TZ=Asia/Shanghai -d rabbitmq:3.8.7-management
 ```
 
 

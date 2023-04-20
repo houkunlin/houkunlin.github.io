@@ -10,6 +10,7 @@ tags:
 官网地址：[https://start.spring.io/actuator/info](https://start.spring.io/actuator/info)
 
 ```
+# 2019年11月15日
 "Finchley.M2": "Spring Boot >=2.0.0.M3 and <2.0.0.M5",
 "Finchley.M3": "Spring Boot >=2.0.0.M5 and <=2.0.0.M5",
 "Finchley.M4": "Spring Boot >=2.0.0.M6 and <=2.0.0.M6",
@@ -26,5 +27,21 @@ tags:
 "Greenwich.BUILD-SNAPSHOT": "Spring Boot >=2.1.11.BUILD-SNAPSHOT and <2.2.0.M4",
 "Hoxton.RC2": "Spring Boot >=2.2.0.M4 and <2.2.2.BUILD-SNAPSHOT",
 "Hoxton.BUILD-SNAPSHOT": "Spring Boot >=2.2.2.BUILD-SNAPSHOT"
+
+# 2023年4月20日
+"Hoxton.SR12": "Spring Boot >=2.2.0.RELEASE and <2.4.0.M1",
+"2020.0.6": "Spring Boot >=2.4.0.M1 and <2.6.0-M1",
+"2021.0.0-M1": "Spring Boot >=2.6.0-M1 and <2.6.0-M3",
+"2021.0.0-M3": "Spring Boot >=2.6.0-M3 and <2.6.0-RC1",
+"2021.0.0-RC1": "Spring Boot >=2.6.0-RC1 and <2.6.1",
+"2021.0.6": "Spring Boot >=2.6.1 and <3.0.0-M1",
+"2022.0.0-M1": "Spring Boot >=3.0.0-M1 and <3.0.0-M2",
+"2022.0.0-M2": "Spring Boot >=3.0.0-M2 and <3.0.0-M3",
+"2022.0.0-M3": "Spring Boot >=3.0.0-M3 and <3.0.0-M4",
+"2022.0.0-M4": "Spring Boot >=3.0.0-M4 and <3.0.0-M5",
+"2022.0.0-M5": "Spring Boot >=3.0.0-M5 and <3.0.0-RC1",
+"2022.0.0-RC1": "Spring Boot >=3.0.0-RC1 and <3.0.0-RC2",
+"2022.0.0-RC2": "Spring Boot >=3.0.0-RC2 and <3.0.0",
+"2022.0.2": "Spring Boot >=3.0.0 and <3.1.0-M1"
 ```
 

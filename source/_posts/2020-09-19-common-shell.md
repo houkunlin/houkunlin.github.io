@@ -22,6 +22,6 @@ export Ali_Secret="***"
 acme.sh --issue --dns dns_ali -d houkunlin.cn -d *.houkunlin.cn
 
 # 使用 acme.sh 生成 SSL 证书后，把 SSL 证书安装到 Nginx
-acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd "service nginx force-reload"
+acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd "systemctl force-reload nginx"
 ```
 

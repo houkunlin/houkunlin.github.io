@@ -150,6 +150,7 @@ Restart=on-failure
 RestartSec=30s
 # 设置日志与标准输入输出 http://www.jinbuguo.com/systemd/systemd.exec.html#StandardOutput=
 # 关闭了 Service 的输出，依赖 Spring Boot 应用程序的日志输出
+# 请注意，一定要把 WorkingDirectory 目录设置 nobody:nogroup 的权限，否则此目录无写入权限
 StandardOutput=null
 # 设置工作路径 http://www.jinbuguo.com/systemd/systemd.exec.html#WorkingDirectory=
 WorkingDirectory=/application/
