@@ -118,7 +118,7 @@ i18n.locale: "zh-CN"
 
 由于 ElasticSearch 使用了默认的自签名 https ，因此需要复制证书到 Logstash `copy -r $ES_HOME/config/certs/ $LOGSTASH_HOME/config/` ，当然也可以忽略 https 验证。
 
-登录 Kibana 创建一个 logstash_server 专用账号，系统已有的 logstash_system 账号无法创建索引，因此必须定制一个账号，并分配相关的索引权限。
+登录 Kibana 创建 `logstash_server` 用户和角色，角色赋予 `*` 索引的 `all` 权限，以及集群的 `manage_logstash_pipelines` 权限，系统已有的 logstash_system 账号无法创建索引，因此必须定制一个账号。
 
 在 `$LOGSTASH_HOME` 创建一个 `springboot-logstash.conf` 配置文件：
 
@@ -214,3 +214,91 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
 logging:
   config: classpath:logback-spring.xml
 ```
+
+## 配置成系统服务并设置自启动
+
+文件：`/lib/systemd/system/elasticsearch.service`
+```text
+# http://www.jinbuguo.com/systemd/systemd.unit.html
+[Unit]
+# 单元的解释说明 http://www.jinbuguo.com/systemd/systemd.unit.html#Description=
+Description=ElasticSearch Server
+# 启动顺序设置
+After=network.target
+# 配合 After 设置强依赖服务，依赖单元必须已经全部处于启动成功的状态时才能启动当前单元 http://www.jinbuguo.com/systemd/systemd.unit.html#Requisite=
+#Requisite=
+
+[Service]
+Type=simple
+User=elk
+# 重启服务配置， on-failure 表示仅在服务进程异常退出时重启 http://www.jinbuguo.com/systemd/systemd.service.html#Restart=
+Restart=on-failure
+# 在重启服务前暂停的时间 http://www.jinbuguo.com/systemd/systemd.service.html#RestartSec=
+RestartSec=30s
+# 设置日志与标准输入输出 http://www.jinbuguo.com/systemd/systemd.exec.html#StandardOutput=
+StandardOutput=inherit
+# 设置工作路径 http://www.jinbuguo.com/systemd/systemd.exec.html#WorkingDirectory=
+WorkingDirectory=/opt/elasticsearch-8.7.0/
+ExecStart=/opt/elasticsearch-8.7.0/bin/elasticsearch
+
+[Install]
+WantedBy=multi-user.target
+```
+
+文件：`/lib/systemd/system/kibana.service`
+```text
+# http://www.jinbuguo.com/systemd/systemd.unit.html
+[Unit]
+# 单元的解释说明 http://www.jinbuguo.com/systemd/systemd.unit.html#Description=
+Description=Kibana Server
+# 启动顺序设置
+After=network.target
+# 配合 After 设置强依赖服务，依赖单元必须已经全部处于启动成功的状态时才能启动当前单元 http://www.jinbuguo.com/systemd/systemd.unit.html#Requisite=
+#Requisite=
+
+[Service]
+Type=simple
+User=elk
+# 重启服务配置， on-failure 表示仅在服务进程异常退出时重启 http://www.jinbuguo.com/systemd/systemd.service.html#Restart=
+Restart=on-failure
+# 在重启服务前暂停的时间 http://www.jinbuguo.com/systemd/systemd.service.html#RestartSec=
+RestartSec=30s
+# 设置日志与标准输入输出 http://www.jinbuguo.com/systemd/systemd.exec.html#StandardOutput=
+StandardOutput=inherit
+# 设置工作路径 http://www.jinbuguo.com/systemd/systemd.exec.html#WorkingDirectory=
+WorkingDirectory=/opt/kibana-8.7.0/
+ExecStart=/opt/kibana-8.7.0/bin/kibana
+
+[Install]
+WantedBy=multi-user.target
+```
+
+文件：`/lib/systemd/system/logstash.service`
+```text
+# http://www.jinbuguo.com/systemd/systemd.unit.html
+[Unit]
+# 单元的解释说明 http://www.jinbuguo.com/systemd/systemd.unit.html#Description=
+Description=Logstash Server
+# 启动顺序设置
+After=network.target
+# 配合 After 设置强依赖服务，依赖单元必须已经全部处于启动成功的状态时才能启动当前单元 http://www.jinbuguo.com/systemd/systemd.unit.html#Requisite=
+#Requisite=
+
+[Service]
+Type=simple
+User=elk
+# 重启服务配置， on-failure 表示仅在服务进程异常退出时重启 http://www.jinbuguo.com/systemd/systemd.service.html#Restart=
+Restart=on-failure
+# 在重启服务前暂停的时间 http://www.jinbuguo.com/systemd/systemd.service.html#RestartSec=
+RestartSec=30s
+# 设置日志与标准输入输出 http://www.jinbuguo.com/systemd/systemd.exec.html#StandardOutput=
+StandardOutput=inherit
+# 设置工作路径 http://www.jinbuguo.com/systemd/systemd.exec.html#WorkingDirectory=
+WorkingDirectory=/opt/logstash-8.7.0/
+ExecStart=/opt/logstash-8.7.0/bin/logstash -f springboot-logstash.conf
+
+[Install]
+WantedBy=multi-user.target
+```
+
+配置成功后执行 `systemctl daemon-reload` 刷新，然后就可以使用 `systemctl start elasticsearch` / `systemctl start kibana` / `systemctl start logstash` 来启动和管理服务了
