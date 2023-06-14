@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://houkunlin.gitee.io/2023/06/14/spring-webclient-max-request-body-size/</loc>
+    <lastmod>2023-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2023/06/14/spring-cloud-gateway-max-request-body-size/</loc>
+    <lastmod>2023-06-14</lastmod>
+  </url>
+  <url>
     <loc>https://houkunlin.gitee.io/2023/04/20/linux-sysctl-config/</loc>
     <lastmod>2023-04-20</lastmod>
   </url>

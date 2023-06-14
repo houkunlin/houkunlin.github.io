@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
-  <title>Archives | 侯坤林博客</title>
+  <title>Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题 | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="侯坤林博客">
-<meta property="og:url" content="https://houkunlin.gitee.io/archives/page/3/index.html">
+  <meta name="description" content="解决常规请求大小限制问题近日，在把文件上传接口放在 SpringCloudGateway 后发现偶尔上传文件失败问题，经过初步排查前端上传文件超过256KB就会出错，经过简单日志排查，发现是我们的网关问题，错误日志大致如下： 1234567891011121314151617181920212223org.springframework.core.io.buffer.DataBufferLimit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题">
+<meta property="og:url" content="https://houkunlin.gitee.io/2023/06/14/spring-cloud-gateway-max-request-body-size/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
+<meta property="og:description" content="解决常规请求大小限制问题近日，在把文件上传接口放在 SpringCloudGateway 后发现偶尔上传文件失败问题，经过初步排查前端上传文件超过256KB就会出错，经过简单日志排查，发现是我们的网关问题，错误日志大致如下： 1234567891011121314151617181920212223org.springframework.core.io.buffer.DataBufferLimit">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-14T07:43:38.000Z">
+<meta property="article:modified_time" content="2023-06-14T07:43:38.000Z">
 <meta property="article:author" content="侯坤林">
 <meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
 <meta name="twitter:card" content="summary">
@@ -156,333 +158,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-spring-cloud-gateway-max-request-body-size" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题
+    </h1>
+  
+
+        
+        <a href="/2023/06/14/spring-cloud-gateway-max-request-body-size/" class="archive-article-date">
+  	<time datetime="2023-06-14T07:43:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="解决常规请求大小限制问题"><a href="#解决常规请求大小限制问题" class="headerlink" title="解决常规请求大小限制问题"></a>解决常规请求大小限制问题</h2><p>近日，在把文件上传接口放在 SpringCloudGateway 后发现偶尔上传文件失败问题，经过初步排查前端上传文件超过256KB就会出错，经过简单日志排查，发现是我们的网关问题，错误日志大致如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.core.io.buffer.DataBufferLimitException: Exceeded limit on max bytes to buffer : 262144</span><br><span class="line">	at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException:</span><br><span class="line">Error has been observed at the following site(s):</span><br><span class="line">	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ org.springframework.web.filter.reactive.ServerHttpObservationFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ HTTP POST &quot;/api/files/upload&quot; [ExceptionHandlingWebHandler]</span><br><span class="line">Original Stack Trace:</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.updateCount(LimitedDataBufferList.java:92)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.add(LimitedDataBufferList.java:58)</span><br><span class="line">		at reactor.core.publisher.MonoCollect$CollectSubscriber.onNext(MonoCollect.java:103)</span><br><span class="line">		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122)</span><br><span class="line">// .......</span><br><span class="line">2023-06-14T10:54:34.710+08:00 ERROR 54904 --- [ctor-http-nio-6] r.n.channel.ChannelOperationsHandler     : [5f5eda41-1, L:/127.0.0.1:8081 ! R:kubernetes.docker.internal/127.0.0.1:55331] Error was received while reading the incoming data. The connection will be closed.</span><br><span class="line"></span><br><span class="line">io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:83)</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:148)</span><br><span class="line">	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:101)</span><br><span class="line">	at io.netty.handler.codec.http.DefaultHttpContent.release(DefaultHttpContent.java:92)</span><br><span class="line">	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:90)</span><br><span class="line">	at reactor.netty.channel.FluxReceive.onInboundNext(FluxReceive.java:380)</span><br></pre></td></tr></table></figure>
+
+<p>发现是网关默认限制了请求Body的大小为 256KB，而我们则需要修改这个限制，经过网上查找资料，找到 <a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-webflux-databufferlimitexception">How to Resolve Spring Webflux DataBufferLimitException</a> 这篇文章，文章中的解决方式如下：</p>
+<p>实现 <code>WebFluxConfigurer</code> 接口并重写 <code>void configureHttpMessageCodecs(ServerCodecConfigurer)</code> 方法，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebFluxConfiguration</span> <span class="keyword">implements</span> <span class="title">WebFluxConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureHttpMessageCodecs</span><span class="params">(ServerCodecConfigurer configurer)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 可以把下面的 500 * 1024 改为 -1 表示不限制请求大小</span></span><br><span class="line">        configurer.defaultCodecs().maxInMemorySize(<span class="number">500</span> * <span class="number">1024</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以及在配置文件（<code>application.yml</code>）中增加配置内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">codec:</span></span><br><span class="line">    <span class="comment"># 可以把下面的 500KB 改为 -1 表示不限制请求大小</span></span><br><span class="line">    <span class="attr">max-in-memory-size:</span> <span class="string">500KB</span></span><br></pre></td></tr></table></figure>
+
+<p>经过以上两个设置，就可以成功修改请求大小限制。</p>
+<h2 id="解决常规解决方案不生效问题"><a href="#解决常规解决方案不生效问题" class="headerlink" title="解决常规解决方案不生效问题"></a>解决常规解决方案不生效问题</h2><p>一般情况下，经过上面的处理，都可以成功的修改Gateway的请求限制，但是有时候他莫名其妙的失效了，在本次的错误处理中，我就遇到了这个问题。</p>
+<p>最终经过排查，是我向Gateway增加了一个 <code>RequestLogFilter</code> 请求日志打印的全局过滤器导致的，在这个过滤器中，我手动创建了一个 <code>XxxGatewayFilterFactory</code> 对象，大致代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestLogFilter</span> <span class="keyword">implements</span> <span class="title">GlobalFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> GatewayFilter delegate = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (delegate == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// .......</span></span><br><span class="line">        <span class="keyword">return</span> delegate.filter(exchange, chain);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ModifyRequestBodyGatewayFilterFactory.<span class="function">Config <span class="title">getConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModifyRequestBodyGatewayFilterFactory.Config cf = <span class="keyword">new</span> ModifyRequestBodyGatewayFilterFactory.Config();</span><br><span class="line">        <span class="comment">// .......</span></span><br><span class="line">        <span class="keyword">return</span> cf;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.delegate = <span class="keyword">new</span> ModifyRequestBodyGatewayFilterFactory().apply(<span class="keyword">this</span>.getConfig());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的 <code>RequestLogFilter</code> 对象中，在初始化Bean阶段创建了 <code>ModifyRequestBodyGatewayFilterFactory</code> 对象，而在其构造方法中使用 <code>HandlerStrategies.withDefaults().messageReaders()</code> 创建了一个默认的 <code>List&lt;HttpMessageReader&lt;?&gt;&gt;</code> ，问题就是出在这个地方。</p>
+<p><code>HandlerStrategies.withDefaults().messageReaders()</code> 会创建一个默认的 <code>ServerCodecConfigurer</code> 对象，此对象负责初始化相关的 <code>HttpMessageReader</code> 对象，而这个环节中，<code>HandlerStrategies</code> 和 <code>ServerCodecConfigurer</code> 都无法读取我们前面配置的 <code>maxInMemorySize </code> 参数，此时 <code>ServerCodecConfigurer#maxInMemorySize == null</code>  ，所以在初始化 <code>HttpMessageReader</code> 时无法设置正确的请求大小限制配置，并且最终系统启动完毕后，会直接使用此次创建的 <code>List&lt;HttpMessageReader&lt;?&gt;&gt;</code> ，直接导致后续所有的请求都无法突破 256KB 的限制。</p>
+<p>实际最终的问题是，代码运行的过程中，手动创建 <code>ServerCodecConfigurer</code> 比 SpringBoot 初始化的 <code>ServerCodecConfigurer</code> 的时间早 ，导致了Gateway最终 <code>codecConfigurer.getReaders()</code> 得到的 <code>List&lt;HttpMessageReader&lt;?&gt;&gt;</code> 以第一个为准。</p>
+<p>因此解决的方法也很简单，那就是使用 SpringBoot 初始化的 <code>ServerCodecConfigurer</code> 对象，或者我们创建 <code>ServerCodecConfigurer</code> 对象时手动设置其 <code>maxInMemorySize</code> 参数。</p>
+<p>例如可参考如下解决方案：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestLogFilter</span> <span class="keyword">implements</span> <span class="title">GlobalFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ServerCodecConfigurer codecConfigurer;</span><br><span class="line">    <span class="keyword">private</span> GatewayFilter delegate = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (delegate == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// .......</span></span><br><span class="line">        <span class="keyword">return</span> delegate.filter(exchange, chain);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ModifyRequestBodyGatewayFilterFactory.<span class="function">Config <span class="title">getConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModifyRequestBodyGatewayFilterFactory.Config cf = <span class="keyword">new</span> ModifyRequestBodyGatewayFilterFactory.Config();</span><br><span class="line">        <span class="comment">// .......</span></span><br><span class="line">        <span class="keyword">return</span> cf;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.delegate = <span class="keyword">new</span> ModifyRequestBodyGatewayFilterFactory(codecConfigurer.getReaders()).apply(<span class="keyword">this</span>.getConfig());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/29/scoop/" class="archive-article-date">
-  	<time datetime="2019-11-29T02:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/29/scoop/">Windows的命令行安装程序 - scoop</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/15/spring-cloud-version/" class="archive-article-date">
-  	<time datetime="2019-11-15T02:31:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/15/spring-cloud-version/">Spring Cloud 和 Spring Boot 对应的版本关系说明</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/database-dameng/" class="archive-article-date">
-  	<time datetime="2019-09-16T08:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/database-dameng/">达梦数据库培训内容操作记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/chrome-pac-error/" class="archive-article-date">
-  	<time datetime="2019-05-30T08:31:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/chrome-pac-error/">Ubuntu下使用本地PAC文件代理导致谷歌浏览器无法走代理问题解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/22/gxcerc-2019-05-22-study-03/" class="archive-article-date">
-  	<time datetime="2019-05-22T07:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/22/gxcerc-2019-05-22-study-03/">Eclipse和IDEA同时开发WEB项目配置教程(springline)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/18/gxcerc-2019-05-19-study-02/" class="archive-article-date">
-  	<time datetime="2019-05-17T16:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/18/gxcerc-2019-05-19-study-02/">实习总结-接触demo第二天</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/17/gxcerc-2019-05-18-study-01/" class="archive-article-date">
-  	<time datetime="2019-05-17T15:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/17/gxcerc-2019-05-18-study-01/">实习总结-初次接触项目</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/flutter-start/" class="archive-article-date">
-  	<time datetime="2018-12-28T01:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/flutter-start/">开始 flutter hello word 遇到问题记录</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQW7jMBAEQP//0w6w142l7iFpO0DpZMiOxOKBw/Tw8Yiv57/r+v7/v3leXq+ecP2cx4kLDw8PbzT0ZBD5QK/xydN2PQEPDw/vHC9Z9NuXJYt7cicpQi/v4+Hh4X2Ul+xar0vO9V+1hQEPDw/vL/LacCH59osKAx4eHt4lrw0a8s10Eg3nEfDBrAUPDw8v5q0M5VOfD/b38PDw8Ba66vminLf5k210ewTh5Wjx8PDwDvCuh5tEt0kzLF/WVzbHxX8MeHh4eAu8WVCbMIqYdVRUoqnHw8PDO8CbLdl5YWh/GQ233KDj4eHhnePl7aU2PpgdNchLy80dPDw8vAO84kdl3JDzZsWjiC3w8PDwtvJmQUN74CmPLWZhxE0DDA8PD28Tb2XzOmuY5cHxSpXDw8PDO8dbb0qthLPtJCbTEcUQeHh4eMu89SEmr2k3xCslBA8PD+89vPY1s4bZSiw7a6rh4eHhneDNYoV8QMkU5Ot5HSjj4eHhbeW1B5hmB7DaAwr5RNy00PDw8PCO8Wbt/JaxvujXxxHw8PDwPsSbLc2zowP1sYDr6cDDw8M7xpvFqXnbPpmgfCKKgw54eHh4x3jvef16YJGPMOrm4eHh4S3w8s1x+5u2bCSYBPZL3cPDw8PbxKv/vY8f3R7Pmm3Qo2/x8PDwtvLa5Tv5PAsyZnHGzXYfDw8P74282Z3ZlrptsxVjw8PDwzvAS8LTXQekZtPXHiaIIl08PDy8Bd6zvFa2uXXjv9xY35wpw8PDw9vEy6/ZoGfHDtqQFw8PD+/9vKQYzMKF2R4/LwBFfw8PDw/vAK9teu3d2s7CXzw8PLzv57WwZNGP2lej8oOHh4f3bbxZLLvSJEumaVthwMPDw9uac643/tsgI4936wMEeHh4eCPers1rTlqJOZYYeHh4eKu8H28FDQE9GG+VAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/22/work-git/" class="archive-article-date">
-  	<time datetime="2018-12-22T09:50:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2023/06/14/spring-webclient-max-request-body-size/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Spring Webclient 请求Body限制 256KB 问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/20/linux-sysctl-config/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux sysctl 内核参数配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/22/work-git/">总结我在这几周工作中常用到的一些git命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%B8%B8%E8%A7%84%E8%AF%B7%E6%B1%82%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">解决常规请求大小限制问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%B8%B8%E8%A7%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">解决常规解决方案不生效问题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/05/microservice-story/" class="archive-article-date">
-  	<time datetime="2018-12-05T02:08:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-05</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/05/microservice-story/">微服务组件之间的故事</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">« Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/4/">Next »</a>
-    </nav>
   
 
+  
 
 
           </div>
@@ -505,8 +356,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

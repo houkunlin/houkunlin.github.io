@@ -158,6 +158,139 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spring-webclient-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/14/spring-webclient-max-request-body-size/">Spring Webclient 请求Body限制 256KB 问题</a>
+    </h1>
+  
+
+        
+        <a href="/2023/06/14/spring-webclient-max-request-body-size/" class="archive-article-date">
+  	<time datetime="2023-06-14T08:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个问题很久之前遇到过了，这次遇到另外一个有点类似的问题，那就是 SpringCloudGateway 请求限制 256KB 问题，在这里也记录一下 WebClient 请求限制 256KB 问题的处理方式。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-webflux-databufferlimitexception">How to Resolve Spring Webflux DataBufferLimitException</a> 这篇文章中有提到解决方案，在这里复制一下以做记录。</p>
+<p>在创建 <code>WebClient</code> 时设置 <code>exchangeStrategies</code> 参数，示例代码如下：</p>
+        
+          <a class="article-more-a" href="/2023/06/14/spring-webclient-max-request-body-size/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/06/14/spring-webclient-max-request-body-size/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-cloud-gateway-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/">Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题</a>
+    </h1>
+  
+
+        
+        <a href="/2023/06/14/spring-cloud-gateway-max-request-body-size/" class="archive-article-date">
+  	<time datetime="2023-06-14T07:43:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="解决常规请求大小限制问题"><a href="#解决常规请求大小限制问题" class="headerlink" title="解决常规请求大小限制问题"></a>解决常规请求大小限制问题</h2><p>近日，在把文件上传接口放在 SpringCloudGateway 后发现偶尔上传文件失败问题，经过初步排查前端上传文件超过256KB就会出错，经过简单日志排查，发现是我们的网关问题，错误日志大致如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.core.io.buffer.DataBufferLimitException: Exceeded limit on max bytes to buffer : 262144</span><br><span class="line">	at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException:</span><br><span class="line">Error has been observed at the following site(s):</span><br><span class="line">	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ org.springframework.web.filter.reactive.ServerHttpObservationFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ HTTP POST &quot;/api/files/upload&quot; [ExceptionHandlingWebHandler]</span><br><span class="line">Original Stack Trace:</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.updateCount(LimitedDataBufferList.java:92)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.add(LimitedDataBufferList.java:58)</span><br><span class="line">		at reactor.core.publisher.MonoCollect$CollectSubscriber.onNext(MonoCollect.java:103)</span><br><span class="line">		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122)</span><br><span class="line">// .......</span><br><span class="line">2023-06-14T10:54:34.710+08:00 ERROR 54904 --- [ctor-http-nio-6] r.n.channel.ChannelOperationsHandler     : [5f5eda41-1, L:/127.0.0.1:8081 ! R:kubernetes.docker.internal/127.0.0.1:55331] Error was received while reading the incoming data. The connection will be closed.</span><br><span class="line"></span><br><span class="line">io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:83)</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:148)</span><br><span class="line">	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:101)</span><br><span class="line">	at io.netty.handler.codec.http.DefaultHttpContent.release(DefaultHttpContent.java:92)</span><br><span class="line">	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:90)</span><br><span class="line">	at reactor.netty.channel.FluxReceive.onInboundNext(FluxReceive.java:380)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux-sysctl-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -774,183 +907,9 @@
 
 
   
-    <article id="post-docker-zh-cn-font" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/21/docker-zh-cn-font/">Docker 运行 Java 程序时遇到中文字体异常问题解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/21/docker-zh-cn-font/" class="archive-article-date">
-  	<time datetime="2022-01-21T14:54:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在我们日常开发中通常会遇到需要在程序中导出Excel电子表格，或者生成带有中文汉字的图片，此时通常会遇到异常报错，一般情况下都是缺少相关字体导致的。</p>
-<p>此时我们需要在 <code>docker</code> 容器中安装相关字体应用程序库，以及加入中文字体到 <code>docker</code> 容器中。</p>
-        
-          <a class="article-more-a" href="/2022/01/21/docker-zh-cn-font/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/21/docker-zh-cn-font/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-migrate-dm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/23/mysql-migrate-dm/">MySQL 数据库迁移 达梦数据库 踩坑日记</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/23/mysql-migrate-dm/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="踩坑1：存储汉字出现长度不够问题"><a href="#踩坑1：存储汉字出现长度不够问题" class="headerlink" title="踩坑1：存储汉字出现长度不够问题"></a>踩坑1：存储汉字出现长度不够问题</h5><p>在 <code>MySQL</code> 中使用 <code>varchar(1)</code> 可以存储1个汉字，在原样迁移到达梦数据库后会出现插入、修改失败问题，因为达梦数据库需要 <code>varchar(3)</code> 才能存储1个汉字。</p>
-<p>可以使用达梦数据库迁移工具的数据类型映射功能来解决：</p>
-        
-          <a class="article-more-a" href="/2021/12/23/mysql-migrate-dm/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦数据库迁移</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/23/mysql-migrate-dm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
     </nav>
   
 

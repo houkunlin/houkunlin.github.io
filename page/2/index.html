@@ -158,6 +158,180 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-docker-zh-cn-font" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/21/docker-zh-cn-font/">Docker 运行 Java 程序时遇到中文字体异常问题解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/21/docker-zh-cn-font/" class="archive-article-date">
+  	<time datetime="2022-01-21T14:54:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在我们日常开发中通常会遇到需要在程序中导出Excel电子表格，或者生成带有中文汉字的图片，此时通常会遇到异常报错，一般情况下都是缺少相关字体导致的。</p>
+<p>此时我们需要在 <code>docker</code> 容器中安装相关字体应用程序库，以及加入中文字体到 <code>docker</code> 容器中。</p>
+        
+          <a class="article-more-a" href="/2022/01/21/docker-zh-cn-font/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/21/docker-zh-cn-font/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-migrate-dm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/23/mysql-migrate-dm/">MySQL 数据库迁移 达梦数据库 踩坑日记</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/23/mysql-migrate-dm/" class="archive-article-date">
+  	<time datetime="2021-12-23T02:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="踩坑1：存储汉字出现长度不够问题"><a href="#踩坑1：存储汉字出现长度不够问题" class="headerlink" title="踩坑1：存储汉字出现长度不够问题"></a>踩坑1：存储汉字出现长度不够问题</h5><p>在 <code>MySQL</code> 中使用 <code>varchar(1)</code> 可以存储1个汉字，在原样迁移到达梦数据库后会出现插入、修改失败问题，因为达梦数据库需要 <code>varchar(3)</code> 才能存储1个汉字。</p>
+<p>可以使用达梦数据库迁移工具的数据类型映射功能来解决：</p>
+        
+          <a class="article-more-a" href="/2021/12/23/mysql-migrate-dm/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦数据库迁移</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/23/mysql-migrate-dm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-docker-fonts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -807,143 +981,9 @@
 
 
   
-    <article id="post-scoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/29/scoop/">Windows的命令行安装程序 - scoop</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/29/scoop/" class="archive-article-date">
-  	<time datetime="2019-11-29T02:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天介绍一款在Windows下的命令安装程序，用过Linux的都懂，在Linux下有一个包管理器用来安装应用，比如 <code>Ubuntu</code> 的 <code>apt</code> 和 <code>apt-get</code> ，以及 <code>CentOS</code> 的 <code>yum</code> 这些，那么在Windows下有没有类似的软件或者工具呢？</p>
-<p><strong>有！那就是 <code>scoop</code> 。</strong></p>
-<h3 id="scoop-Windows的命令安装程序"><a href="#scoop-Windows的命令安装程序" class="headerlink" title="scoop - Windows的命令安装程序"></a><code>scoop</code> - Windows的命令安装程序</h3>
-        
-          <a class="article-more-a" href="/2019/11/29/scoop/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/29/scoop/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-cloud-version" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/15/spring-cloud-version/">Spring Cloud 和 Spring Boot 对应的版本关系说明</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/15/spring-cloud-version/" class="archive-article-date">
-  	<time datetime="2019-11-15T02:31:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考博客：<a target="_blank" rel="noopener" href="https://www.zhaofeida.com/articles/2019/10/15/1571131822791.html">https://www.zhaofeida.com/articles/2019/10/15/1571131822791.html</a></p>
-<p>官网地址：<a target="_blank" rel="noopener" href="https://start.spring.io/actuator/info">https://start.spring.io/actuator/info</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 2019年11月15日</span><br><span class="line">&quot;Finchley.M2&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M3 and &lt;2.0.0.M5&quot;,</span><br><span class="line">&quot;Finchley.M3&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M5 and &lt;&#x3D;2.0.0.M5&quot;,</span><br><span class="line">&quot;Finchley.M4&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M6 and &lt;&#x3D;2.0.0.M6&quot;,</span><br><span class="line">&quot;Finchley.M5&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.M7 and &lt;&#x3D;2.0.0.M7&quot;,</span><br><span class="line">&quot;Finchley.M6&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RC1 and &lt;&#x3D;2.0.0.RC1&quot;,</span><br><span class="line">&quot;Finchley.M7&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RC2 and &lt;&#x3D;2.0.0.RC2&quot;,</span><br><span class="line">&quot;Finchley.M9&quot;: &quot;Spring Boot &gt;&#x3D;2.0.0.RELEASE and &lt;&#x3D;2.0.0.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.RC1&quot;: &quot;Spring Boot &gt;&#x3D;2.0.1.RELEASE and &lt;2.0.2.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.RC2&quot;: &quot;Spring Boot &gt;&#x3D;2.0.2.RELEASE and &lt;2.0.3.RELEASE&quot;,</span><br><span class="line">&quot;Finchley.SR4&quot;: &quot;Spring Boot &gt;&#x3D;2.0.3.RELEASE and &lt;2.0.999.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Finchley.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.0.999.BUILD-SNAPSHOT and &lt;2.1.0.M3&quot;,</span><br><span class="line">&quot;Greenwich.M1&quot;: &quot;Spring Boot &gt;&#x3D;2.1.0.M3 and &lt;2.1.0.RELEASE&quot;,</span><br><span class="line">&quot;Greenwich.SR3&quot;: &quot;Spring Boot &gt;&#x3D;2.1.0.RELEASE and &lt;2.1.11.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Greenwich.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.1.11.BUILD-SNAPSHOT and &lt;2.2.0.M4&quot;,</span><br><span class="line">&quot;Hoxton.RC2&quot;: &quot;Spring Boot &gt;&#x3D;2.2.0.M4 and &lt;2.2.2.BUILD-SNAPSHOT&quot;,</span><br><span class="line">&quot;Hoxton.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;&#x3D;2.2.2.BUILD-SNAPSHOT&quot;</span><br><span class="line"></span><br><span class="line"># 2023年4月20日</span><br><span class="line">&quot;Hoxton.SR12&quot;: &quot;Spring Boot &gt;&#x3D;2.2.0.RELEASE and &lt;2.4.0.M1&quot;,</span><br><span class="line">&quot;2020.0.6&quot;: &quot;Spring Boot &gt;&#x3D;2.4.0.M1 and &lt;2.6.0-M1&quot;,</span><br><span class="line">&quot;2021.0.0-M1&quot;: &quot;Spring Boot &gt;&#x3D;2.6.0-M1 and &lt;2.6.0-M3&quot;,</span><br><span class="line">&quot;2021.0.0-M3&quot;: &quot;Spring Boot &gt;&#x3D;2.6.0-M3 and &lt;2.6.0-RC1&quot;,</span><br><span class="line">&quot;2021.0.0-RC1&quot;: &quot;Spring Boot &gt;&#x3D;2.6.0-RC1 and &lt;2.6.1&quot;,</span><br><span class="line">&quot;2021.0.6&quot;: &quot;Spring Boot &gt;&#x3D;2.6.1 and &lt;3.0.0-M1&quot;,</span><br><span class="line">&quot;2022.0.0-M1&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M1 and &lt;3.0.0-M2&quot;,</span><br><span class="line">&quot;2022.0.0-M2&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M2 and &lt;3.0.0-M3&quot;,</span><br><span class="line">&quot;2022.0.0-M3&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M3 and &lt;3.0.0-M4&quot;,</span><br><span class="line">&quot;2022.0.0-M4&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M4 and &lt;3.0.0-M5&quot;,</span><br><span class="line">&quot;2022.0.0-M5&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-M5 and &lt;3.0.0-RC1&quot;,</span><br><span class="line">&quot;2022.0.0-RC1&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-RC1 and &lt;3.0.0-RC2&quot;,</span><br><span class="line">&quot;2022.0.0-RC2&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0-RC2 and &lt;3.0.0&quot;,</span><br><span class="line">&quot;2022.0.2&quot;: &quot;Spring Boot &gt;&#x3D;3.0.0 and &lt;3.1.0-M1&quot;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/11/15/spring-cloud-version/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/15/spring-cloud-version/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next »</a>
+      <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next »</a>
     </nav>
   
 

@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
-  <title>Archives | 侯坤林博客</title>
+  <title>Spring Webclient 请求Body限制 256KB 问题 | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="侯坤林博客">
-<meta property="og:url" content="https://houkunlin.gitee.io/archives/page/3/index.html">
+  <meta name="description" content="这个问题很久之前遇到过了，这次遇到另外一个有点类似的问题，那就是 SpringCloudGateway 请求限制 256KB 问题，在这里也记录一下 WebClient 请求限制 256KB 问题的处理方式。 在 How to Resolve Spring Webflux DataBufferLimitException 这篇文章中有提到解决方案，在这里复制一下以做记录。 在创建 WebClien">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Webclient 请求Body限制 256KB 问题">
+<meta property="og:url" content="https://houkunlin.gitee.io/2023/06/14/spring-webclient-max-request-body-size/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
+<meta property="og:description" content="这个问题很久之前遇到过了，这次遇到另外一个有点类似的问题，那就是 SpringCloudGateway 请求限制 256KB 问题，在这里也记录一下 WebClient 请求限制 256KB 问题的处理方式。 在 How to Resolve Spring Webflux DataBufferLimitException 这篇文章中有提到解决方案，在这里复制一下以做记录。 在创建 WebClien">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-14T08:19:16.000Z">
+<meta property="article:modified_time" content="2023-06-14T08:19:16.000Z">
 <meta property="article:author" content="侯坤林">
 <meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
 <meta name="twitter:card" content="summary">
@@ -156,333 +158,154 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-spring-webclient-max-request-body-size" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Webclient 请求Body限制 256KB 问题
+    </h1>
+  
+
+        
+        <a href="/2023/06/14/spring-webclient-max-request-body-size/" class="archive-article-date">
+  	<time datetime="2023-06-14T08:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个问题很久之前遇到过了，这次遇到另外一个有点类似的问题，那就是 SpringCloudGateway 请求限制 256KB 问题，在这里也记录一下 WebClient 请求限制 256KB 问题的处理方式。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-webflux-databufferlimitexception">How to Resolve Spring Webflux DataBufferLimitException</a> 这篇文章中有提到解决方案，在这里复制一下以做记录。</p>
+<p>在创建 <code>WebClient</code> 时设置 <code>exchangeStrategies</code> 参数，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 全局</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebClient <span class="title">getProgSelfWebClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 按照原文档说明，此方式好像还需要增加配置文件问题： spring.codec.max-in-memory-size=500KB</span></span><br><span class="line">        <span class="keyword">return</span> WebClient.builder()</span><br><span class="line">          .baseUrl(host)</span><br><span class="line">          .exchangeStrategies(</span><br><span class="line">            ExchangeStrategies.builder()</span><br><span class="line">	          .codecs(codecs -&gt; codecs.defaultCodecs().maxInMemorySize(<span class="number">500</span> * <span class="number">1024</span>))</span><br><span class="line">	          .build()</span><br><span class="line">           )</span><br><span class="line">          .build();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 手动创建，争对单个 Client 接口生效</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> FileHttpClient <span class="title">remoteDemoLoadBalancer</span><span class="params">(<span class="keyword">final</span> ReactorLoadBalancerExchangeFilterFunction reactorLoadBalancerExchangeFilterFunction)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 配置默认缓冲区大小，否则默认 256K</span></span><br><span class="line">        <span class="keyword">final</span> ExchangeStrategies strategies = ExchangeStrategies.builder()</span><br><span class="line">                .codecs(codecs -&gt; codecs.defaultCodecs().maxInMemorySize(-<span class="number">1</span>))</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        WebClient client = WebClient.builder()</span><br><span class="line">                .exchangeStrategies(strategies)</span><br><span class="line">                .filter(reactorLoadBalancerExchangeFilterFunction)</span><br><span class="line">                .baseUrl(<span class="string">&quot;http://files-server/&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();</span><br><span class="line">        <span class="keyword">return</span> factory.createClient(FileHttpClient.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/29/scoop/" class="archive-article-date">
-  	<time datetime="2019-11-29T02:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/29/scoop/">Windows的命令行安装程序 - scoop</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/15/spring-cloud-version/" class="archive-article-date">
-  	<time datetime="2019-11-15T02:31:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/15/spring-cloud-version/">Spring Cloud 和 Spring Boot 对应的版本关系说明</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/database-dameng/" class="archive-article-date">
-  	<time datetime="2019-09-16T08:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/database-dameng/">达梦数据库培训内容操作记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/chrome-pac-error/" class="archive-article-date">
-  	<time datetime="2019-05-30T08:31:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/chrome-pac-error/">Ubuntu下使用本地PAC文件代理导致谷歌浏览器无法走代理问题解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/22/gxcerc-2019-05-22-study-03/" class="archive-article-date">
-  	<time datetime="2019-05-22T07:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/22/gxcerc-2019-05-22-study-03/">Eclipse和IDEA同时开发WEB项目配置教程(springline)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/18/gxcerc-2019-05-19-study-02/" class="archive-article-date">
-  	<time datetime="2019-05-17T16:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/18/gxcerc-2019-05-19-study-02/">实习总结-接触demo第二天</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/17/gxcerc-2019-05-18-study-01/" class="archive-article-date">
-  	<time datetime="2019-05-17T15:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/17/gxcerc-2019-05-18-study-01/">实习总结-初次接触项目</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/flutter-start/" class="archive-article-date">
-  	<time datetime="2018-12-28T01:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/flutter-start/">开始 flutter hello word 遇到问题记录</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aS3IDMQgFQN//0skBnFE9QDhe9KxS5Z9aC4k8eL3i5+f4vL/n/bPnb3t/5/m3Lj94eHh4y0tPAOflzjcu+RQeHh7eNi9ZXH4On5eVnN5Pr+ZrxsPDw/seXr6U8xWSbFlSfOPh4eF9Py8pas9LP29cchng4eHhfQMviQMm0UC+HXlJfTlrwcPDw+uc2K/5Uf6Zv1f6e3h4eHjjrvokdLh15YxWi4eHh7fAm8SpvR+rlr+T2BcPDw9vg9eLD6I9K1a8k0GExzYbHh4e3jIvaSb1wtz81ep2FPJpPDw8vKu86lhVPliQDAFUt6awWjw8PLxl3qRV34sbkpg4375XNIGFh4eHd4c3CSPyEjnfgur1UO7v4eHh4Q141YO4GiX0yuJrnT08PDy8ZV4eHOTleN4SKxzxgzXj4eHhzXlJG74aHORHdj4EcCFrwcPDw7vE67WXJkd273erowN/tMHw8PDwrvLOi8sjiWqzKr+WqmuIHjw8PLwWLzlY8zAi345eCZ7/Ch4eHt4eLw8UepHu/HCvxh/R6AAeHh7egFeNA6rHdK+pNh/JwsPDw9vj9dpRn4Fdvpzw8PDwLvHyUCA/rHs56ry8frz38PDw8BZ41S5ZfnBXm/29yPjxVTw8PLwF3q2AtXegJ+9MYKNhAjw8PLwWrxoiTALZXjFd3ZRoz/Dw8PDGvGqJXC2Xe985Hz7Aw8PD+yQvb3H1vjMvx3tXBR4eHt4G76f4VK+HahHcu3geX8XDw8Nb4PX+4Z+TJk2yPBDBw8PD2+Pll0Hyd69Q7o1njcYF8PDw8Ma8JDjoFa+9ErmXrDyODuDh4eH9K683cJAv7lb3Cg8PD+87edVWVh7dVkPerNmHh4eHd5PXa3pVo9tbiy5sLh4eHt4Crzyl1RqKmsB6xToeHh7eAu8X/2+Sl0/MW90AAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/22/work-git/" class="archive-article-date">
-  	<time datetime="2018-12-22T09:50:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/06/14/spring-cloud-gateway-max-request-body-size/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/22/work-git/">总结我在这几周工作中常用到的一些git命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/05/microservice-story/" class="archive-article-date">
-  	<time datetime="2018-12-05T02:08:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-05</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/05/microservice-story/">微服务组件之间的故事</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">« Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/4/">Next »</a>
-    </nav>
   
 
+  
 
 
           </div>
@@ -505,8 +328,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
