@@ -158,6 +158,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spring-boot-jpa-id-strategy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/04/spring-boot-jpa-id-strategy/">SpringBootJpa自定义ID主键策略注册到Hibernate默认策略列表中（自定义全局主键策略）</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/04/spring-boot-jpa-id-strategy/" class="archive-article-date">
+  	<time datetime="2022-03-04T02:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34731783/how-to-register-custom-identifiergenerator-in-hibernate-jpa-entitymanager">如何在Hibernate JPA EntityManager中注册自定义IdentifierGenerator？</a></p>
+<p>在使用SpringBootJpa自定义主键策略的时候，通常需要使用三个注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@javax</span>.persistence.Id</span><br><span class="line"><span class="meta">@javax</span>.persistence.GeneratedValue(generator = <span class="string">&quot;id&quot;</span>)</span><br><span class="line"><span class="meta">@org</span>.hibernate.annotations.GenericGenerator(name = <span class="string">&quot;id&quot;</span>, strategy = <span class="string">&quot;com.xxx.XXXIdentifierGenerator&quot;</span>)</span><br><span class="line"><span class="keyword">private</span> String id;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2022/03/04/spring-boot-jpa-id-strategy/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jpa</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/04/spring-boot-jpa-id-strategy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-docker-zh-cn-font" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -899,88 +985,6 @@
 
 
   
-    <article id="post-centos-firewall-docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/19/centos-firewall-docker/">CentOS下使用Docker并且不关闭防火墙</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/19/centos-firewall-docker/" class="archive-article-date">
-  	<time datetime="2020-09-19T05:54:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>通常情况下我们使用CentOS第一件事就是关闭防火墙  <code>systemctl stop firewalld</code> 和禁止防火墙自启动 <code>systemctl disable firewalld</code> 。但是关闭防火墙后，意味着服务器将会暴露在一种不安全的状态。</p>
-<p>而我们使用Docker运行一些服务的时候，外部网络请求因为防火墙的原因将无法正确的请求到Docker容器内部，因此需要对防火墙做一些设置。</p>
-<p>主要就是配置防火墙 zone 对应的网络接口，和给指定的 zone 增加 service，以下给出一个示例的 shell 命令：</p>
-        
-          <a class="article-more-a" href="/2020/09/19/centos-firewall-docker/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centos</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/19/centos-firewall-docker/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next »</a>
@@ -1218,6 +1222,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">logstash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">gitea</a>
               </li>
             
             <div class="clearfix"></div>

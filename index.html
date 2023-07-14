@@ -158,6 +158,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-gradle-maven-publish-gitea-packages-repository" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/">Gradle发布jar到Gitea的Package Registry</a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/" class="archive-article-date">
+  	<time datetime="2023-07-14T08:23:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>版本说明 Gradle 7.6 ，Gitea 1.19.3，SpringBoot 3.x，Java 17</p>
+</blockquote>
+<h2 id="创建一个-AccessToken"><a href="#创建一个-AccessToken" class="headerlink" title="创建一个 AccessToken"></a>创建一个 AccessToken</h2><p>进入到【个人设置】》【应用】中，在【管理 Access Token】中创建一个 <code>AccessToken</code> ，授权范围选中 <code>package</code> ，然后点击“生成令牌”即可，令牌只显示一次，记得保存好。</p>
+        
+          <a class="article-more-a" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">gradle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">gitea</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spring-webclient-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -821,92 +908,6 @@
 
 
   
-    <article id="post-spring-boot-jpa-id-strategy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/04/spring-boot-jpa-id-strategy/">SpringBootJpa自定义ID主键策略注册到Hibernate默认策略列表中（自定义全局主键策略）</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/04/spring-boot-jpa-id-strategy/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34731783/how-to-register-custom-identifiergenerator-in-hibernate-jpa-entitymanager">如何在Hibernate JPA EntityManager中注册自定义IdentifierGenerator？</a></p>
-<p>在使用SpringBootJpa自定义主键策略的时候，通常需要使用三个注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@javax</span>.persistence.Id</span><br><span class="line"><span class="meta">@javax</span>.persistence.GeneratedValue(generator = <span class="string">&quot;id&quot;</span>)</span><br><span class="line"><span class="meta">@org</span>.hibernate.annotations.GenericGenerator(name = <span class="string">&quot;id&quot;</span>, strategy = <span class="string">&quot;com.xxx.XXXIdentifierGenerator&quot;</span>)</span><br><span class="line"><span class="keyword">private</span> String id;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2022/03/04/spring-boot-jpa-id-strategy/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jpa</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/04/spring-boot-jpa-id-strategy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
@@ -1144,6 +1145,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">logstash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">gitea</a>
               </li>
             
             <div class="clearfix"></div>
