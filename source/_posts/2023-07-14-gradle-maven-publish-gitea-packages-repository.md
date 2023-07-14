@@ -8,7 +8,9 @@ tags:
   - gitea
 ---
 
->版本说明 Gradle 7.6 ，Gitea 1.19.3，SpringBoot 3.x，Java 17
+>本次测试版本说明 Gradle 7.6 ，Gitea 1.19.3，SpringBoot 3.x，Java 17
+>
+>实测 Gradle 7.2 ，Gitea 1.19.3，SpringBoot 2.5.x，Java 1.8 可用
 
 ## 创建一个 AccessToken
 
@@ -28,7 +30,7 @@ tags:
 
 索引创建成功后，在我们的个人仓库列表中会自动生成一个仓库名为 `_cargo-index` 的仓库。
 
-![image-20230714163157461](assets/image-20230714163157461.png)
+![image-20230714171758217](assets/image-20230714171758217.png)
 
 ## Gradle 配置
 
