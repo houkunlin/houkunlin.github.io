@@ -158,6 +158,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spring-cloud-gateway-cors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/04/spring-cloud-gateway-cors/">SpringCloudGateway跨域配置</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/04/spring-cloud-gateway-cors/" class="archive-article-date">
+  	<time datetime="2022-03-04T02:58:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先放一个可行的配置信息，后面再说过程。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">globalcors:</span></span><br><span class="line">        <span class="comment"># 一个全局默认的跨域配置，但是单独配置这个还是无法解决跨域问题</span></span><br><span class="line">        <span class="attr">cors-configurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOriginPatterns:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">default-filters:</span></span><br><span class="line">        <span class="comment"># 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度</span></span><br><span class="line">        <span class="comment"># 升级 SpringBoot 3.0 之后，发现这个配置得写在前面才行，写在前面的最后执行</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DedupeResponseHeader=Vary</span> <span class="string">Access-Control-Allow-Origin</span> <span class="string">Access-Control-Allow-Credentials,</span> <span class="string">RETAIN_LAST</span></span><br><span class="line">        <span class="comment"># 为了防止后端未配置跨域导致浏览器提示缺少跨域配置信息而请求失败，因此加上了默认的跨域Header配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Origin,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Methods,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Headers,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Credentials,</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>最近在使用 Nginx 转发到 SpringCloudGateway 发现了跨域问题，SpringCloud是已经配置了跨域信息，但是手机端（uni-app）依旧无法请求成功，经过尝试在Nginx配置跨域头部同样不行，最后排查了很久，得出了以下结论：</p>
+        
+          <a class="article-more-a" href="/2022/03/04/spring-cloud-gateway-cors/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/04/spring-cloud-gateway-cors/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spring-boot-jpa-id-strategy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -876,86 +961,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/19/common-shell/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-common-docker-image-run" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/19/common-docker-image-run/">一些Docker镜像使用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/19/common-docker-image-run/" class="archive-article-date">
-  	<time datetime="2020-09-19T06:32:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Portainer"><a href="#Portainer" class="headerlink" title="Portainer"></a>Portainer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">docker run --name portainer -d -p 8000:8000 -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /opt/portainer/data:/data -e TZ=Asia/Shanghai portainer/portainer</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Rabbitmq"><a href="#Rabbitmq" class="headerlink" title="Rabbitmq"></a>Rabbitmq</h3>
-        
-          <a class="article-more-a" href="/2020/09/19/common-docker-image-run/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/19/common-docker-image-run/">展开全文 >></a>
         </p>
       
 

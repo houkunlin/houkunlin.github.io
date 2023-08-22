@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
-  <title>Archives | 侯坤林博客</title>
+  <title>金币云商预约抽签算法 | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="侯坤林博客">
-<meta property="og:url" content="https://houkunlin.gitee.io/archives/page/2/index.html">
+  <meta name="description" content="最近抢了几场演唱会的票都没有抢到，果然票务就是最大的黄牛。想着要是票务能采用公平公正的抽签方式就好了，这样多少还能有点机会。 突然想到了金币云商用的一种比较公平公正的抽签算法，那就根据算法说明，用代码来实现它试着跑一下看看。  抽签算法如下： 1、抽签计算方法步骤： 注：A：基数；B：翻转数；X：报名次数；Y：种子号，即起始中签号；Z：阶数； （1）A&#x3D;（抽签日的上一个工作日的深圳证券交易所深证成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="金币云商预约抽签算法">
+<meta property="og:url" content="https://houkunlin.gitee.io/2023/08/22/yu-yue-chou-qian/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
+<meta property="og:description" content="最近抢了几场演唱会的票都没有抢到，果然票务就是最大的黄牛。想着要是票务能采用公平公正的抽签方式就好了，这样多少还能有点机会。 突然想到了金币云商用的一种比较公平公正的抽签算法，那就根据算法说明，用代码来实现它试着跑一下看看。  抽签算法如下： 1、抽签计算方法步骤： 注：A：基数；B：翻转数；X：报名次数；Y：种子号，即起始中签号；Z：阶数； （1）A&#x3D;（抽签日的上一个工作日的深圳证券交易所深证成">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://houkunlin.gitee.io/2023/08/22/yu-yue-chou-qian/assets/image-20230822090802565.png">
+<meta property="article:published_time" content="2023-08-22T00:58:56.000Z">
+<meta property="article:modified_time" content="2023-08-22T00:58:56.000Z">
 <meta property="article:author" content="侯坤林">
 <meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://houkunlin.gitee.io/2023/08/22/yu-yue-chou-qian/assets/image-20230822090802565.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,449 +160,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-yu-yue-chou-qian" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      金币云商预约抽签算法
+    </h1>
+  
+
+        
+        <a href="/2023/08/22/yu-yue-chou-qian/" class="archive-article-date">
+  	<time datetime="2023-08-22T00:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近抢了几场演唱会的票都没有抢到，果然票务就是最大的黄牛。想着要是票务能采用公平公正的抽签方式就好了，这样多少还能有点机会。</p>
+<p>突然想到了金币云商用的一种比较公平公正的抽签算法，那就根据算法说明，用代码来实现它试着跑一下看看。</p>
+<blockquote>
+<p>抽签算法如下：</p>
+<p>1、抽签计算方法步骤：</p>
+<p>注：A：基数；B：翻转数；X：报名次数；Y：种子号，即起始中签号；Z：阶数；</p>
+<p>（1）A=（抽签日的上一个工作日的深圳证券交易所深证成指“今收”指数×100)×（抽签日的上一个工作日的深圳证券交易所中小100指数“今收”指数×100）×10000；</p>
+<p>注：可登录深圳证券交易所网站历史指数行情查询，详见下文附录。A为整数，不能有小数位。</p>
+<p>（2）B=将基数A对应的数字倒序排列（如首位是0，则直接抹去）；</p>
+<p>（3）Y=B/X后所得的余数加1；</p>
+<p>（4）Z=X/中签数量取整数（去掉小数点后的整数）；</p>
+<p>（5）最终全部中签的报名号，如下：</p>
+<p>第一个中签号=Y;</p>
+<p>第二个中签号=Y+Z；</p>
+<p>第三个中签号=Y+Z*2；</p>
+<p>第N个中签号=Y+Z*(N-1)；</p>
+<p>如果第N个中签号码&gt;总报名次数，那么第N个中签号码=Y+Z*(N-1)-总报名次数。</p>
+<p>2、举例说明</p>
+<p>如某个预订活动，38674次报名，要抽中1500个中签的报名号：</p>
+<p>（1）每个会员通过报名的先后顺序会得到1到38674的号码作为自己的抽签报名号，每个会员的报名号不同。</p>
+<p>（2）按照抽签活动公布的抽签日的上一个工作日的深证证券交易所股票指数收盘行情中，深证板指、中小100收盘指数为抽签计算变量。</p>
+<p>例如：2019年4月29日深圳证券交易所收盘行情：</p>
+<p>深圳板指：9622.49 中小100：6013.23</p>
+<p>（3）根据上述计算步骤</p>
+<p>基数A为“5786224554270000”；</p>
+<p>基准数反转数B为“724554226875”；</p>
+<p>获得种子数/起始中签号Y为“8144”；</p>
+<p>阶数：Z=38674/1500（取整数），即为25；</p>
+<p>第1个中签号=8144；</p>
+<p>第2个中签号=8144+25*1；</p>
+<p>第3个中签号=8144+25*2；</p>
+<p>以此类推，第1222个中签号=8144+25*(1222-1)</p>
+<p>第1223个中签号=8144+25*（1223-1）=38694&gt;38674，所以，第1223个中</p>
+<p>签号=8144+25*（1223-1）-38674=20</p>
+<p>以此类推，第1500个中签号=8144+25*（1500-1）-38674=6945</p>
+</blockquote>
+<p>附链接： <a target="_blank" rel="noopener" href="http://www.szse.cn/market/trend/index.html">深圳证券交易所-行情信息</a> </p>
+<p><img src="assets/image-20230822090802565.png" alt="image-20230822090802565"></p>
+<p>直接上代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChouQianYuYue</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反正整数值</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> paraNum 待反转值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 反转后的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">reverseInt</span><span class="params">(<span class="keyword">long</span> paraNum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> reverseNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> parameterNum = paraNum;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (parameterNum != <span class="number">0</span>) &#123;</span><br><span class="line">            reverseNum = parameterNum % <span class="number">10</span> + reverseNum * <span class="number">10</span>;</span><br><span class="line">            parameterNum = parameterNum / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> reverseNum;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 预约抽签计算</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> d1     抽签日的上一个工作日的深圳证券交易所深证成指“今收”指数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> d2     抽签日的上一个工作日的深圳证券交易所中小100指数“今收”指数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> maxNum 报名次数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> getNum 中签数量</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 抽签结果列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title">chouqian</span><span class="params">(<span class="keyword">double</span> d1, <span class="keyword">double</span> d2, <span class="keyword">int</span> maxNum, <span class="keyword">int</span> getNum)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * A：基数；</span></span><br><span class="line"><span class="comment">         * A=（抽签日的上一个工作日的深圳证券交易所深证成指“今收”指数×100)× （抽签日的上一个工作日的深圳证券交易所中小100指数“今收”指数×100）×10000；</span></span><br><span class="line"><span class="comment">         * A为整数，不能有小数位。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">long</span> A = (<span class="keyword">long</span>) (d1 * <span class="number">100</span> * d2 * <span class="number">100</span> * <span class="number">10000</span>);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * B：翻转数；</span></span><br><span class="line"><span class="comment">         * B=将基数A对应的数字倒序排列（如首位是0，则直接抹去）；</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">long</span> B = reverseInt(A);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * X：报名次数；</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">int</span> X = maxNum;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * Y：种子号，即起始中签号；</span></span><br><span class="line"><span class="comment">         * Y=B/X后所得的余数加1；</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">int</span> Y = (<span class="keyword">int</span>) (B % X + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果中签数大于报名次数，则中签数为报名次数，此时这个算法会返回所有的报名序号</span></span><br><span class="line">        <span class="keyword">if</span> (getNum &gt; X) &#123;</span><br><span class="line">            getNum = X;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * Z：阶数；</span></span><br><span class="line"><span class="comment">         * Z=X/中签数量取整数（去掉小数点后的整数）；</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">int</span> Z = X / getNum;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;A = &quot;</span> + A);</span><br><span class="line">        System.out.println(<span class="string">&quot;B = &quot;</span> + B);</span><br><span class="line">        System.out.println(<span class="string">&quot;X = &quot;</span> + X);</span><br><span class="line">        System.out.println(<span class="string">&quot;Y = &quot;</span> + Y);</span><br><span class="line">        System.out.println(<span class="string">&quot;Z = &quot;</span> + Z);</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; getNum; i++) &#123;</span><br><span class="line">            <span class="comment">// 计算中签号，第N个中签号=Y+Z*(N-1)；</span></span><br><span class="line">            <span class="keyword">int</span> no = Y + Z * i;</span><br><span class="line">            <span class="comment">// 如果第N个中签号码&gt;总报名次数，那么第N个中签号码=Y+Z*(N-1)-总报名次数</span></span><br><span class="line">            <span class="comment">// no = no &gt; X ? no - X : no;</span></span><br><span class="line">            list.add(no &gt; X ? no - X : no);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 例如：2019年4月29日深圳证券交易所收盘行情：</span></span><br><span class="line">        <span class="comment">// 深圳板指：9622.49 中小100：6013.23</span></span><br><span class="line">        System.out.println(chouqian(<span class="number">9622.49</span>, <span class="number">6013.23</span>, <span class="number">38674</span>, <span class="number">1500</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码执行结果：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A = 5786224554270000</span><br><span class="line">B = 724554226875</span><br><span class="line">X = 38674</span><br><span class="line">Y = 8144</span><br><span class="line">Z = 25</span><br><span class="line">[8144, 8169, 8194, 8219, 8244, 8269, 8294, 8319, 8344, 8369, 8394, 8419, 8444, 8469, 8494, 8519, 8544, 8569, 8594, 8619, 8644, 8669, 8694, 8719, 8744, 8769, 8794, 8819, 8844, 8869, 8894, 8919, 8944, 8969, 8994, 9019, 9044, 9069, 9094, 9119, 9144, 9169, 9194, 9219, 9244, 9269, 9294, 9319, 9344, 9369, 9394, 9419, 9444, 9469, 9494, 9519, 9544, 9569, 9594, 9619, 9644, 9669, 9694, 9719, 9744, 9769, 9794, 9819, 9844, 9869, 9894, 9919, 9944, 9969, 9994, 10019, 10044, 10069, 10094, 10119, 10144, 10169, 10194, 10219, 10244, 10269, 10294, 10319, 10344, 10369, 10394, 10419, 10444, 10469, 10494, 10519, 10544, 10569, 10594, 10619, 10644, 10669, 10694, 10719, 10744, 10769, 10794, 10819, 10844, 10869, 10894, 10919, 10944, 10969, 10994, 11019, 11044, 11069, 11094, 11119, 11144, 11169, 11194, 11219, 11244, 11269, 11294, 11319, 11344, 11369, 11394, 11419, 11444, 11469, 11494, 11519, 11544, 11569, 11594, 11619, 11644, 11669, 11694, 11719, 11744, 11769, 11794, 11819, 11844, 11869, 11894, 11919, 11944, 11969, 11994, 12019, 12044, 12069, 12094, 12119, 12144, 12169, 12194, 12219, 12244, 12269, 12294, 12319, 12344, 12369, 12394, 12419, 12444, 12469, 12494, 12519, 12544, 12569, 12594, 12619, 12644, 12669, 12694, 12719, 12744, 12769, 12794, 12819, 12844, 12869, 12894, 12919, 12944, 12969, 12994, 13019, 13044, 13069, 13094, 13119, 13144, 13169, 13194, 13219, 13244, 13269, 13294, 13319, 13344, 13369, 13394, 13419, 13444, 13469, 13494, 13519, 13544, 13569, 13594, 13619, 13644, 13669, 13694, 13719, 13744, 13769, 13794, 13819, 13844, 13869, 13894, 13919, 13944, 13969, 13994, 14019, 14044, 14069, 14094, 14119, 14144, 14169, 14194, 14219, 14244, 14269, 14294, 14319, 14344, 14369, 14394, 14419, 14444, 14469, 14494, 14519, 14544, 14569, 14594, 14619, 14644, 14669, 14694, 14719, 14744, 14769, 14794, 14819, 14844, 14869, 14894, 14919, 14944, 14969, 14994, 15019, 15044, 15069, 15094, 15119, 15144, 15169, 15194, 15219, 15244, 15269, 15294, 15319, 15344, 15369, 15394, 15419, 15444, 15469, 15494, 15519, 15544, 15569, 15594, 15619, 15644, 15669, 15694, 15719, 15744, 15769, 15794, 15819, 15844, 15869, 15894, 15919, 15944, 15969, 15994, 16019, 16044, 16069, 16094, 16119, 16144, 16169, 16194, 16219, 16244, 16269, 16294, 16319, 16344, 16369, 16394, 16419, 16444, 16469, 16494, 16519, 16544, 16569, 16594, 16619, 16644, 16669, 16694, 16719, 16744, 16769, 16794, 16819, 16844, 16869, 16894, 16919, 16944, 16969, 16994, 17019, 17044, 17069, 17094, 17119, 17144, 17169, 17194, 17219, 17244, 17269, 17294, 17319, 17344, 17369, 17394, 17419, 17444, 17469, 17494, 17519, 17544, 17569, 17594, 17619, 17644, 17669, 17694, 17719, 17744, 17769, 17794, 17819, 17844, 17869, 17894, 17919, 17944, 17969, 17994, 18019, 18044, 18069, 18094, 18119, 18144, 18169, 18194, 18219, 18244, 18269, 18294, 18319, 18344, 18369, 18394, 18419, 18444, 18469, 18494, 18519, 18544, 18569, 18594, 18619, 18644, 18669, 18694, 18719, 18744, 18769, 18794, 18819, 18844, 18869, 18894, 18919, 18944, 18969, 18994, 19019, 19044, 19069, 19094, 19119, 19144, 19169, 19194, 19219, 19244, 19269, 19294, 19319, 19344, 19369, 19394, 19419, 19444, 19469, 19494, 19519, 19544, 19569, 19594, 19619, 19644, 19669, 19694, 19719, 19744, 19769, 19794, 19819, 19844, 19869, 19894, 19919, 19944, 19969, 19994, 20019, 20044, 20069, 20094, 20119, 20144, 20169, 20194, 20219, 20244, 20269, 20294, 20319, 20344, 20369, 20394, 20419, 20444, 20469, 20494, 20519, 20544, 20569, 20594, 20619, 20644, 20669, 20694, 20719, 20744, 20769, 20794, 20819, 20844, 20869, 20894, 20919, 20944, 20969, 20994, 21019, 21044, 21069, 21094, 21119, 21144, 21169, 21194, 21219, 21244, 21269, 21294, 21319, 21344, 21369, 21394, 21419, 21444, 21469, 21494, 21519, 21544, 21569, 21594, 21619, 21644, 21669, 21694, 21719, 21744, 21769, 21794, 21819, 21844, 21869, 21894, 21919, 21944, 21969, 21994, 22019, 22044, 22069, 22094, 22119, 22144, 22169, 22194, 22219, 22244, 22269, 22294, 22319, 22344, 22369, 22394, 22419, 22444, 22469, 22494, 22519, 22544, 22569, 22594, 22619, 22644, 22669, 22694, 22719, 22744, 22769, 22794, 22819, 22844, 22869, 22894, 22919, 22944, 22969, 22994, 23019, 23044, 23069, 23094, 23119, 23144, 23169, 23194, 23219, 23244, 23269, 23294, 23319, 23344, 23369, 23394, 23419, 23444, 23469, 23494, 23519, 23544, 23569, 23594, 23619, 23644, 23669, 23694, 23719, 23744, 23769, 23794, 23819, 23844, 23869, 23894, 23919, 23944, 23969, 23994, 24019, 24044, 24069, 24094, 24119, 24144, 24169, 24194, 24219, 24244, 24269, 24294, 24319, 24344, 24369, 24394, 24419, 24444, 24469, 24494, 24519, 24544, 24569, 24594, 24619, 24644, 24669, 24694, 24719, 24744, 24769, 24794, 24819, 24844, 24869, 24894, 24919, 24944, 24969, 24994, 25019, 25044, 25069, 25094, 25119, 25144, 25169, 25194, 25219, 25244, 25269, 25294, 25319, 25344, 25369, 25394, 25419, 25444, 25469, 25494, 25519, 25544, 25569, 25594, 25619, 25644, 25669, 25694, 25719, 25744, 25769, 25794, 25819, 25844, 25869, 25894, 25919, 25944, 25969, 25994, 26019, 26044, 26069, 26094, 26119, 26144, 26169, 26194, 26219, 26244, 26269, 26294, 26319, 26344, 26369, 26394, 26419, 26444, 26469, 26494, 26519, 26544, 26569, 26594, 26619, 26644, 26669, 26694, 26719, 26744, 26769, 26794, 26819, 26844, 26869, 26894, 26919, 26944, 26969, 26994, 27019, 27044, 27069, 27094, 27119, 27144, 27169, 27194, 27219, 27244, 27269, 27294, 27319, 27344, 27369, 27394, 27419, 27444, 27469, 27494, 27519, 27544, 27569, 27594, 27619, 27644, 27669, 27694, 27719, 27744, 27769, 27794, 27819, 27844, 27869, 27894, 27919, 27944, 27969, 27994, 28019, 28044, 28069, 28094, 28119, 28144, 28169, 28194, 28219, 28244, 28269, 28294, 28319, 28344, 28369, 28394, 28419, 28444, 28469, 28494, 28519, 28544, 28569, 28594, 28619, 28644, 28669, 28694, 28719, 28744, 28769, 28794, 28819, 28844, 28869, 28894, 28919, 28944, 28969, 28994, 29019, 29044, 29069, 29094, 29119, 29144, 29169, 29194, 29219, 29244, 29269, 29294, 29319, 29344, 29369, 29394, 29419, 29444, 29469, 29494, 29519, 29544, 29569, 29594, 29619, 29644, 29669, 29694, 29719, 29744, 29769, 29794, 29819, 29844, 29869, 29894, 29919, 29944, 29969, 29994, 30019, 30044, 30069, 30094, 30119, 30144, 30169, 30194, 30219, 30244, 30269, 30294, 30319, 30344, 30369, 30394, 30419, 30444, 30469, 30494, 30519, 30544, 30569, 30594, 30619, 30644, 30669, 30694, 30719, 30744, 30769, 30794, 30819, 30844, 30869, 30894, 30919, 30944, 30969, 30994, 31019, 31044, 31069, 31094, 31119, 31144, 31169, 31194, 31219, 31244, 31269, 31294, 31319, 31344, 31369, 31394, 31419, 31444, 31469, 31494, 31519, 31544, 31569, 31594, 31619, 31644, 31669, 31694, 31719, 31744, 31769, 31794, 31819, 31844, 31869, 31894, 31919, 31944, 31969, 31994, 32019, 32044, 32069, 32094, 32119, 32144, 32169, 32194, 32219, 32244, 32269, 32294, 32319, 32344, 32369, 32394, 32419, 32444, 32469, 32494, 32519, 32544, 32569, 32594, 32619, 32644, 32669, 32694, 32719, 32744, 32769, 32794, 32819, 32844, 32869, 32894, 32919, 32944, 32969, 32994, 33019, 33044, 33069, 33094, 33119, 33144, 33169, 33194, 33219, 33244, 33269, 33294, 33319, 33344, 33369, 33394, 33419, 33444, 33469, 33494, 33519, 33544, 33569, 33594, 33619, 33644, 33669, 33694, 33719, 33744, 33769, 33794, 33819, 33844, 33869, 33894, 33919, 33944, 33969, 33994, 34019, 34044, 34069, 34094, 34119, 34144, 34169, 34194, 34219, 34244, 34269, 34294, 34319, 34344, 34369, 34394, 34419, 34444, 34469, 34494, 34519, 34544, 34569, 34594, 34619, 34644, 34669, 34694, 34719, 34744, 34769, 34794, 34819, 34844, 34869, 34894, 34919, 34944, 34969, 34994, 35019, 35044, 35069, 35094, 35119, 35144, 35169, 35194, 35219, 35244, 35269, 35294, 35319, 35344, 35369, 35394, 35419, 35444, 35469, 35494, 35519, 35544, 35569, 35594, 35619, 35644, 35669, 35694, 35719, 35744, 35769, 35794, 35819, 35844, 35869, 35894, 35919, 35944, 35969, 35994, 36019, 36044, 36069, 36094, 36119, 36144, 36169, 36194, 36219, 36244, 36269, 36294, 36319, 36344, 36369, 36394, 36419, 36444, 36469, 36494, 36519, 36544, 36569, 36594, 36619, 36644, 36669, 36694, 36719, 36744, 36769, 36794, 36819, 36844, 36869, 36894, 36919, 36944, 36969, 36994, 37019, 37044, 37069, 37094, 37119, 37144, 37169, 37194, 37219, 37244, 37269, 37294, 37319, 37344, 37369, 37394, 37419, 37444, 37469, 37494, 37519, 37544, 37569, 37594, 37619, 37644, 37669, 37694, 37719, 37744, 37769, 37794, 37819, 37844, 37869, 37894, 37919, 37944, 37969, 37994, 38019, 38044, 38069, 38094, 38119, 38144, 38169, 38194, 38219, 38244, 38269, 38294, 38319, 38344, 38369, 38394, 38419, 38444, 38469, 38494, 38519, 38544, 38569, 38594, 38619, 38644, 38669, 20, 45, 70, 95, 120, 145, 170, 195, 220, 245, 270, 295, 320, 345, 370, 395, 420, 445, 470, 495, 520, 545, 570, 595, 620, 645, 670, 695, 720, 745, 770, 795, 820, 845, 870, 895, 920, 945, 970, 995, 1020, 1045, 1070, 1095, 1120, 1145, 1170, 1195, 1220, 1245, 1270, 1295, 1320, 1345, 1370, 1395, 1420, 1445, 1470, 1495, 1520, 1545, 1570, 1595, 1620, 1645, 1670, 1695, 1720, 1745, 1770, 1795, 1820, 1845, 1870, 1895, 1920, 1945, 1970, 1995, 2020, 2045, 2070, 2095, 2120, 2145, 2170, 2195, 2220, 2245, 2270, 2295, 2320, 2345, 2370, 2395, 2420, 2445, 2470, 2495, 2520, 2545, 2570, 2595, 2620, 2645, 2670, 2695, 2720, 2745, 2770, 2795, 2820, 2845, 2870, 2895, 2920, 2945, 2970, 2995, 3020, 3045, 3070, 3095, 3120, 3145, 3170, 3195, 3220, 3245, 3270, 3295, 3320, 3345, 3370, 3395, 3420, 3445, 3470, 3495, 3520, 3545, 3570, 3595, 3620, 3645, 3670, 3695, 3720, 3745, 3770, 3795, 3820, 3845, 3870, 3895, 3920, 3945, 3970, 3995, 4020, 4045, 4070, 4095, 4120, 4145, 4170, 4195, 4220, 4245, 4270, 4295, 4320, 4345, 4370, 4395, 4420, 4445, 4470, 4495, 4520, 4545, 4570, 4595, 4620, 4645, 4670, 4695, 4720, 4745, 4770, 4795, 4820, 4845, 4870, 4895, 4920, 4945, 4970, 4995, 5020, 5045, 5070, 5095, 5120, 5145, 5170, 5195, 5220, 5245, 5270, 5295, 5320, 5345, 5370, 5395, 5420, 5445, 5470, 5495, 5520, 5545, 5570, 5595, 5620, 5645, 5670, 5695, 5720, 5745, 5770, 5795, 5820, 5845, 5870, 5895, 5920, 5945, 5970, 5995, 6020, 6045, 6070, 6095, 6120, 6145, 6170, 6195, 6220, 6245, 6270, 6295, 6320, 6345, 6370, 6395, 6420, 6445, 6470, 6495, 6520, 6545, 6570, 6595, 6620, 6645, 6670, 6695, 6720, 6745, 6770, 6795, 6820, 6845, 6870, 6895, 6920, 6945]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>经验证，代码执行结果与算法预期结果一致。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/04/spring-cloud-gateway-cors/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:58:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/04/spring-cloud-gateway-cors/">SpringCloudGateway跨域配置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/04/spring-boot-jpa-id-strategy/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/04/spring-boot-jpa-id-strategy/">SpringBootJpa自定义ID主键策略注册到Hibernate默认策略列表中（自定义全局主键策略）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jpa</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/21/docker-zh-cn-font/" class="archive-article-date">
-  	<time datetime="2022-01-21T14:54:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/21/docker-zh-cn-font/">Docker 运行 Java 程序时遇到中文字体异常问题解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/23/mysql-migrate-dm/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/23/mysql-migrate-dm/">MySQL 数据库迁移 达梦数据库 踩坑日记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦数据库迁移</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/23/docker-fonts/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:38:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/23/docker-fonts/">Docker 容器中文字体乱码、无法加载中文字体</a>
-    </h1>
-  
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容器字体</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3a207EMAxF0f7/T5dXJBRmH7tFxNl5QswlWUEy9eW68Lq/LfLq/WOln7reWDJkyNiWcf+6+AbkU6vvIft+uBoZMmQcwFgda/Ue/ps0+P6+7/L3MmTIkIGDYPopspcMGTJk9AMuCaY8MZYhQ4aMThLbr3rxcPxiLi5DhowNGfxwf//zK/0NGTJkbMW4w1VrW/KWQ23JkCFjNoMHOP5YRlJT/mgY7CJDhoyhjM7wBCnG8QOlV3Dxl2XIkDGCUWsr8uDLL6V2BhkyZJzA4NvXkLzZyUO2DBkyzmTwx8R+Qb+fDMuQIeM0BmkA9JNe/n6enwZvkiFDxraMfgEuPS4nkUtcnlaGDBnjGPwhLGXwglrKWHZiZciQMY5BgmBa6K8NbfDhjODvIEOGjEGMNIGMW4ztpDeYGZEhQ8Y4xlNDXSTsBoX+UriXIUPGVMZTbcv45kqMB9oAMmTI2JBRK9yTAP3sMFnQ05AhQ8ZQxlMDEMEwRCOJRbvIkCFjHKMT5khjstbmjEuEMmTIOIZRe4BLhyTI4R7+XyFDhowRjH6Zvl+kS0uEH0YuZMiQMYJxh4vfTW3YolaqkyFDxmxGpz9Ye/jrX00rZMuQIWNbBgmyvFXQCoi4/BfctAwZMgYxgqwXfENaPqs1Ppe5uAwZMo5n1NqNPH0tUmXIkCEDMzrtzHQg48WAK0OGjH/JIElsrW1QG8t4sdwmQ4aMDRm1Whb50tpIWdoekCFDxmjGF2PmiYeKpFlTAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/23/linux-level-3-bug/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:28:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/23/linux-level-3-bug/">Linux三级等保踩坑日记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">三级等保</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安全基线</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+<div class="mask js-mask"></div>
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/07/socks5-to-http/" class="archive-article-date">
-  	<time datetime="2020-11-06T18:18:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/07/socks5-to-http/">通过 Privoxy 把 Shadowsocks 转成 Http 代理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/26/linux-service/" class="archive-article-date">
-  	<time datetime="2020-10-26T04:09:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Gradle发布jar到Gitea的Package Registry</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/26/linux-service/">部署 SpringBoot 项目时一个 Linux Service 模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/10/ventoy/" class="archive-article-date">
-  	<time datetime="2020-10-10T01:44:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/10/ventoy/">Ventoy -- 新一代多系统启动U盘解决方案</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/19/common-shell/" class="archive-article-date">
-  	<time datetime="2020-09-19T06:49:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/19/common-shell/">一些Shell命令使用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">« Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">Next »</a>
-    </nav>
   
-
 
 
           </div>
@@ -621,8 +368,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

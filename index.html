@@ -158,6 +158,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-yu-yue-chou-qian" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/22/yu-yue-chou-qian/">金币云商预约抽签算法</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/22/yu-yue-chou-qian/" class="archive-article-date">
+  	<time datetime="2023-08-22T00:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近抢了几场演唱会的票都没有抢到，果然票务就是最大的黄牛。想着要是票务能采用公平公正的抽签方式就好了，这样多少还能有点机会。</p>
+<p>突然想到了金币云商用的一种比较公平公正的抽签算法，那就根据算法说明，用代码来实现它试着跑一下看看。</p>
+<blockquote>
+<p>抽签算法如下：</p>
+<p>1、抽签计算方法步骤：</p>
+<p>注：A：基数；B：翻转数；X：报名次数；Y：种子号，即起始中签号；Z：阶数；</p>
+<p>（1）A=（抽签日的上一个工作日的深圳证券交易所深证成指“今收”指数×100)×（抽签日的上一个工作日的深圳证券交易所中小100指数“今收”指数×100）×10000；</p>
+<p>注：可登录深圳证券交易所网站历史指数行情查询，详见下文附录。A为整数，不能有小数位。</p>
+<p>（2）B=将基数A对应的数字倒序排列（如首位是0，则直接抹去）；</p>
+<p>（3）Y=B/X后所得的余数加1；</p>
+<p>（4）Z=X/中签数量取整数（去掉小数点后的整数）；</p>
+<p>（5）最终全部中签的报名号，如下：</p>
+<p>第一个中签号=Y;</p>
+<p>第二个中签号=Y+Z；</p>
+<p>第三个中签号=Y+Z*2；</p>
+<p>第N个中签号=Y+Z*(N-1)；</p>
+<p>如果第N个中签号码&gt;总报名次数，那么第N个中签号码=Y+Z*(N-1)-总报名次数。</p>
+<p>2、举例说明</p>
+<p>如某个预订活动，38674次报名，要抽中1500个中签的报名号：</p>
+<p>（1）每个会员通过报名的先后顺序会得到1到38674的号码作为自己的抽签报名号，每个会员的报名号不同。</p>
+<p>（2）按照抽签活动公布的抽签日的上一个工作日的深证证券交易所股票指数收盘行情中，深证板指、中小100收盘指数为抽签计算变量。</p>
+<p>例如：2019年4月29日深圳证券交易所收盘行情：</p>
+<p>深圳板指：9622.49 中小100：6013.23</p>
+<p>（3）根据上述计算步骤</p>
+<p>基数A为“5786224554270000”；</p>
+<p>基准数反转数B为“724554226875”；</p>
+<p>获得种子数/起始中签号Y为“8144”；</p>
+<p>阶数：Z=38674/1500（取整数），即为25；</p>
+<p>第1个中签号=8144；</p>
+<p>第2个中签号=8144+25*1；</p>
+<p>第3个中签号=8144+25*2；</p>
+<p>以此类推，第1222个中签号=8144+25*(1222-1)</p>
+<p>第1223个中签号=8144+25*（1223-1）=38694&gt;38674，所以，第1223个中</p>
+<p>签号=8144+25*（1223-1）-38674=20</p>
+<p>以此类推，第1500个中签号=8144+25*（1500-1）-38674=6945</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2023/08/22/yu-yue-chou-qian/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/08/22/yu-yue-chou-qian/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-gradle-maven-publish-gitea-packages-repository" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -795,91 +895,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/01/19/nas-ip/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-cloud-gateway-cors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/04/spring-cloud-gateway-cors/">SpringCloudGateway跨域配置</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/04/spring-cloud-gateway-cors/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:58:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先放一个可行的配置信息，后面再说过程。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">globalcors:</span></span><br><span class="line">        <span class="comment"># 一个全局默认的跨域配置，但是单独配置这个还是无法解决跨域问题</span></span><br><span class="line">        <span class="attr">cors-configurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOriginPatterns:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">default-filters:</span></span><br><span class="line">        <span class="comment"># 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度</span></span><br><span class="line">        <span class="comment"># 升级 SpringBoot 3.0 之后，发现这个配置得写在前面才行，写在前面的最后执行</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DedupeResponseHeader=Vary</span> <span class="string">Access-Control-Allow-Origin</span> <span class="string">Access-Control-Allow-Credentials,</span> <span class="string">RETAIN_LAST</span></span><br><span class="line">        <span class="comment"># 为了防止后端未配置跨域导致浏览器提示缺少跨域配置信息而请求失败，因此加上了默认的跨域Header配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Origin,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Methods,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Headers,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Credentials,</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>最近在使用 Nginx 转发到 SpringCloudGateway 发现了跨域问题，SpringCloud是已经配置了跨域信息，但是手机端（uni-app）依旧无法请求成功，经过尝试在Nginx配置跨域头部同样不行，最后排查了很久，得出了以下结论：</p>
-        
-          <a class="article-more-a" href="/2022/03/04/spring-cloud-gateway-cors/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/04/spring-cloud-gateway-cors/">展开全文 >></a>
         </p>
       
 
