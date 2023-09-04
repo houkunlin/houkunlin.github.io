@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
-  <title>Archives | 侯坤林博客</title>
+  <title>基于 MyBatisPlus 数据权限插件实现的自动数据权限（数据范围）查询限制条件功能 | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="侯坤林博客">
-<meta property="og:url" content="https://houkunlin.gitee.io/archives/page/2/index.html">
+  <meta name="description" content="此功能已实现，经测试运行正常 MyBatisPlus 本身有了一个  DataPermissionInterceptor 数据权限插件，但是这个插件默认上是没有任何查询条件拼接的，需要自己去实现一个 MultiDataPermissionHandler 接口来创建所需要的条件表达式。 通过这个功能我们可以实现一个数据范围的功能，也就是根据用户的角色、权限不同，来限制用户查询不同的数据范围。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 MyBatisPlus 数据权限插件实现的自动数据权限（数据范围）查询限制条件功能">
+<meta property="og:url" content="https://houkunlin.gitee.io/2023/09/04/data-scope-mybatis-plus-plugin/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
+<meta property="og:description" content="此功能已实现，经测试运行正常 MyBatisPlus 本身有了一个  DataPermissionInterceptor 数据权限插件，但是这个插件默认上是没有任何查询条件拼接的，需要自己去实现一个 MultiDataPermissionHandler 接口来创建所需要的条件表达式。 通过这个功能我们可以实现一个数据范围的功能，也就是根据用户的角色、权限不同，来限制用户查询不同的数据范围。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-04T08:34:14.000Z">
+<meta property="article:modified_time" content="2023-09-04T08:34:14.000Z">
 <meta property="article:author" content="侯坤林">
 <meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
 <meta name="twitter:card" content="summary">
@@ -156,448 +158,240 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-data-scope-mybatis-plus-plugin" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/01/19/nas-ip/" class="archive-article-date">
-  	<time datetime="2023-01-19T01:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/01/19/nas-ip/">把有公网IP的NAS安全的暴露在公网环境</a>
+    <h1 class="article-title" itemprop="name">
+      基于 MyBatisPlus 数据权限插件实现的自动数据权限（数据范围）查询限制条件功能
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/04/spring-cloud-gateway-cors/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:58:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
+        
+        <a href="/2023/09/04/data-scope-mybatis-plus-plugin/" class="archive-article-date">
+  	<time datetime="2023-09-04T08:34:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-04</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/04/spring-cloud-gateway-cors/">SpringCloudGateway跨域配置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/04/spring-boot-jpa-id-strategy/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/04/spring-boot-jpa-id-strategy/">SpringBootJpa自定义ID主键策略注册到Hibernate默认策略列表中（自定义全局主键策略）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jpa</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/21/docker-zh-cn-font/" class="archive-article-date">
-  	<time datetime="2022-01-21T14:54:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/21/docker-zh-cn-font/">Docker 运行 Java 程序时遇到中文字体异常问题解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <p><strong>此功能已实现，经测试运行正常</strong></p>
+<p><code>MyBatisPlus</code> 本身有了一个 <code> DataPermissionInterceptor</code> 数据权限插件，但是这个插件默认上是没有任何查询条件拼接的，需要自己去实现一个 <code>MultiDataPermissionHandler</code> 接口来创建所需要的条件表达式。</p>
+<p>通过这个功能我们可以实现一个数据范围的功能，也就是根据用户的角色、权限不同，来限制用户查询不同的数据范围。</p>
+<p>在 <code>MyBatisPlus</code> 的文档里面提到了他们的企业级增强特性里面也有这个功能 <code>企业高级特性-数据范围</code> 并且增加了注解的支持。</p>
+<p>可是，没钱买企业级的来用怎么办，那就自己实现一个吧。</p>
+<h2 id="预期假设说明"><a href="#预期假设说明" class="headerlink" title="预期假设说明"></a>预期假设说明</h2><h4 id="1-1-基本预期"><a href="#1-1-基本预期" class="headerlink" title="1.1 基本预期"></a>1.1 基本预期</h4><p>现在，假设，我们想要的拼接效果如下：</p>
+<p>仅本人的数据范围，自动拼接如下SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">... AND user_id = 1000</span><br><span class="line">... AND create_user_id = 1000</span><br><span class="line">... AND create_by = 1000</span><br></pre></td></tr></table></figure>
+
+<p>所在部门的数据范围，自动拼接如下SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">... AND dept_id = 10</span><br><span class="line">... AND user_dept_id = 10</span><br></pre></td></tr></table></figure>
+
+<p>所在部门和子级部门的数据范围，自动拼接如下SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">... AND dept_id IN (1,2,3,10)</span><br><span class="line">... AND user_dept_id IN (1,2,3,10)</span><br></pre></td></tr></table></figure>
+
+<p>所在机构的数据范围，自动拼接如下SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">... AND org_id = 10</span><br><span class="line">... AND user_org_id = 10</span><br></pre></td></tr></table></figure>
+
+<p>所在机构和子级机构的数据范围，自动拼接如下SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">... AND org_id IN (1,2,3,10)</span><br><span class="line">... AND user_org_id IN (1,2,3,10)</span><br></pre></td></tr></table></figure>
+
+<p>需要的SQL拼接效果如上可能还不行，还得根据权限代码是否匹配来决定是否拼接条件，可以根据API接口的注解来决定是否忽略某个数据库表的拼接，可以自定义数据范围字段代码。</p>
+<h4 id="1-2-根据权限代码来决定是否拼接条件"><a href="#1-2-根据权限代码来决定是否拼接条件" class="headerlink" title="1.2 根据权限代码来决定是否拼接条件"></a>1.2 根据权限代码来决定是否拼接条件</h4><p>这个需求是参考了若依框架得来的，具体表现为：</p>
+<ol>
+<li><p>系统有角色A（权限a1/a2，范围本人）、角色B（权限b1/b2，范围部门）、角色C（权限c1/c2，范围机构）</p>
+</li>
+<li><p>用户拥有角色B、C</p>
+</li>
+<li><p>接口所需要的权限为b2</p>
+</li>
+<li><p>期望拼接的结果为：查看部门范围数据，由于接口不需要c1/c2权限，因此角色C的数据范围配置不生效</p>
+</li>
+</ol>
+<h4 id="1-3-据API接口的注解来决定是否忽略某个数据库表的数据范围条件拼接"><a href="#1-3-据API接口的注解来决定是否忽略某个数据库表的数据范围条件拼接" class="headerlink" title="1.3 据API接口的注解来决定是否忽略某个数据库表的数据范围条件拼接"></a>1.3 据API接口的注解来决定是否忽略某个数据库表的数据范围条件拼接</h4><p>我们对某些特殊接口可能需要忽略数据范围限制，使数据范围配置不生效</p>
+<ol>
+<li><p>系统有角色A（权限a1/a2，范围本人）、角色B（权限b1/b2，范围部门）、角色C（权限c1/c2，范围机构）</p>
+</li>
+<li><p>用户拥有角色B、C</p>
+</li>
+<li><p>接口所需要的权限为b2，但是Controller配置了注解，使数据范围忽略处理</p>
+</li>
+<li><p>期望拼接的结果为：查看全部数据</p>
+</li>
+</ol>
+<p>场景二：</p>
+<ol>
+<li><p>系统有角色A（权限a1/a2，范围本人）、角色B（权限b1/b2，范围部门）、角色C（权限c1/c2，范围机构）</p>
+</li>
+<li><p>用户拥有角色B、C</p>
+</li>
+<li><p>接口不需要权限，Controller没有注解</p>
+</li>
+<li><p>期望拼接的结果为：查看部门和机构范围的数据</p>
+</li>
+</ol>
+<h4 id="1-4-自定义数据范围字段代码"><a href="#1-4-自定义数据范围字段代码" class="headerlink" title="1.4 自定义数据范围字段代码"></a>1.4 自定义数据范围字段代码</h4><p>对系统的某些表，他们的数据范围字段可能不规范，与通用的数据范围字段不同，例如，我们默认的数据范围字段为 <code>user_id/create_by</code> <code>org_id</code> <code>dept_id</code> ，但是某个表里面它就偏偏不是这个字段，它可能是 <code>userid/createby</code> <code>orgid</code> <code>deptid</code> 这样的，类似这种不规范让人很头疼，直接改表结构可能又太麻烦。</p>
+<h4 id="1-5-代码弱侵入式，自动完成相关功能"><a href="#1-5-代码弱侵入式，自动完成相关功能" class="headerlink" title="1.5 代码弱侵入式，自动完成相关功能"></a>1.5 代码弱侵入式，自动完成相关功能</h4><p>参考了若依框架的代码，他是有一个 <code>BaseEntity</code> 基类，会把数据范围的条件放到这个基类的 <code>params</code> 字段里面，然后手写 XML 把条件加上去。</p>
+<p>但是这种方式比较麻烦，代码侵入很强，每个需要数据范围权限的地方都需要去改SQL配置。</p>
+<p>而我们想要的是，让他自动完成这个条件拼接，完全不用去定制具体的查询SQL。</p>
+<p>并且，若依自定义了 <code>Spring Security</code> 注解的内容写法，他是 <code>@PreAuthorize(&quot;@ss.hasPermi(&#39;system:role:list&#39;)&quot;)</code> 这样的，引用了一个自己 Bean 去对权限代码进行判断，如果是在已有的项目上进行改造，则需要把所有的内容都替换掉。</p>
+<p>那我们需要不修改这一部分代码，也就是使用 <code>Spring Security</code> 官方的用法，如：<code>@PreAuthorize(&quot;hasAuthority(&#39;system:role:list&#39;)&quot;)</code> </p>
+<h2 id="重点难点分析"><a href="#重点难点分析" class="headerlink" title="重点难点分析"></a>重点难点分析</h2><p>分析【1.1 基本预期】，引入了 <code> DataPermissionInterceptor</code> 插件后完全可以达到自动拼接，难点在如何去判断当前用户访问的这个接口到底需要什么权限。</p>
+<p>分析【1.2 根据权限代码来决定是否拼接条件】，难点在如何获取Controller上成功匹配的权限代码，如何接管 <code>@PreAuthorize(&quot;hasAuthority(&#39;system:role:list&#39;)&quot;)</code>  的内容解析处理。</p>
+<p>分析【1.3 据API接口的注解来决定是否忽略某个数据库表的数据范围条件拼接】，难点在如何判断这个接口需要忽略数据范围的条件处理。</p>
+<p>分析【1.4 自定义数据范围字段代码】，难点在如何根据不同的API用不同的字段，如何根据不同的表名用不同的字段。</p>
+<p>分析【1.5 代码弱侵入式，自动完成相关功能】问题，在引入了 <code> DataPermissionInterceptor</code> 插件后可以自动拼接查询条件，也就是可以不把拼接条件放到基类的<code>params</code> 里面存储。然后重写 <code>Spring Security</code> 的相关类对象，接管 <code>@PreAuthorize(&quot;hasAuthority(&#39;system:role:list&#39;)&quot;)</code>  的内容解析处理。</p>
+<h2 id="基本用法预期"><a href="#基本用法预期" class="headerlink" title="基本用法预期"></a>基本用法预期</h2><p>在 Controller 上的用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 忽略整个 Controller 接口的数据范围限制，并且忽略全部表的限制</span></span><br><span class="line"><span class="meta">@DataScope(ignore = true)</span></span><br><span class="line"><span class="meta">@PreAuthorize(&quot;hasAuthority(&#x27;ROLE_USER&#x27;)&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/user/&quot;)</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserWebApiController</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取当前用户的基本信息等接口，已经在代码中明确了只查询当前用户的数据，因此可以直接忽略数据范围的处理</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/dept/&quot;)</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserWebApiController</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取全部的 &lt;strong&gt;单位部门&lt;/strong&gt; 列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">// 忽略单个接口的限制，并且忽略全部表的限制</span></span><br><span class="line">    <span class="meta">@DataScope(ignore = true)</span></span><br><span class="line">    <span class="meta">@Operation(summary = &quot;树形结构数据&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/tree&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;DeptListVo&gt; <span class="title">listTree</span><span class="params">(DeptQuery query)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ......</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 忽略对 sys_table1 这个表的处理</span></span><br><span class="line"><span class="meta">@DataScope(tableName = &quot;sys_table1&quot;, ignore = true)</span></span><br><span class="line"><span class="comment">// 对 sys_table2 这个表的数据范围权限字段单独控制</span></span><br><span class="line"><span class="meta">@DataScope(tableName = &quot;sys_table2&quot;, userColumn = &quot;userid&quot;, orgColumn = &quot;orgid&quot;, deptColumn = &quot;deptid&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>重写全局默认数据范围权限字段代码，并设置在全局对某个表进行单独设置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomDataScopeColumnHandlerImpl</span> <span class="keyword">extends</span> <span class="title">DataScopeColumnHandlerDefaultImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String[] getUserIdColumn() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;<span class="string">&quot;user_id&quot;</span>, <span class="string">&quot;create_user_id&quot;</span>, <span class="string">&quot;create_by&quot;</span>, <span class="string">&quot;created_by&quot;</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String[] getOrgIdColumn() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;<span class="string">&quot;org_id&quot;</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String[] getDeptIdColumn() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;<span class="string">&quot;dept_id&quot;</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;DataScopeColumn&gt; <span class="title">getDataScopeColumns</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> List.of(DataScopeColumn.builder()</span><br><span class="line">                        .tableName(<span class="string">&quot;sys_table1&quot;</span>)</span><br><span class="line">                        .ignore(<span class="keyword">true</span>)</span><br><span class="line">                        .build(),</span><br><span class="line">                DataScopeColumn.builder()</span><br><span class="line">                        .tableName(<span class="string">&quot;sys_table2&quot;</span>)</span><br><span class="line">                        .userColumn(<span class="string">&quot;userid&quot;</span>)</span><br><span class="line">                        .orgColumn(<span class="string">&quot;orgid&quot;</span>)</span><br><span class="line">                        .deptColumn(<span class="string">&quot;deptid&quot;</span>)</span><br><span class="line">                        .ignore(<span class="keyword">false</span>)</span><br><span class="line">                        .build()</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="基本实现过程"><a href="#基本实现过程" class="headerlink" title="基本实现过程"></a>基本实现过程</h2><h3 id="重写-Spring-Security-的注解内容解析处理功能"><a href="#重写-Spring-Security-的注解内容解析处理功能" class="headerlink" title="重写 Spring Security 的注解内容解析处理功能"></a>重写 Spring Security 的注解内容解析处理功能</h3><p>参照 <code>MethodSecurityExpressionRoot</code> 实现 <code>MethodSecurityExpressionOperations</code> 接口功能，把所有代码复制过来，修改 <code>hasAnyAuthorityName</code> 方法内容，当权限匹配成功的时候，把权限代码缓存到一个公共对象中</p>
+<p>创建一个类继承 <code>DefaultMethodSecurityExpressionHandler</code> 类，重写 <code>createEvaluationContext</code> 和 <code>createSecurityExpressionRoot</code> 方法，返回我们的 <code>MethodSecurityExpressionOperations</code> 接口实现类</p>
+<h3 id="MultiDataPermissionHandler-功能实现"><a href="#MultiDataPermissionHandler-功能实现" class="headerlink" title="MultiDataPermissionHandler 功能实现"></a>MultiDataPermissionHandler 功能实现</h3><p>从数据库中查询到当前用户的权限等信息，根据角色权限去判断是否需要增加限制条件，然后根据字段配置获取这个表的数据范围字段代码，最后拼接条件信息。</p>
+<h3 id="代码文件名称清单"><a href="#代码文件名称清单" class="headerlink" title="代码文件名称清单"></a>代码文件名称清单</h3><ul>
+<li><code>CustomMethodSecurityExpressionRoot</code> 方法权限 <code>@PreAuthorize</code> 内容表达式根数据对象</li>
+<li><code>CustomMethodSecurityExpressionHandler</code> 方法权限 <code>@PreAuthorize</code> 内容表达式处理器</li>
+<li><code>DataScope</code> 数据范围注解</li>
+<li><code>DataScopeAop</code> 数据范围AOP切面处理</li>
+<li><code>DataScopeColumn</code> 与<code>DataScopeAop</code>数据范围注解的基本一致，用来提供全局配置</li>
+<li><code>DataScopeColumnHandler</code> 数据范围字段处理接口</li>
+<li><code>DataScopeColumnHandlerAbstract</code> 数据范围字段处理接口抽象实现</li>
+<li><code>DataScopeColumnHandlerDefaultImpl</code> 数据范围字段处理接口默认实现</li>
+<li><code>DataScopeColumnType</code> 数据范围字段代码类型：用户字段、部门字段、机构字段</li>
+<li><code>DataScopeMyBatisPlusPlugin</code> MultiDataPermissionHandler的实现</li>
+<li><code>DataScopes</code> 数据范围注解</li>
+<li><code>DataScopeUtil</code> 抽取出来的几个公共方法</li>
+<li><code>DataScopeVo</code> 数据范围功能处理时所需要的用户权限信息数据对象，包括用户id、部门id、子级部门id列表、机构id、子级机构id列表、角色列表、角色对应的权限代码列表</li>
+<li><code>DataScopeType</code> 数据范围枚举类型：本人数据、部门数据、机构数据</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/23/mysql-migrate-dm/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/23/mysql-migrate-dm/">MySQL 数据库迁移 达梦数据库 踩坑日记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦数据库迁移</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/23/docker-fonts/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:38:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/23/docker-fonts/">Docker 容器中文字体乱码、无法加载中文字体</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容器字体</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/23/linux-level-3-bug/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:28:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/23/linux-level-3-bug/">Linux三级等保踩坑日记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">三级等保</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安全基线</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/07/socks5-to-http/" class="archive-article-date">
-  	<time datetime="2020-11-06T18:18:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/07/socks5-to-http/">通过 Privoxy 把 Shadowsocks 转成 Http 代理</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3ay24bMRAEQP//TztXB4ZW3RwOogC1J0EPkrUGlnTPfH3F1/eP6+c7yTd/f5qMmc944cLDw8MbLP339bzoV995Nc7Zr57feZ4LDw8Pb4+XPMTzJeZbRT5Xvi3h4eHhfT6vxbRHZDw8PLz/nff84E5uxPPROY8q8PDw8P4tL4kD5pvEZPz1rAUPDw8v5uWH2s95vVLfw8PDwxtX1W8dfM9GSw7ib8bHw8PDW+DlD9y8mSCPX+eFsShExsPDw7vKa0v+k7JWu0lMgl08PDy8bd6tUn3eYDrZJIpf4eHh4S3z2kAhefTfGqFdIR4eHt42L5l+3hwwD22T9dSneDw8PLySlwOSKZ9Hm8NGrVd4eHh4V3ntYTf/dNJkkM/+ZqvAw8PDu8prg9qW3Z54z6Lel7/Cw8PDW+C1MetZU9Sk9HWhMQsPDw/vKq8tgJ2VrNr2gvzWvznK4+Hh4S3w2ihh3ph12D4VBxzFqR8PDw/viNe2SeXfP1t0Ple0OeHh4eEt89rmgEmY28Yf+ab112h4eHh4C7ykhL8R1ObtVm1LVhTm4uHh4V3itUWmvDXqLCx+E87mLQ54eHh4C7yzOCAJbSdhx1nDFh4eHt4271YhP78RZ4fyttnrZWcEHh4e3ph3tknk32kDjny0fBPCw8PD2+Dl9yCZcnKDvsor2kjw8PDwlnntQ39e2m83gzprwcPDw1vj3Q0O8gPxqKx11uGFh4eHN+B9l1e+iLNFt1vImz8SHh4e3gJvUp5v26TOimST13h4eHh7vDxyPYwDjuKPs4h5VM3Dw8PDK3l5eandZ9rGrMtlMDw8PLwP4E0KV7dCjaIFAQ8PD+8DeG3IO2kmaOtZ147UeHh4eGVX0jy0zYtSbfDRNivg4eHhbfDO/uGfl6byQ/nZLcDDw8Nb4P0BAy6ccaY8RrIAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/26/linux-service/" class="archive-article-date">
-  	<time datetime="2020-10-26T04:09:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/08/22/yu-yue-chou-qian/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">金币云商预约抽签算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/26/linux-service/">部署 SpringBoot 项目时一个 Linux Service 模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E6%9C%9F%E5%81%87%E8%AE%BE%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">预期假设说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%9F%BA%E6%9C%AC%E9%A2%84%E6%9C%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.1 基本预期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E6%A0%B9%E6%8D%AE%E6%9D%83%E9%99%90%E4%BB%A3%E7%A0%81%E6%9D%A5%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E6%8B%BC%E6%8E%A5%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.0.2.</span> <span class="toc-text">1.2 根据权限代码来决定是否拼接条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E6%8D%AEAPI%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%9D%A5%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E5%BF%BD%E7%95%A5%E6%9F%90%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4%E6%9D%A1%E4%BB%B6%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.0.3.</span> <span class="toc-text">1.3 据API接口的注解来决定是否忽略某个数据库表的数据范围条件拼接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4%E5%AD%97%E6%AE%B5%E4%BB%A3%E7%A0%81"><span class="toc-number">1.0.4.</span> <span class="toc-text">1.4 自定义数据范围字段代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-%E4%BB%A3%E7%A0%81%E5%BC%B1%E4%BE%B5%E5%85%A5%E5%BC%8F%EF%BC%8C%E8%87%AA%E5%8A%A8%E5%AE%8C%E6%88%90%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD"><span class="toc-number">1.0.5.</span> <span class="toc-text">1.5 代码弱侵入式，自动完成相关功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E9%9A%BE%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">重点难点分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E9%A2%84%E6%9C%9F"><span class="toc-number">3.</span> <span class="toc-text">基本用法预期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">基本实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%86%99-Spring-Security-%E7%9A%84%E6%B3%A8%E8%A7%A3%E5%86%85%E5%AE%B9%E8%A7%A3%E6%9E%90%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD"><span class="toc-number">4.1.</span> <span class="toc-text">重写 Spring Security 的注解内容解析处理功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MultiDataPermissionHandler-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.2.</span> <span class="toc-text">MultiDataPermissionHandler 功能实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%E6%B8%85%E5%8D%95"><span class="toc-number">4.3.</span> <span class="toc-text">代码文件名称清单</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/10/ventoy/" class="archive-article-date">
-  	<time datetime="2020-10-10T01:44:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/10/ventoy/">Ventoy -- 新一代多系统启动U盘解决方案</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">« Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">Next »</a>
-    </nav>
   
 
+  
 
 
           </div>
@@ -620,8 +414,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

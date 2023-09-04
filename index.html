@@ -158,6 +158,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-data-scope-mybatis-plus-plugin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/09/04/data-scope-mybatis-plus-plugin/">基于 MyBatisPlus 数据权限插件实现的自动数据权限（数据范围）查询限制条件功能</a>
+    </h1>
+  
+
+        
+        <a href="/2023/09/04/data-scope-mybatis-plus-plugin/" class="archive-article-date">
+  	<time datetime="2023-09-04T08:34:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>此功能已实现，经测试运行正常</strong></p>
+<p><code>MyBatisPlus</code> 本身有了一个 <code> DataPermissionInterceptor</code> 数据权限插件，但是这个插件默认上是没有任何查询条件拼接的，需要自己去实现一个 <code>MultiDataPermissionHandler</code> 接口来创建所需要的条件表达式。</p>
+<p>通过这个功能我们可以实现一个数据范围的功能，也就是根据用户的角色、权限不同，来限制用户查询不同的数据范围。</p>
+        
+          <a class="article-more-a" href="/2023/09/04/data-scope-mybatis-plus-plugin/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/09/04/data-scope-mybatis-plus-plugin/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-yu-yue-chou-qian" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -822,79 +889,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/02/09/matrix-synapse-install-for-docker/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-nas-ip" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/01/19/nas-ip/">把有公网IP的NAS安全的暴露在公网环境</a>
-    </h1>
-  
-
-        
-        <a href="/2023/01/19/nas-ip/" class="archive-article-date">
-  	<time datetime="2023-01-19T01:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前期准备条件：</p>
-<ul>
-<li>有一个域名（对外提供访问服务）</li>
-<li>有一个公网IP，固定公网IP或者动态公网IP都行</li>
-<li>拨号路由器支持端口映射</li>
-<li>路由器或者NAS能够设置免费的DDNS动态域名解析</li>
-<li>利用Cloudflare隐藏NAS</li>
-</ul>
-<h2 id="前期分析说明"><a href="#前期分析说明" class="headerlink" title="前期分析说明"></a>前期分析说明</h2>
-        
-          <a class="article-more-a" href="/2023/01/19/nas-ip/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/01/19/nas-ip/">展开全文 >></a>
         </p>
       
 

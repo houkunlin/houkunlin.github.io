@@ -158,6 +158,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-common-shell" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/19/common-shell/">一些Shell命令使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/19/common-shell/" class="archive-article-date">
+  	<time datetime="2020-09-19T06:49:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="acme-sh"><a href="#acme-sh" class="headerlink" title="acme.sh"></a>acme.sh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 acme.sh</span></span><br><span class="line">curl  https://get.acme.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露阿里云DNS的KEY，请到阿里云控制台申请</span></span><br><span class="line"><span class="built_in">export</span> Ali_Key=<span class="string">&quot;***&quot;</span></span><br><span class="line"><span class="built_in">export</span> Ali_Secret=<span class="string">&quot;***&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用阿里云DNS验证域名来生成 SSL 证书，acme.sh暂时无法为中文域名签发证书</span></span><br><span class="line">acme.sh --issue --dns dns_ali -d houkunlin.cn -d *.houkunlin.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 acme.sh 生成 SSL 证书后，把 SSL 证书安装到 Nginx</span></span><br><span class="line">acme.sh --installcert -d houkunlin.cn --key-file /etc/nginx/houkunlin.cn.key --fullchain-file /etc/nginx/houkunlin.cn.cer --reloadcmd <span class="string">&quot;systemctl force-reload nginx&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+        
+          <a class="article-more-a" href="/2020/09/19/common-shell/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/19/common-shell/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-common-docker-image-run" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -788,85 +866,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/05/17/gxcerc-2019-05-18-study-01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-flutter-start" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/flutter-start/">开始 flutter hello word 遇到问题记录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/flutter-start/" class="archive-article-date">
-  	<time datetime="2018-12-28T01:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h3><ul>
-<li>flutter中文网: <a target="_blank" rel="noopener" href="https://flutterchina.club/get-started/install/">https://flutterchina.club/get-started/install/</a></li>
-</ul>
-<h4 id="基本步骤跟着中文网教程走就行-下面记录一些在过程中遇到的问题"><a href="#基本步骤跟着中文网教程走就行-下面记录一些在过程中遇到的问题" class="headerlink" title="基本步骤跟着中文网教程走就行,下面记录一些在过程中遇到的问题"></a>基本步骤跟着中文网教程走就行,下面记录一些在过程中遇到的问题</h4>
-        
-          <a class="article-more-a" href="/2018/12/28/flutter-start/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/flutter-start/">展开全文 >></a>
         </p>
       
 
