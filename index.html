@@ -158,6 +158,145 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-kvm-openstack-ubuntu-lvm-extend-disk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/">OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区）</a>
+    </h1>
+  
+
+        
+        <a href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/" class="archive-article-date">
+  	<time datetime="2024-05-21T08:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>关键词：OpenStack KVM Ubuntu LVM 扩容磁盘；虚拟机 Ubuntu LVM 扩容磁盘；Ubuntu LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；</p>
+</blockquote>
+<h2 id="如何在不改变分区结构的情况下扩容-LVM-分区空间"><a href="#如何在不改变分区结构的情况下扩容-LVM-分区空间" class="headerlink" title="如何在不改变分区结构的情况下扩容 LVM 分区空间"></a>如何在不改变分区结构的情况下扩容 LVM 分区空间</h2><blockquote>
+<p>条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-kvm-openstack-ubuntu-make-img" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/05/21/kvm-openstack-ubuntu-make-img/">kvm-openstack-ubuntu-make-img</a>
+    </h1>
+  
+
+        
+        <a href="/2024/05/21/kvm-openstack-ubuntu-make-img/" class="archive-article-date">
+  	<time datetime="2024-05-21T08:07:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>关键词：制作 OpenStack 虚拟机镜像；使用 QEMU 制作虚拟机镜像；制作 KVM 虚拟机镜像；</p>
+</blockquote>
+<p>最近在使用 OpenStack KVM 虚拟化时，想要创建一个 Ubuntu Server 虚拟机，发现无法直接用 ISO 镜像安装新的虚拟机，后来查阅资料发现需要先制作虚拟机镜像，然后才能创建虚拟机。</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2>
+        
+          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-make-img/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-make-img/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-data-scope-mybatis-plus-plugin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -728,9 +867,10 @@
       
         <p>适用于 Java </p>
 <ul>
-<li><code>\x20+//.*</code> 删除单行的注释内容</li>
+<li><code>(\x20*)//.*</code> 删除单行的注释内容</li>
+<li><code>(\x20*)/\*.*\n(.*\*.*\n)*</code> 删除多行的注释内容</li>
 <li><del><code>.*//.*\n</code> 删除单行的注释内容</del></li>
-<li><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</li>
+<li><del><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</del></li>
 <li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li>
 </ul>
 <p>合并多个文件的代码内容：<code>type *.java &gt; 00-code.txt</code> ，注意：<strong>必须使用 CMD 执行，请不要使用 Windows PowerShell 执行</strong>，在 Windows PowerShell 中会出现中文乱码，而在 CMD 中正常</p>
@@ -749,147 +889,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-liuzhou-moto-disable-run-area" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/09/liuzhou-moto-disable-run-area/">关于柳州市市区摩托车限行区域相关信息</a>
-    </h1>
-  
-
-        
-        <a href="/2023/02/09/liuzhou-moto-disable-run-area/" class="archive-article-date">
-  	<time datetime="2023-02-09T02:35:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>柳州市区号牌摩托车是准许在柳州市区道路通行的，可以<strong>在官塘大桥通行，但不能驶入莲花隧道</strong>。</p>
-<p>为了保障群众的出行安全，减少交通事故的发生，及时消除交通安全隐患，根据柳州市道路的交通特点，目前在</p>
-<ul>
-<li>莲花隧道</li>
-<li>三门江隧道</li>
-<li>文昌下穿通道</li>
-<li>广雅下穿通道</li>
-<li>文林立交桥</li>
-<li>五叉路口立交桥</li>
-</ul>
-        
-          <a class="article-more-a" href="/2023/02/09/liuzhou-moto-disable-run-area/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/02/09/liuzhou-moto-disable-run-area/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-matrix-synapse-install-for-docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/09/matrix-synapse-install-for-docker/">Matrix Synapse 服务安装(Docker)</a>
-    </h1>
-  
-
-        
-        <a href="/2023/02/09/matrix-synapse-install-for-docker/" class="archive-article-date">
-  	<time datetime="2023-02-09T02:29:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-创建一个工作目录"><a href="#1-创建一个工作目录" class="headerlink" title="1. 创建一个工作目录"></a>1. 创建一个工作目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/matrix-synapse-data/</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-生成-Synapse-配置文件"><a href="#2-生成-Synapse-配置文件" class="headerlink" title="2. 生成 Synapse 配置文件"></a>2. 生成 Synapse 配置文件</h2>
-        
-          <a class="article-more-a" href="/2023/02/09/matrix-synapse-install-for-docker/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/02/09/matrix-synapse-install-for-docker/">展开全文 >></a>
         </p>
       
 

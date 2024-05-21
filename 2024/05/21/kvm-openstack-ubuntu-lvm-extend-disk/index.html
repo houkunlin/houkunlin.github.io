@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
-  <title>侯坤林博客</title>
+  <title>OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区） | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="侯坤林博客">
-<meta property="og:url" content="https://houkunlin.gitee.io/page/4/index.html">
+  <meta name="description" content="关键词：OpenStack KVM Ubuntu LVM 扩容磁盘；虚拟机 Ubuntu LVM 扩容磁盘；Ubuntu LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；  如何在不改变分区结构的情况下扩容 LVM 分区空间 条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区）">
+<meta property="og:url" content="https://houkunlin.gitee.io/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="广西桂林市永福县堡里乡堡里初中09级157班。广西桂林市永福县永福中学12级1204班。广西科技大学鹿山学院15级电气与计算机工程系计软154班。">
+<meta property="og:description" content="关键词：OpenStack KVM Ubuntu LVM 扩容磁盘；虚拟机 Ubuntu LVM 扩容磁盘；Ubuntu LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；  如何在不改变分区结构的情况下扩容 LVM 分区空间 条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-21T08:10:22.000Z">
+<meta property="article:modified_time" content="2024-05-21T08:10:22.000Z">
 <meta property="article:author" content="侯坤林">
 <meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
 <meta name="twitter:card" content="summary">
@@ -156,309 +158,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-gxcerc-2019-05-19-study-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-kvm-openstack-ubuntu-lvm-extend-disk" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/18/gxcerc-2019-05-19-study-02/">实习总结-接触demo第二天</a>
+    <h1 class="article-title" itemprop="name">
+      OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区）
     </h1>
   
 
         
-        <a href="/2019/05/18/gxcerc-2019-05-19-study-02/" class="archive-article-date">
-  	<time datetime="2019-05-17T16:40:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨晚上玩手机有点晚，两点多才睡，结果今天睡到中午12点，洗漱吃完饭，下午1点钟了。</p>
-<p>该开始今天的计划了，接着昨晚上的项目。先把昨晚上发现的项目情况记录一下，都有下面这些东西。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/05/18/gxcerc-2019-05-19-study-02/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/18/gxcerc-2019-05-19-study-02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-gxcerc-2019-05-18-study-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/17/gxcerc-2019-05-18-study-01/">实习总结-初次接触项目</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/17/gxcerc-2019-05-18-study-01/" class="archive-article-date">
-  	<time datetime="2019-05-17T15:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天早上9点多的时候，老师在微信群里面发了实习任务，是一个压缩包，里面包含公司的所用框架开发文档和一个demo。<br>其中有四个开发文档和一个demo压缩包</p>
-<ul>
-<li>一个UI的文档</li>
-<li>一个Java编码规范文档</li>
-<li>一个Velocity用户手册</li>
-<li>一个公司自主框架的开发框架培训手册</li>
-<li>一个公司自主框架的开发指引</li>
-</ul>
-<p>这几个文档的更新时间是2017-12-11到2017-12-18，距离今天19-05-17时间有点久远。</p>
-        
-          <a class="article-more-a" href="/2019/05/17/gxcerc-2019-05-18-study-01/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/17/gxcerc-2019-05-18-study-01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-flutter-start" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/flutter-start/">开始 flutter hello word 遇到问题记录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/flutter-start/" class="archive-article-date">
-  	<time datetime="2018-12-28T01:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h3><ul>
-<li>flutter中文网: <a target="_blank" rel="noopener" href="https://flutterchina.club/get-started/install/">https://flutterchina.club/get-started/install/</a></li>
-</ul>
-<h4 id="基本步骤跟着中文网教程走就行-下面记录一些在过程中遇到的问题"><a href="#基本步骤跟着中文网教程走就行-下面记录一些在过程中遇到的问题" class="headerlink" title="基本步骤跟着中文网教程走就行,下面记录一些在过程中遇到的问题"></a>基本步骤跟着中文网教程走就行,下面记录一些在过程中遇到的问题</h4>
-        
-          <a class="article-more-a" href="/2018/12/28/flutter-start/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/flutter-start/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-work-git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/22/work-git/">总结我在这几周工作中常用到的一些git命令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/22/work-git/" class="archive-article-date">
-  	<time datetime="2018-12-22T09:50:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="克隆一个远端仓库到本地"><a href="#克隆一个远端仓库到本地" class="headerlink" title="克隆一个远端仓库到本地"></a>克隆一个远端仓库到本地</h2><ul>
-<li><code>git clone &#123;url&#125;</code> 克隆一个地址{url}的仓库代码到本地</li>
-</ul>
-<h2 id="把文件添加进缓存"><a href="#把文件添加进缓存" class="headerlink" title="把文件添加进缓存"></a>把文件添加进缓存</h2>
-        
-          <a class="article-more-a" href="/2018/12/22/work-git/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/22/work-git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-microservice-story" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/05/microservice-story/">微服务组件之间的故事</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/05/microservice-story/" class="archive-article-date">
-  	<time datetime="2018-12-05T02:08:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-05</time>
+        <a href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/" class="archive-article-date">
+  	<time datetime="2024-05-21T08:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
 </a>
         
       </header>
@@ -466,18 +179,32 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>微服务组件: 服务治理/注册中心,网关,微服务,服务调用</p>
+<p>关键词：OpenStack KVM Ubuntu LVM 扩容磁盘；虚拟机 Ubuntu LVM 扩容磁盘；Ubuntu LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；</p>
 </blockquote>
-<ul>
-<li>大宅院: 整个应用</li>
-<li>宅院管家: 服务治理/注册中心</li>
-<li>管家助理: 网关</li>
-<li>跑腿: 服务调用</li>
-</ul>
-<p>有个富豪,就是我,有一个大宅院,需要对外提供各种各样的服务,现在我的宅院里面拥有各种人才,可以为别人提供它们所需要的服务,但是我一个人忙不过来.<br>因此我需要请一个管家(注册中心/服务治理),让他帮我管理宅院的人才,所有的人才上下班都去管家那里报道.<br>后来我发现,我们需要一个前台来对客人提供基础的帮助以及辅助我们的管家和其他专业人才,因此决定给管家招一个助理(网关),由助理对来访人员进行筛选,以及任务分配.<br>用户来到前台,跟助理说我找张三给我办理出过手续,这是材料,助理问管家</p>
-        
-          <a class="article-more-a" href="/2018/12/05/microservice-story/#more">查看更多 >></a>
-        
+<h2 id="如何在不改变分区结构的情况下扩容-LVM-分区空间"><a href="#如何在不改变分区结构的情况下扩容-LVM-分区空间" class="headerlink" title="如何在不改变分区结构的情况下扩容 LVM 分区空间"></a>如何在不改变分区结构的情况下扩容 LVM 分区空间</h2><blockquote>
+<p>条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。</p>
+</blockquote>
+<p>在上一篇文章中我把制作好的 Ubuntu 镜像上传到 OpenStack 上，然后根据镜像创建一个实例，但是实例的磁盘空间太小，所以我们需要扩容磁盘。</p>
+<p>因为我的镜像只有 8G，这个容量肯定是不够用的，所以在创建实例的时候，我把卷大小设置为 20G。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|+++++8g+++++|----------12g----------|</span><br><span class="line">原始镜像占了8g，我创建的卷有20g，那么后面就有12g的空闲空间。</span><br></pre></td></tr></table></figure>
+<p>而其中8g空间分了三个分区，</p>
+<ol>
+<li><code>/dev/vda1</code> BIOS 分区</li>
+<li><code>/dev/vda2</code> BOOT 分区</li>
+<li><code>/dev/vda3</code> LVM 分区，系统分区</li>
+</ol>
+<p>剩下12g的空闲空间紧跟着在 <code>/dev/vda3</code> 分区后面。</p>
+<p>理论上，我要做的就是把 <code>/dev/vda3</code> 分区扩容到最大，然后再把 LVM 分区扩容到最大，看起来步骤非常简单。</p>
+<h2 id="修复磁盘-GPT-PMBR-size-mismatch-问题"><a href="#修复磁盘-GPT-PMBR-size-mismatch-问题" class="headerlink" title="修复磁盘 GPT PMBR size mismatch 问题"></a>修复磁盘 GPT PMBR size mismatch 问题</h2><p>在扩容 <code>/dev/vda3</code> 分区之前，我需要修复磁盘 GPT PMBR size mismatch 问题，因为分区大小和磁盘大小不一致。<br>错误提示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gpt pmbr size mismatch will be corrected by write.</span><br><span class="line">the backup gpt table is not no the end of the device.</span><br></pre></td></tr></table></figure>
+<p>执行修复命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parted -l</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩容-dev-vda3-分区"><a href="#扩容-dev-vda3-分区" class="headerlink" title="扩容 /dev/vda3 分区"></a>扩容 <code>/dev/vda3</code> 分区</h2><p>参考：<a target="_blank" rel="noopener" href="https://serverfault.com/a/1021192">https://serverfault.com/a/1021192</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">growpart /dev/vda 3</span><br><span class="line">resize2fs /dev/vda3</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩容-LVM-分区"><a href="#扩容-LVM-分区" class="headerlink" title="扩容 LVM 分区"></a>扩容 LVM 分区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lvdisplay <span class="comment"># 查看 LV 路径</span></span><br><span class="line">lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv</span><br><span class="line">resize2fs /dev/ubuntu-vg/ubuntu-lv</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -488,16 +215,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/05/microservice-story/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3awXKjQAwEUP//T2evqdoCd0uD48Pj5LJJmMcBDS29XvHx8+v4/c395+TM5Nf/zzx84OHh4S2WfvXv7i+TnN8yktsU3QI8PDy8x3hXT9RZGWgf68mZ99e9/B4PDw/vC3jJX+Wk+/+WbL7x8PDwvp+XXKwtHrOoAg8PD+9veXl8sF9iu/Q87MDDw8P7DC/vIn3P50f6e3h4eHjrrnre9GrPyQvJarV4eHh4D/DyB27bxGq31Puo93KdeHh4eEd5s5f8PJg4WyTyYoCHh4f3Sd7mHX9WJNrRgeRaRTXDw8PDG/GSb/YtsRaQjyMUMQQeHh7emtci2xuxf9znV4/yDDw8PLxDvFnk2j6m2830LBQu3h7w8PDwjvLuL1lvakdjAW0b7E2pwMPDwzvES9pIm8GsTSjcjhdcZi14eHh4D/DawGK2mZ5thWclCg8PD+9pXlse2rB131S7v+LlOXh4eHiP8WYLnW2jN0NXq84eHh4e3iHebMubb3/bM/NSdLizh4eHhxevKl/Q/Y2YNauS0rIZXMDDw8N7grdZxCy0bUOKWZCBh4eH9xwvvwft1nYDe42O4l0BDw8P72He2TZVXoTasYZhYcDDw8MreW2rKV9oHhDnIUi7Tjw8PLy/4rXtsTyKTa6Y3KwiGsbDw8M7xEs2r5sQNl9QG0ZEf4WHh4f3GK+NCZ57oOe3O4pL8PDw8B7j5eMCT0QVp1pfb7bUeHh4eGveT3kkpSJZ7tkI+PJXPDw8vAd4m9f+WROrLTnt59emtuDh4eHFvFn8uglY2yCjvUF4eHh4n+HNBrD2g1b14FQ5koWHh4f3bbxTJSQfUKjjYDw8PLyv4bXh6WZUqx4XwMPDw/sIrx2cOrX0WQhSFwY8PDy8o7zZYNNsi5w01WZl40B/Dw8PD+897x/l1Ii9dMljtAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/21/kvm-openstack-ubuntu-make-img/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kvm-openstack-ubuntu-make-img</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -512,470 +298,33 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ge-task" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/27/ge-task/">考级任务</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/27/ge-task/" class="archive-article-date">
-  	<time datetime="2018-11-27T02:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="任务涉及内容"><a href="#任务涉及内容" class="headerlink" title="任务涉及内容"></a>任务涉及内容</h1><h2 id="C端任务"><a href="#C端任务" class="headerlink" title="C端任务"></a>C端任务</h2><ul>
-<li>学校信息：详情、介绍<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>学校列表：查询功能》有一个科目扩展表（t_grade_subject_school）关联着相关的数据<ul>
-<li>按照类型、科目、等级搜索</li>
-</ul>
-</li>
-<li>学校老师介绍：获取学校详情和评审老师信息<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>考生信息：用户考生编辑<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>用户信息：我的一级分销客户信息<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>佣金明细：新建一个表来记录每一笔佣金信息，同时在订单里面也要有相关的信息（关联订单）<br>》有一个：交易记录表（t_grade_transaction_record）存储这这个信息<ul>
-<li>数据库表：完成-等待业务开发时过程的完善</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-<li>意见反馈：小程序用户反馈功能、A端用户反馈管理功能<ul>
-<li>数据库表：</li>
-<li>实体类：</li>
-<li>service业务</li>
-<li>controller接口</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/11/27/ge-task/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/27/ge-task/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%8D%E6%94%B9%E5%8F%98%E5%88%86%E5%8C%BA%E7%BB%93%E6%9E%84%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E6%89%A9%E5%AE%B9-LVM-%E5%88%86%E5%8C%BA%E7%A9%BA%E9%97%B4"><span class="toc-number">1.</span> <span class="toc-text">如何在不改变分区结构的情况下扩容 LVM 分区空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E7%A3%81%E7%9B%98-GPT-PMBR-size-mismatch-%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">修复磁盘 GPT PMBR size mismatch 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%AE%B9-dev-vda3-%E5%88%86%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">扩容 &#x2F;dev&#x2F;vda3 分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%AE%B9-LVM-%E5%88%86%E5%8C%BA"><span class="toc-number">4.</span> <span class="toc-text">扩容 LVM 分区</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-say" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/say/">2018年11月16日分享-解说词（对应PPT在制作当中）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/15/say/" class="archive-article-date">
-  	<time datetime="2018-11-15T07:41:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/18o6t8r4eAZ-8Q3y_9BtGWf1uJdcILCRT2ZFcB8FVbbo/edit?usp=sharing">PPT下载（谷歌幻灯片）</a></p>
-<h3 id="开头语"><a href="#开头语" class="headerlink" title="开头语"></a>开头语</h3><p>各位同事们好，我叫侯坤林，非常感谢各位同事百忙之中抽出时间来听我汇报这两周的学习情况，我感到十分荣幸，我若有什么表达得不对的地方，还请各位同事多多包涵和指正，谢谢！</p>
-        
-          <a class="article-more-a" href="/2018/11/15/say/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/15/say/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-study-spring-cloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/study-spring-cloud/">study-spring-cloud</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/15/study-spring-cloud/" class="archive-article-date">
-  	<time datetime="2018-11-15T02:59:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>分享大纲</p>
-<ul>
-<li>描述我进公司前在学校的状态<ul>
-<li>计算机网络</li>
-<li>数据结构与算法</li>
-<li>单打独斗，使用 gradle</li>
-<li>学习 kotlin</li>
-</ul>
-</li>
-<li>讲我这一周的状态<ul>
-<li>[[x]]学习敏捷开发</li>
-<li>学习容器</li>
-<li>学习 MyBatis</li>
-<li>学习 SpringCloud</li>
-<li>学习 git 、 git flow</li>
-<li>阿里代码规范</li>
-</ul>
-</li>
-<li>总结我这一周为什么有这些变化<ul>
-<li>学习得越多，只能表明我以前不够好</li>
-<li>对我来说，初入社会，一切从头开始</li>
-</ul>
-</li>
-</ul>
-
-        
-          <a class="article-more-a" href="/2018/11/15/study-spring-cloud/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/15/study-spring-cloud/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ibona-2018-11-13-update-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/13/ibona-2018-11-13-update-code/">我在代码规范踩的坑</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/13/ibona-2018-11-13-update-code/" class="archive-article-date">
-  	<time datetime="2018-11-13T09:53:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
-<li>最大的坑：前期没有写注释，后面得一个一个的补回来</li>
-<li>类注释：注释作者、注释类功能</li>
-<li>方法注释：说明、参数（变量名、解释）、返回值</li>
-<li>字段注释：不能尾行注释，数据对象字段不能加默认值</li>
-<li>多余的代码注释未删掉，这个需要删掉</li>
-<li>临时注释代码（可能会取消注释继续使用）使用三斜杠注释</li>
-<li>所有的接口必须注释</li>
-</ul>
-<h3 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h3>
-        
-          <a class="article-more-a" href="/2018/11/13/ibona-2018-11-13-update-code/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/13/ibona-2018-11-13-update-code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ibona-2018-11-10-study-microservice" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/10/ibona-2018-11-10-study-microservice/">学习微服务记录-个人总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/10/ibona-2018-11-10-study-microservice/" class="archive-article-date">
-  	<time datetime="2018-11-10T09:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考资料：</p>
-<ul>
-<li>什么是微服务架构？ <a target="_blank" rel="noopener" href="https://www.roncoo.com/article/detail/130121">https://www.roncoo.com/article/detail/130121</a></li>
-<li>什么是微服务架构？ <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/65502802">https://www.zhihu.com/question/65502802</a></li>
-<li>什么是微服务？ <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/39c1e4ec0d63">https://www.jianshu.com/p/39c1e4ec0d63</a></li>
-<li>微服务中 Dubbo 和 Spring Cloud 架构技术路线对 <a target="_blank" rel="noopener" href="https://juejin.im/entry/5ae01ee3518825672d33d6ed">https://juejin.im/entry/5ae01ee3518825672d33d6ed</a></li>
-</ul>
-<p>微服务特点体现在『微』字上，服务微小，小巧灵活，功能单一，细颗粒度。微服务是一种架构上的风格，把业务需求不断细分成若干个功能模块，尽量使功能模块提供单一功能。</p>
-        
-          <a class="article-more-a" href="/2018/11/10/ibona-2018-11-10-study-microservice/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博纳</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习计划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深圳博纳移动/" class="article-tag-list-link color2">深圳博纳移动</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深圳博纳移动/学习/" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深圳博纳移动/学习/个人总结/" class="article-tag-list-link color5">个人总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/10/ibona-2018-11-10-study-microservice/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">« Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next »</a>
-    </nav>
   
 
+  
+
+  
+
+  
 
 
           </div>
@@ -997,8 +346,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
