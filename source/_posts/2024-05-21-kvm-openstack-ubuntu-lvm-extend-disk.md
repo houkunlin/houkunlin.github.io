@@ -43,7 +43,7 @@ parted -l
 参考：https://serverfault.com/a/1021192
 ```bash
 growpart /dev/vda 3
-resize2fs /dev/vda3
+# resize2fs /dev/vda3 # 发现此命令执行失败，但并不影响后面的操作
 ```
 
 ## 扩容 LVM 分区

@@ -1,5 +1,5 @@
 ---
-title: kvm-openstack-ubuntu-make-img
+title: 制作 OpenStack 虚拟机镜像（Ubuntu Server 镜像）
 date: 2024-05-21 16:07:26
 updated: 2024-05-21 16:07:26
 tags:
