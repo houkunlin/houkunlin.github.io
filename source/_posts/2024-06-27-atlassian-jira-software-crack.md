@@ -59,7 +59,12 @@ java -jar ${JIRA_ATLASSIAN} -p jira -m test@test.com -n BAT -o https://192.168.0
 # -o 部署的入口地址
 # -s 服务器ID（AAAA-BBBB-CCCC-DDDD）
 ```
+## 填入许可证
 
+把上一步生成的许可证内容填入到页面中，点击下一步后耐心等待服务器配置完毕即可。
+
+配置完毕后可在系统管理中看到激活信息。
+![img.png](img.png)
 
 ## 参考链接
 
