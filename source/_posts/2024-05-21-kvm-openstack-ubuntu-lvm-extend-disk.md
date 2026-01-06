@@ -46,10 +46,37 @@ growpart /dev/vda 3
 # resize2fs /dev/vda3 # 发现此命令执行失败，但并不影响后面的操作
 ```
 
+如果不存在这个命令需要进行安装
+```bash
+yum install cloud-utils-growpart
+apt-get install cloud-guest-utils
+```
+
 ## 扩容 LVM 分区
 
 ```bash
 lvdisplay # 查看 LV 路径
 lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 resize2fs /dev/ubuntu-vg/ubuntu-lv
+```
+
+## 提供一个在 Ubuntu 24.04 上可以正常使用的脚本
+
+一些路径可能需要按需调整一下
+
+```bash
+#!/bin/bash
+
+parted -l
+
+if [ -b /dev/vda ]; then
+    growpart /dev/vda 3
+elif [ -b /dev/sda ]; then
+    growpart /dev/sda 3
+fi
+
+lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+resize2fs /dev/ubuntu-vg/ubuntu-lv
+
 ```
