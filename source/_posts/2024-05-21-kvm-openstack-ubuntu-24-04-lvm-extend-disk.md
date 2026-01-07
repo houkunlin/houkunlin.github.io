@@ -1,16 +1,19 @@
 ---
-title: OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区）
+title: OpenStack KVM Ubuntu 24.04 LVM 扩容磁盘（不新增分区，维持原有分区）
 date: 2024-05-21 16:10:22
-updated: 2024-05-21 16:10:22
+updated: 2026-01-06 16:10:22
 tags:
+  - OpenStack
+  - LVM
+  - LVM扩容
 ---
 
-> 关键词：OpenStack KVM Ubuntu LVM 扩容磁盘；虚拟机 Ubuntu LVM 扩容磁盘；Ubuntu LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；
+> 关键词：OpenStack KVM Ubuntu 24.04 LVM 扩容磁盘；虚拟机 Ubuntu 24.04 LVM 扩容磁盘；Ubuntu 24.04 LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；
 
 ## 如何在不改变分区结构的情况下扩容 LVM 分区空间
 > 条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。
 
-在上一篇文章中我把制作好的 Ubuntu 镜像上传到 OpenStack 上，然后根据镜像创建一个实例，但是实例的磁盘空间太小，所以我们需要扩容磁盘。
+在上一篇文章中我把制作好的 Ubuntu 24.04 镜像上传到 OpenStack 上，然后根据镜像创建一个实例，但是实例的磁盘空间太小，所以我们需要扩容磁盘。
 
 因为我的镜像只有 8G，这个容量肯定是不够用的，所以在创建实例的时候，我把卷大小设置为 20G。
 
@@ -41,14 +44,15 @@ parted -l
 
 ## 扩容 `/dev/vda3` 分区
 参考：https://serverfault.com/a/1021192
+
+在 Ubuntu 24.04 下是 `/dev/vda3` 分区
 ```bash
 growpart /dev/vda 3
-# resize2fs /dev/vda3 # 发现此命令执行失败，但并不影响后面的操作
+# resize2fs /dev/vda3 # 发现此命令执行失败，但并不影响后面的操作。应该是使用了 LVM 导致的失败，如果不使用 LVM 应该会成功的
 ```
 
-如果不存在这个命令需要进行安装
+如果不存在这个命令需则要进行安装
 ```bash
-yum install cloud-utils-growpart
 apt-get install cloud-guest-utils
 ```
 
@@ -56,8 +60,7 @@ apt-get install cloud-guest-utils
 
 ```bash
 lvdisplay # 查看 LV 路径
-lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
-resize2fs /dev/ubuntu-vg/ubuntu-lv
+lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv -r
 ```
 
 ## 提供一个在 Ubuntu 24.04 上可以正常使用的脚本
@@ -67,16 +70,16 @@ resize2fs /dev/ubuntu-vg/ubuntu-lv
 ```bash
 #!/bin/bash
 
-parted -l
+sudo parted -l
 
 if [ -b /dev/vda ]; then
-    growpart /dev/vda 3
+    sudo growpart /dev/vda 3
 elif [ -b /dev/sda ]; then
-    growpart /dev/sda 3
+    sudo growpart /dev/sda 3
 fi
 
-lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+sudo pvresize /dev/vda3
 
-resize2fs /dev/ubuntu-vg/ubuntu-lv
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv -r
 
 ```
