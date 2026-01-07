@@ -3,6 +3,7 @@ title: 制作 OpenStack 虚拟机镜像（Ubuntu Server 镜像）
 date: 2024-05-21 16:07:26
 updated: 2024-05-21 16:07:26
 tags:
+  - OpenStack
 ---
 > 关键词：制作 OpenStack 虚拟机镜像；使用 QEMU 制作虚拟机镜像；制作 KVM 虚拟机镜像；
 
