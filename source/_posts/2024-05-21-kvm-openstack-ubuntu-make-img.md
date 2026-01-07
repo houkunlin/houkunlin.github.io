@@ -24,18 +24,18 @@ qemu-img create -f raw ubuntu-24.04-live-server-amd64.img 8g
 2. 通过 ISO 镜像启动虚拟机
 ```bash
 # 图形化界面启动
-qemu-system-x86_64 -enable-kvm -smp 2 -m 1024  -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -boot d
+qemu-system-x86_64 -smp 2 -m 1024 -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -boot d
 # VNC 服务启动
-qemu-system-x86_64 -enable-kvm -smp 2 -m 1024  -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -vnc :0
+qemu-system-x86_64 -smp 2 -m 1024 -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -boot d -vnc :0
 ```
 虚拟机启动后，需要慢慢等待，然后就可以看到正常的 Ubuntu Server 安装界面了，根据Ubuntu Server 的安装步骤，安装完成后，就可以退出虚拟机。
 3. 验证安装是否成功
 ```bash
 # 启动虚拟机
 # 图形化界面启动
-qemu-system-x86_64 -enable-kvm -smp 2 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -boot c
+qemu-system-x86_64 -smp 2 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -boot c
 # VNC 服务启动
-qemu-system-x86_64 -enable-kvm -smp 2 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -vnc :0
+qemu-system-x86_64 -smp 2 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -boot c -vnc :0
 ```
 4. 转换为 qcow2 格式（可以忽略）
 ```bash
