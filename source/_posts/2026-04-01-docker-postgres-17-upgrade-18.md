@@ -129,6 +129,9 @@ rm -rf /var/lib/postgresql/data_18/*
 
 # 重新启用校验和
 /usr/lib/postgresql/18/bin/pg_checksums -D /var/lib/postgresql/data_18 --enable --progress --verbose
+
+# 查看校验和是否启用，如果输出显示 Data page checksum version:       1，就代表已经成功启用了。
+/usr/lib/postgresql/18/bin/pg_controldata -D /var/lib/postgresql/data_18 | grep "Data page checksum"
 ```
 
 
