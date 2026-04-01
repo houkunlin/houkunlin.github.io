@@ -158,20 +158,102 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-kvm-openstack-ubuntu-lvm-extend-disk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-docker-postgres-17-upgrade-18" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/">OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区）</a>
+      <a class="article-title" href="/2026/04/01/docker-postgres-17-upgrade-18/">Docker PostgreSQL 17 升级 18</a>
     </h1>
   
 
         
-        <a href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/" class="archive-article-date">
-  	<time datetime="2024-05-21T08:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
+        <a href="/2026/04/01/docker-postgres-17-upgrade-18/" class="archive-article-date">
+  	<time datetime="2026-04-01T15:35:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PostgreSQL 18 已经出来挺久了，最近才抽空开始升级一下，今年升级又又又踩坑了。</p>
+<p>这次从 postgres 17 升级到 postgres 18 又搞了一天，去年的教程，有用，但是还是遇到一些新的问题。</p>
+<p>我们需要起3个容器，一个用于旧版的数据库，一个用于新版的数据库，一个用于迁移。</p>
+        
+          <a class="article-more-a" href="/2026/04/01/docker-postgres-17-upgrade-18/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">postgres</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2026/04/01/docker-postgres-17-upgrade-18/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-kvm-openstack-centos-7-9-lvm-extend-disk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2026/01/07/kvm-openstack-centos-7-9-lvm-extend-disk/">OpenStack KVM CentOS 7.9 LVM 扩容磁盘（不新增分区，维持原有分区）</a>
+    </h1>
+  
+
+        
+        <a href="/2026/01/07/kvm-openstack-centos-7-9-lvm-extend-disk/" class="archive-article-date">
+  	<time datetime="2026-01-07T08:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-01-07</time>
 </a>
         
       </header>
@@ -179,13 +261,269 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>关键词：OpenStack KVM Ubuntu LVM 扩容磁盘；虚拟机 Ubuntu LVM 扩容磁盘；Ubuntu LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；</p>
+<p>关键词：OpenStack KVM CentOS 7.9 LVM 扩容磁盘；虚拟机 CentOS 7.9 LVM 扩容磁盘；CentOS 7.9 LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；</p>
 </blockquote>
 <h2 id="如何在不改变分区结构的情况下扩容-LVM-分区空间"><a href="#如何在不改变分区结构的情况下扩容-LVM-分区空间" class="headerlink" title="如何在不改变分区结构的情况下扩容 LVM 分区空间"></a>如何在不改变分区结构的情况下扩容 LVM 分区空间</h2><blockquote>
 <p>条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。</p>
 </blockquote>
         
-          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/#more">查看更多 >></a>
+          <a class="article-more-a" href="/2026/01/07/kvm-openstack-centos-7-9-lvm-extend-disk/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LVM扩容</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2026/01/07/kvm-openstack-centos-7-9-lvm-extend-disk/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-rust-win11-build-win7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/12/rust-win11-build-win7/">Rust 在 Win11 下开发编译 Win7 exe</a>
+    </h1>
+  
+
+        
+        <a href="/2025/02/12/rust-win11-build-win7/" class="archive-article-date">
+  	<time datetime="2025-02-12T07:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-02-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>安装每日版本 <code>rustup toolchain install nightly</code></li>
+<li>切换到每日版本 <code>rustup default nightly</code></li>
+<li>安装 <code>rust-src</code> 组件 <code>rustup component add rust-src --toolchain nightly-x86_64-pc-windows-msvc</code></li>
+<li>下载 <code>https://github.com/PLC-lang/llvm-package-windows/releases/tag/v14.0.6</code> 解压后，设置 <code>LIBCLANG_PATH</code> 环境变量指向 <code>$LLVM_PATH\bin</code> 路径</li>
+<li><del>安装 <code>rustup target add x86_64-win7-windows-msvc</code></del> <em>该步骤好像不需要</em></li>
+<li>使用命令 <code>cargo build --release -Z build-std --target x86_64-win7-windows-msvc</code> 打包编译</li>
+</ul>
+<p>其他命令</p>
+<ul>
+<li>查看目标平台 <code>rustc --print=target-list</code></li>
+<li>列表已按照的目标平台 <code>rustup target list</code></li>
+</ul>
+        
+          <a class="article-more-a" href="/2025/02/12/rust-win11-build-win7/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">rust</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2025/02/12/rust-win11-build-win7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-docker-postgres-16-upgrade-17" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/12/24/docker-postgres-16-upgrade-17/">Docker PostgreSQL 16 升级 17</a>
+    </h1>
+  
+
+        
+        <a href="/2024/12/24/docker-postgres-16-upgrade-17/" class="archive-article-date">
+  	<time datetime="2024-12-24T03:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前从 postgres 15 升级到 postgres 16 搞了好久，但是没有把操作记录下来。</p>
+<p>这次从 postgres 16 升级到 postgres 17 又搞了半天，学乖了，这次顺便把操作过程记录下来。</p>
+<p>我们需要起3个容器，一个用于旧版的数据库，一个用于新版的数据库，一个用于迁移。</p>
+        
+          <a class="article-more-a" href="/2024/12/24/docker-postgres-16-upgrade-17/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">postgres</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/12/24/docker-postgres-16-upgrade-17/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-caffeine-cache-manager-stats-enable" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/08/04/spring-caffeine-cache-manager-stats-enable/">Spring Boot Caffeine CacheManager 启用缓存统计功能</a>
+    </h1>
+  
+
+        
+        <a href="/2024/08/04/spring-caffeine-cache-manager-stats-enable/" class="archive-article-date">
+  	<time datetime="2024-08-04T15:22:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天我在开发后台管理系统的时候，想开发一个缓存清理功能，2个接口，一个接口获取缓存信息，一个接口清空缓存，用的也是 Caffeine 做缓存。</p>
+<p>一开始写的时候没想到要加入监控数据，但是在 debug 的时候发现有个 <code>com.github.benmanes.caffeine.cache.Cache.stats()</code> 方法可以获取缓存监控信息，然后就高高兴兴的加入进去了，接口功能都写好后，发现我得到的监控统计数据都是0，然后就 debug 看看为什么为0。</p>
+<p><img src="img.png" alt="img.png"></p>
+        
+          <a class="article-more-a" href="/2024/08/04/spring-caffeine-cache-manager-stats-enable/#more">查看更多 >></a>
         
       
 
@@ -198,7 +536,251 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/">展开全文 >></a>
+          <a class="article-more-a" href="/2024/08/04/spring-caffeine-cache-manager-stats-enable/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-WGS84-to-GCJ02-BD09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/06/27/WGS84-to-GCJ02-BD09/">GPS WGS-84 坐标转 GCJ-02、BD-09 坐标</a>
+    </h1>
+  
+
+        
+        <a href="/2024/06/27/WGS84-to-GCJ02-BD09/" class="archive-article-date">
+  	<time datetime="2024-06-27T07:41:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>很久之前的代码了，当时在一些小地方用到，也没有用到具体的项目中，零零散散的放着，不知道该归类到什么地方，现在直接写到文章里面，给自己做一个留档。</p>
+<p>有 TypeScript 和 Java 两个版本，Java 版本其实也是参考了 JavaScript 版本转换过来的。</p>
+<p>代码基本上都是抄的，但是太久了，已经不知道抄的是谁的了，当时也没有具体的注释代码来源，现在也懒得去溯源了。Java 版本至少是2017年或更以前的时候抄出来的。</p>
+        
+          <a class="article-more-a" href="/2024/06/27/WGS84-to-GCJ02-BD09/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/06/27/WGS84-to-GCJ02-BD09/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-atlassian-jira-software-crack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/06/27/atlassian-jira-software-crack/">Atlassian Jira Software 激活方法</a>
+    </h1>
+  
+
+        
+        <a href="/2024/06/27/atlassian-jira-software-crack/" class="archive-article-date">
+  	<time datetime="2024-06-27T03:51:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>据说此插件可激活 Atlassian 系列软件。</p>
+</blockquote>
+<p>假设：</p>
+<ul>
+<li><code>JIRA_HOME</code> 为 <code>/opt/atlassian/jira-home</code></li>
+<li><code>JIRA_INSTALL</code> 为 <code>/opt/atlassian/jira-software</code></li>
+<li><code>JIRA_ATLASSIAN</code> 为 <code>/opt/atlassian/atlassian-agent.jar</code></li>
+</ul>
+        
+          <a class="article-more-a" href="/2024/06/27/atlassian-jira-software-crack/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Atlassian</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Jira</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/06/27/atlassian-jira-software-crack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-kvm-openstack-ubuntu-24-04-lvm-extend-disk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/05/21/kvm-openstack-ubuntu-24-04-lvm-extend-disk/">OpenStack KVM Ubuntu 24.04 LVM 扩容磁盘（不新增分区，维持原有分区）</a>
+    </h1>
+  
+
+        
+        <a href="/2024/05/21/kvm-openstack-ubuntu-24-04-lvm-extend-disk/" class="archive-article-date">
+  	<time datetime="2024-05-21T08:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>关键词：OpenStack KVM Ubuntu 24.04 LVM 扩容磁盘；虚拟机 Ubuntu 24.04 LVM 扩容磁盘；Ubuntu 24.04 LVM 扩容磁盘；扩容 LVM 分区空间；扩容 LVM 分区；扩容 LVM 卷；</p>
+</blockquote>
+<h2 id="如何在不改变分区结构的情况下扩容-LVM-分区空间"><a href="#如何在不改变分区结构的情况下扩容-LVM-分区空间" class="headerlink" title="如何在不改变分区结构的情况下扩容 LVM 分区空间"></a>如何在不改变分区结构的情况下扩容 LVM 分区空间</h2><blockquote>
+<p>条件：空闲空间紧跟在 LVM 分区后面，并且没有其他分区。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-24-04-lvm-extend-disk/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LVM扩容</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/05/21/kvm-openstack-ubuntu-24-04-lvm-extend-disk/">展开全文 >></a>
         </p>
       
 
@@ -263,6 +845,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -364,563 +957,9 @@
 
 
   
-    <article id="post-yu-yue-chou-qian" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/08/22/yu-yue-chou-qian/">金币云商预约抽签算法</a>
-    </h1>
-  
-
-        
-        <a href="/2023/08/22/yu-yue-chou-qian/" class="archive-article-date">
-  	<time datetime="2023-08-22T00:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近抢了几场演唱会的票都没有抢到，果然票务就是最大的黄牛。想着要是票务能采用公平公正的抽签方式就好了，这样多少还能有点机会。</p>
-<p>突然想到了金币云商用的一种比较公平公正的抽签算法，那就根据算法说明，用代码来实现它试着跑一下看看。</p>
-<blockquote>
-<p>抽签算法如下：</p>
-<p>1、抽签计算方法步骤：</p>
-<p>注：A：基数；B：翻转数；X：报名次数；Y：种子号，即起始中签号；Z：阶数；</p>
-<p>（1）A=（抽签日的上一个工作日的深圳证券交易所深证成指“今收”指数×100)×（抽签日的上一个工作日的深圳证券交易所中小100指数“今收”指数×100）×10000；</p>
-<p>注：可登录深圳证券交易所网站历史指数行情查询，详见下文附录。A为整数，不能有小数位。</p>
-<p>（2）B=将基数A对应的数字倒序排列（如首位是0，则直接抹去）；</p>
-<p>（3）Y=B/X后所得的余数加1；</p>
-<p>（4）Z=X/中签数量取整数（去掉小数点后的整数）；</p>
-<p>（5）最终全部中签的报名号，如下：</p>
-<p>第一个中签号=Y;</p>
-<p>第二个中签号=Y+Z；</p>
-<p>第三个中签号=Y+Z*2；</p>
-<p>第N个中签号=Y+Z*(N-1)；</p>
-<p>如果第N个中签号码&gt;总报名次数，那么第N个中签号码=Y+Z*(N-1)-总报名次数。</p>
-<p>2、举例说明</p>
-<p>如某个预订活动，38674次报名，要抽中1500个中签的报名号：</p>
-<p>（1）每个会员通过报名的先后顺序会得到1到38674的号码作为自己的抽签报名号，每个会员的报名号不同。</p>
-<p>（2）按照抽签活动公布的抽签日的上一个工作日的深证证券交易所股票指数收盘行情中，深证板指、中小100收盘指数为抽签计算变量。</p>
-<p>例如：2019年4月29日深圳证券交易所收盘行情：</p>
-<p>深圳板指：9622.49 中小100：6013.23</p>
-<p>（3）根据上述计算步骤</p>
-<p>基数A为“5786224554270000”；</p>
-<p>基准数反转数B为“724554226875”；</p>
-<p>获得种子数/起始中签号Y为“8144”；</p>
-<p>阶数：Z=38674/1500（取整数），即为25；</p>
-<p>第1个中签号=8144；</p>
-<p>第2个中签号=8144+25*1；</p>
-<p>第3个中签号=8144+25*2；</p>
-<p>以此类推，第1222个中签号=8144+25*(1222-1)</p>
-<p>第1223个中签号=8144+25*（1223-1）=38694&gt;38674，所以，第1223个中</p>
-<p>签号=8144+25*（1223-1）-38674=20</p>
-<p>以此类推，第1500个中签号=8144+25*（1500-1）-38674=6945</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2023/08/22/yu-yue-chou-qian/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/08/22/yu-yue-chou-qian/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-gradle-maven-publish-gitea-packages-repository" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/">Gradle发布jar到Gitea的Package Registry</a>
-    </h1>
-  
-
-        
-        <a href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/" class="archive-article-date">
-  	<time datetime="2023-07-14T08:23:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>本次测试版本说明 Gradle 7.6 ，Gitea 1.19.3，SpringBoot 3.x，Java 17</p>
-<p>实测 Gradle 7.2 ，Gitea 1.19.3，SpringBoot 2.5.x，Java 1.8 可用</p>
-</blockquote>
-<h2 id="创建一个-AccessToken"><a href="#创建一个-AccessToken" class="headerlink" title="创建一个 AccessToken"></a>创建一个 AccessToken</h2><p>进入到【个人设置】》【应用】中，在【管理 Access Token】中创建一个 <code>AccessToken</code> ，授权范围选中 <code>package</code> ，然后点击“生成令牌”即可，令牌只显示一次，记得保存好。</p>
-        
-          <a class="article-more-a" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">gradle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">gitea</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-webclient-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/06/14/spring-webclient-max-request-body-size/">Spring Webclient 请求Body限制 256KB 问题</a>
-    </h1>
-  
-
-        
-        <a href="/2023/06/14/spring-webclient-max-request-body-size/" class="archive-article-date">
-  	<time datetime="2023-06-14T08:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这个问题很久之前遇到过了，这次遇到另外一个有点类似的问题，那就是 SpringCloudGateway 请求限制 256KB 问题，在这里也记录一下 WebClient 请求限制 256KB 问题的处理方式。</p>
-<p>在 <a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-webflux-databufferlimitexception">How to Resolve Spring Webflux DataBufferLimitException</a> 这篇文章中有提到解决方案，在这里复制一下以做记录。</p>
-<p>在创建 <code>WebClient</code> 时设置 <code>exchangeStrategies</code> 参数，示例代码如下：</p>
-        
-          <a class="article-more-a" href="/2023/06/14/spring-webclient-max-request-body-size/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/06/14/spring-webclient-max-request-body-size/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-cloud-gateway-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/">Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题</a>
-    </h1>
-  
-
-        
-        <a href="/2023/06/14/spring-cloud-gateway-max-request-body-size/" class="archive-article-date">
-  	<time datetime="2023-06-14T07:43:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="解决常规请求大小限制问题"><a href="#解决常规请求大小限制问题" class="headerlink" title="解决常规请求大小限制问题"></a>解决常规请求大小限制问题</h2><p>近日，在把文件上传接口放在 SpringCloudGateway 后发现偶尔上传文件失败问题，经过初步排查前端上传文件超过256KB就会出错，经过简单日志排查，发现是我们的网关问题，错误日志大致如下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.core.io.buffer.DataBufferLimitException: Exceeded limit on max bytes to buffer : 262144</span><br><span class="line">	at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException:</span><br><span class="line">Error has been observed at the following site(s):</span><br><span class="line">	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ org.springframework.web.filter.reactive.ServerHttpObservationFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ HTTP POST &quot;/api/files/upload&quot; [ExceptionHandlingWebHandler]</span><br><span class="line">Original Stack Trace:</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.updateCount(LimitedDataBufferList.java:92)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.add(LimitedDataBufferList.java:58)</span><br><span class="line">		at reactor.core.publisher.MonoCollect$CollectSubscriber.onNext(MonoCollect.java:103)</span><br><span class="line">		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122)</span><br><span class="line">// .......</span><br><span class="line">2023-06-14T10:54:34.710+08:00 ERROR 54904 --- [ctor-http-nio-6] r.n.channel.ChannelOperationsHandler     : [5f5eda41-1, L:/127.0.0.1:8081 ! R:kubernetes.docker.internal/127.0.0.1:55331] Error was received while reading the incoming data. The connection will be closed.</span><br><span class="line"></span><br><span class="line">io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:83)</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:148)</span><br><span class="line">	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:101)</span><br><span class="line">	at io.netty.handler.codec.http.DefaultHttpContent.release(DefaultHttpContent.java:92)</span><br><span class="line">	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:90)</span><br><span class="line">	at reactor.netty.channel.FluxReceive.onInboundNext(FluxReceive.java:380)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-sysctl-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/20/linux-sysctl-config/">Linux sysctl 内核参数配置</a>
-    </h1>
-  
-
-        
-        <a href="/2023/04/20/linux-sysctl-config/" class="archive-article-date">
-  	<time datetime="2023-04-20T09:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在安装完 Linux 后，通常需要对内核做一些优化配置，以下是一些示例配置，创建 <code>/etc/sysctl.d/user.conf</code> 文件并编辑：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vm.max_map_count&#x3D;65530 # 默认最大虚拟内存</span><br><span class="line">vm.max_map_count&#x3D;262144</span><br></pre></td></tr></table></figure>
-
-<p>然后执行命令 <code>sysctl -p /etc/sysctl.d/user.conf</code> 应用修改</p>
-        
-          <a class="article-more-a" href="/2023/04/20/linux-sysctl-config/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/20/linux-sysctl-config/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-boot-elk-logstash-config-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/20/spring-boot-elk-logstash-config-xml/">SpringBoot ELK 日志部署和配置示例</a>
-    </h1>
-  
-
-        
-        <a href="/2023/04/20/spring-boot-elk-logstash-config-xml/" class="archive-article-date">
-  	<time datetime="2023-04-20T07:31:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="ElasticSearch-部署配置（8-7-0版本）"><a href="#ElasticSearch-部署配置（8-7-0版本）" class="headerlink" title="ElasticSearch 部署配置（8.7.0版本）"></a>ElasticSearch 部署配置（8.7.0版本）</h2><p>从 <a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">ElasticSearch官网</a> 下载安装包</p>
-<p>它不允许在 root 下运行，如果当前是 root 用户，则需要创建一个单独的用户：</p>
-        
-          <a class="article-more-a" href="/2023/04/20/spring-boot-elk-logstash-config-xml/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ELK</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">logstash</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/20/spring-boot-elk-logstash-config-xml/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-提交软著文档时清理源代码注释的正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">提交软著文档时清理源代码注释的正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2023-02-09T02:48:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>适用于 Java </p>
-<ul>
-<li><code>(\x20*)//.*</code> 删除单行的注释内容</li>
-<li><code>(\x20*)/\*.*\n(.*\*.*\n)*</code> 删除多行的注释内容</li>
-<li><del><code>.*//.*\n</code> 删除单行的注释内容</del></li>
-<li><del><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</del></li>
-<li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li>
-</ul>
-<p>合并多个文件的代码内容：<code>type *.java &gt; 00-code.txt</code> ，注意：<strong>必须使用 CMD 执行，请不要使用 Windows PowerShell 执行</strong>，在 Windows PowerShell 中会出现中文乱码，而在 CMD 中正常</p>
-        
-          <a class="article-more-a" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
     </nav>
   
 
@@ -933,7 +972,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 侯坤林
+    		&copy; 2026 侯坤林
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1034,15 +1073,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WebStorm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1138,6 +1177,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Atlassian</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Jira</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">postgres</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博纳</a>
               </li>
              
@@ -1154,6 +1205,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
@@ -1162,7 +1217,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">LVM扩容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rust</a>
               </li>
             
             <div class="clearfix"></div>

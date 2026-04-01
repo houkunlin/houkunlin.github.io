@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://houkunlin.gitee.io/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/</loc>
-    <lastmod>2024-05-21</lastmod>
+    <loc>https://houkunlin.gitee.io/2026/04/01/docker-postgres-17-upgrade-18/</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2026/01/07/kvm-openstack-centos-7-9-lvm-extend-disk/</loc>
+    <lastmod>2026-01-07</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2024/05/21/kvm-openstack-ubuntu-24-04-lvm-extend-disk/</loc>
+    <lastmod>2026-01-06</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2025/02/12/rust-win11-build-win7/</loc>
+    <lastmod>2025-02-12</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2024/12/24/docker-postgres-16-upgrade-17/</loc>
+    <lastmod>2024-12-24</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2024/08/04/spring-caffeine-cache-manager-stats-enable/</loc>
+    <lastmod>2024-08-04</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2024/06/27/WGS84-to-GCJ02-BD09/</loc>
+    <lastmod>2024-06-27</lastmod>
+  </url>
+  <url>
+    <loc>https://houkunlin.gitee.io/2024/06/27/atlassian-jira-software-crack/</loc>
+    <lastmod>2024-06-27</lastmod>
   </url>
   <url>
     <loc>https://houkunlin.gitee.io/2024/05/21/kvm-openstack-ubuntu-make-img/</loc>

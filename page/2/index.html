@@ -158,6 +158,561 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-yu-yue-chou-qian" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/22/yu-yue-chou-qian/">金币云商预约抽签算法</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/22/yu-yue-chou-qian/" class="archive-article-date">
+  	<time datetime="2023-08-22T00:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近抢了几场演唱会的票都没有抢到，果然票务就是最大的黄牛。想着要是票务能采用公平公正的抽签方式就好了，这样多少还能有点机会。</p>
+<p>突然想到了金币云商用的一种比较公平公正的抽签算法，那就根据算法说明，用代码来实现它试着跑一下看看。</p>
+<blockquote>
+<p>抽签算法如下：</p>
+<p>1、抽签计算方法步骤：</p>
+<p>注：A：基数；B：翻转数；X：报名次数；Y：种子号，即起始中签号；Z：阶数；</p>
+<p>（1）A=（抽签日的上一个工作日的深圳证券交易所深证成指“今收”指数×100)×（抽签日的上一个工作日的深圳证券交易所中小100指数“今收”指数×100）×10000；</p>
+<p>注：可登录深圳证券交易所网站历史指数行情查询，详见下文附录。A为整数，不能有小数位。</p>
+<p>（2）B=将基数A对应的数字倒序排列（如首位是0，则直接抹去）；</p>
+<p>（3）Y=B/X后所得的余数加1；</p>
+<p>（4）Z=X/中签数量取整数（去掉小数点后的整数）；</p>
+<p>（5）最终全部中签的报名号，如下：</p>
+<p>第一个中签号=Y;</p>
+<p>第二个中签号=Y+Z；</p>
+<p>第三个中签号=Y+Z*2；</p>
+<p>第N个中签号=Y+Z*(N-1)；</p>
+<p>如果第N个中签号码&gt;总报名次数，那么第N个中签号码=Y+Z*(N-1)-总报名次数。</p>
+<p>2、举例说明</p>
+<p>如某个预订活动，38674次报名，要抽中1500个中签的报名号：</p>
+<p>（1）每个会员通过报名的先后顺序会得到1到38674的号码作为自己的抽签报名号，每个会员的报名号不同。</p>
+<p>（2）按照抽签活动公布的抽签日的上一个工作日的深证证券交易所股票指数收盘行情中，深证板指、中小100收盘指数为抽签计算变量。</p>
+<p>例如：2019年4月29日深圳证券交易所收盘行情：</p>
+<p>深圳板指：9622.49 中小100：6013.23</p>
+<p>（3）根据上述计算步骤</p>
+<p>基数A为“5786224554270000”；</p>
+<p>基准数反转数B为“724554226875”；</p>
+<p>获得种子数/起始中签号Y为“8144”；</p>
+<p>阶数：Z=38674/1500（取整数），即为25；</p>
+<p>第1个中签号=8144；</p>
+<p>第2个中签号=8144+25*1；</p>
+<p>第3个中签号=8144+25*2；</p>
+<p>以此类推，第1222个中签号=8144+25*(1222-1)</p>
+<p>第1223个中签号=8144+25*（1223-1）=38694&gt;38674，所以，第1223个中</p>
+<p>签号=8144+25*（1223-1）-38674=20</p>
+<p>以此类推，第1500个中签号=8144+25*（1500-1）-38674=6945</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2023/08/22/yu-yue-chou-qian/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/08/22/yu-yue-chou-qian/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-gradle-maven-publish-gitea-packages-repository" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/">Gradle发布jar到Gitea的Package Registry</a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/" class="archive-article-date">
+  	<time datetime="2023-07-14T08:23:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本次测试版本说明 Gradle 7.6 ，Gitea 1.19.3，SpringBoot 3.x，Java 17</p>
+<p>实测 Gradle 7.2 ，Gitea 1.19.3，SpringBoot 2.5.x，Java 1.8 可用</p>
+</blockquote>
+<h2 id="创建一个-AccessToken"><a href="#创建一个-AccessToken" class="headerlink" title="创建一个 AccessToken"></a>创建一个 AccessToken</h2><p>进入到【个人设置】》【应用】中，在【管理 Access Token】中创建一个 <code>AccessToken</code> ，授权范围选中 <code>package</code> ，然后点击“生成令牌”即可，令牌只显示一次，记得保存好。</p>
+        
+          <a class="article-more-a" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">gradle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">gitea</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/14/gradle-maven-publish-gitea-packages-repository/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-webclient-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/14/spring-webclient-max-request-body-size/">Spring Webclient 请求Body限制 256KB 问题</a>
+    </h1>
+  
+
+        
+        <a href="/2023/06/14/spring-webclient-max-request-body-size/" class="archive-article-date">
+  	<time datetime="2023-06-14T08:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个问题很久之前遇到过了，这次遇到另外一个有点类似的问题，那就是 SpringCloudGateway 请求限制 256KB 问题，在这里也记录一下 WebClient 请求限制 256KB 问题的处理方式。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-webflux-databufferlimitexception">How to Resolve Spring Webflux DataBufferLimitException</a> 这篇文章中有提到解决方案，在这里复制一下以做记录。</p>
+<p>在创建 <code>WebClient</code> 时设置 <code>exchangeStrategies</code> 参数，示例代码如下：</p>
+        
+          <a class="article-more-a" href="/2023/06/14/spring-webclient-max-request-body-size/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/06/14/spring-webclient-max-request-body-size/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-cloud-gateway-max-request-body-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/">Spring Cloud Gateway 上传文件大小限制 256KB 问题、请求Body限制 256KB 问题</a>
+    </h1>
+  
+
+        
+        <a href="/2023/06/14/spring-cloud-gateway-max-request-body-size/" class="archive-article-date">
+  	<time datetime="2023-06-14T07:43:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="解决常规请求大小限制问题"><a href="#解决常规请求大小限制问题" class="headerlink" title="解决常规请求大小限制问题"></a>解决常规请求大小限制问题</h2><p>近日，在把文件上传接口放在 SpringCloudGateway 后发现偶尔上传文件失败问题，经过初步排查前端上传文件超过256KB就会出错，经过简单日志排查，发现是我们的网关问题，错误日志大致如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.core.io.buffer.DataBufferLimitException: Exceeded limit on max bytes to buffer : 262144</span><br><span class="line">	at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException:</span><br><span class="line">Error has been observed at the following site(s):</span><br><span class="line">	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ org.springframework.web.filter.reactive.ServerHttpObservationFilter [DefaultWebFilterChain]</span><br><span class="line">	*__checkpoint ⇢ HTTP POST &quot;/api/files/upload&quot; [ExceptionHandlingWebHandler]</span><br><span class="line">Original Stack Trace:</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.raiseLimitException(LimitedDataBufferList.java:99)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.updateCount(LimitedDataBufferList.java:92)</span><br><span class="line">		at org.springframework.core.io.buffer.LimitedDataBufferList.add(LimitedDataBufferList.java:58)</span><br><span class="line">		at reactor.core.publisher.MonoCollect$CollectSubscriber.onNext(MonoCollect.java:103)</span><br><span class="line">		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122)</span><br><span class="line">// .......</span><br><span class="line">2023-06-14T10:54:34.710+08:00 ERROR 54904 --- [ctor-http-nio-6] r.n.channel.ChannelOperationsHandler     : [5f5eda41-1, L:/127.0.0.1:8081 ! R:kubernetes.docker.internal/127.0.0.1:55331] Error was received while reading the incoming data. The connection will be closed.</span><br><span class="line"></span><br><span class="line">io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:83)</span><br><span class="line">	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:148)</span><br><span class="line">	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:101)</span><br><span class="line">	at io.netty.handler.codec.http.DefaultHttpContent.release(DefaultHttpContent.java:92)</span><br><span class="line">	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:90)</span><br><span class="line">	at reactor.netty.channel.FluxReceive.onInboundNext(FluxReceive.java:380)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/06/14/spring-cloud-gateway-max-request-body-size/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-sysctl-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/20/linux-sysctl-config/">Linux sysctl 内核参数配置</a>
+    </h1>
+  
+
+        
+        <a href="/2023/04/20/linux-sysctl-config/" class="archive-article-date">
+  	<time datetime="2023-04-20T09:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在安装完 Linux 后，通常需要对内核做一些优化配置，以下是一些示例配置，创建 <code>/etc/sysctl.d/user.conf</code> 文件并编辑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vm.max_map_count&#x3D;65530 # 默认最大虚拟内存</span><br><span class="line">vm.max_map_count&#x3D;262144</span><br></pre></td></tr></table></figure>
+
+<p>然后执行命令 <code>sysctl -p /etc/sysctl.d/user.conf</code> 应用修改</p>
+        
+          <a class="article-more-a" href="/2023/04/20/linux-sysctl-config/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/04/20/linux-sysctl-config/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-boot-elk-logstash-config-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/20/spring-boot-elk-logstash-config-xml/">SpringBoot ELK 日志部署和配置示例</a>
+    </h1>
+  
+
+        
+        <a href="/2023/04/20/spring-boot-elk-logstash-config-xml/" class="archive-article-date">
+  	<time datetime="2023-04-20T07:31:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ElasticSearch-部署配置（8-7-0版本）"><a href="#ElasticSearch-部署配置（8-7-0版本）" class="headerlink" title="ElasticSearch 部署配置（8.7.0版本）"></a>ElasticSearch 部署配置（8.7.0版本）</h2><p>从 <a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">ElasticSearch官网</a> 下载安装包</p>
+<p>它不允许在 root 下运行，如果当前是 root 用户，则需要创建一个单独的用户：</p>
+        
+          <a class="article-more-a" href="/2023/04/20/spring-boot-elk-logstash-config-xml/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ELK</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">logstash</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/04/20/spring-boot-elk-logstash-config-xml/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-提交软著文档时清理源代码注释的正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">提交软著文档时清理源代码注释的正则表达式</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2023-02-09T02:48:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>适用于 Java </p>
+<ul>
+<li><del><code>.*//.*\n</code> 删除单行的注释内容</del></li>
+<li><del><code>\x20+//.*</code> 删除单行的注释内容</del></li>
+<li><code>(\x20*)//.*</code> 删除单行的注释内容</li>
+<li><del><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</del></li>
+<li><code>(\x20*)/\*.*\n(.*\*.*\n)*</code> 删除多行的注释内容</li>
+<li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li>
+</ul>
+<p>合并多个文件的代码内容：<code>type *.java &gt; 00-code.txt</code> ，注意：<strong>必须使用 CMD 执行，请不要使用 Windows PowerShell 执行</strong>，在 Windows PowerShell 中会出现中文乱码，而在 CMD 中正常</p>
+        
+          <a class="article-more-a" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-liuzhou-moto-disable-run-area" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -372,609 +927,9 @@
 
 
   
-    <article id="post-spring-cloud-gateway-cors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/04/spring-cloud-gateway-cors/">SpringCloudGateway跨域配置</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/04/spring-cloud-gateway-cors/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:58:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先放一个可行的配置信息，后面再说过程。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">globalcors:</span></span><br><span class="line">        <span class="comment"># 一个全局默认的跨域配置，但是单独配置这个还是无法解决跨域问题</span></span><br><span class="line">        <span class="attr">cors-configurations:</span></span><br><span class="line">          <span class="string">&#x27;[/**]&#x27;</span><span class="string">:</span></span><br><span class="line">            <span class="attr">allowedOriginPatterns:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedHeaders:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowedMethods:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">            <span class="attr">allowCredentials:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">default-filters:</span></span><br><span class="line">        <span class="comment"># 然后再对跨域Header配置做去重复处理，这样就能够保证跨域信息的完整度</span></span><br><span class="line">        <span class="comment"># 升级 SpringBoot 3.0 之后，发现这个配置得写在前面才行，写在前面的最后执行</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">DedupeResponseHeader=Vary</span> <span class="string">Access-Control-Allow-Origin</span> <span class="string">Access-Control-Allow-Credentials,</span> <span class="string">RETAIN_LAST</span></span><br><span class="line">        <span class="comment"># 为了防止后端未配置跨域导致浏览器提示缺少跨域配置信息而请求失败，因此加上了默认的跨域Header配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Origin,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Methods,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Headers,</span> <span class="string">*</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddResponseHeader=Access-Control-Allow-Credentials,</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>最近在使用 Nginx 转发到 SpringCloudGateway 发现了跨域问题，SpringCloud是已经配置了跨域信息，但是手机端（uni-app）依旧无法请求成功，经过尝试在Nginx配置跨域头部同样不行，最后排查了很久，得出了以下结论：</p>
-        
-          <a class="article-more-a" href="/2022/03/04/spring-cloud-gateway-cors/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/04/spring-cloud-gateway-cors/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-boot-jpa-id-strategy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/04/spring-boot-jpa-id-strategy/">SpringBootJpa自定义ID主键策略注册到Hibernate默认策略列表中（自定义全局主键策略）</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/04/spring-boot-jpa-id-strategy/" class="archive-article-date">
-  	<time datetime="2022-03-04T02:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34731783/how-to-register-custom-identifiergenerator-in-hibernate-jpa-entitymanager">如何在Hibernate JPA EntityManager中注册自定义IdentifierGenerator？</a></p>
-<p>在使用SpringBootJpa自定义主键策略的时候，通常需要使用三个注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@javax</span>.persistence.Id</span><br><span class="line"><span class="meta">@javax</span>.persistence.GeneratedValue(generator = <span class="string">&quot;id&quot;</span>)</span><br><span class="line"><span class="meta">@org</span>.hibernate.annotations.GenericGenerator(name = <span class="string">&quot;id&quot;</span>, strategy = <span class="string">&quot;com.xxx.XXXIdentifierGenerator&quot;</span>)</span><br><span class="line"><span class="keyword">private</span> String id;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2022/03/04/spring-boot-jpa-id-strategy/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jpa</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/04/spring-boot-jpa-id-strategy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-docker-zh-cn-font" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/21/docker-zh-cn-font/">Docker 运行 Java 程序时遇到中文字体异常问题解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/21/docker-zh-cn-font/" class="archive-article-date">
-  	<time datetime="2022-01-21T14:54:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在我们日常开发中通常会遇到需要在程序中导出Excel电子表格，或者生成带有中文汉字的图片，此时通常会遇到异常报错，一般情况下都是缺少相关字体导致的。</p>
-<p>此时我们需要在 <code>docker</code> 容器中安装相关字体应用程序库，以及加入中文字体到 <code>docker</code> 容器中。</p>
-        
-          <a class="article-more-a" href="/2022/01/21/docker-zh-cn-font/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/21/docker-zh-cn-font/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-migrate-dm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/23/mysql-migrate-dm/">MySQL 数据库迁移 达梦数据库 踩坑日记</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/23/mysql-migrate-dm/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="踩坑1：存储汉字出现长度不够问题"><a href="#踩坑1：存储汉字出现长度不够问题" class="headerlink" title="踩坑1：存储汉字出现长度不够问题"></a>踩坑1：存储汉字出现长度不够问题</h5><p>在 <code>MySQL</code> 中使用 <code>varchar(1)</code> 可以存储1个汉字，在原样迁移到达梦数据库后会出现插入、修改失败问题，因为达梦数据库需要 <code>varchar(3)</code> 才能存储1个汉字。</p>
-<p>可以使用达梦数据库迁移工具的数据类型映射功能来解决：</p>
-        
-          <a class="article-more-a" href="/2021/12/23/mysql-migrate-dm/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">达梦数据库迁移</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/23/mysql-migrate-dm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-docker-fonts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/23/docker-fonts/">Docker 容器中文字体乱码、无法加载中文字体</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/23/docker-fonts/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:38:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在使用 <code>java:8-alpine</code> 镜像打包 java 项目运行后发现有些需要生成含中文文字图片的接口出现异常，或者生成的中文乱码，主要是容器没有中文字体导致的。</p>
-<p>可以在打包容器的使用增加字体安装命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk add ttf-dejavu fontconfig</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/12/23/docker-fonts/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容器字体</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/23/docker-fonts/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-level-3-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/23/linux-level-3-bug/">Linux三级等保踩坑日记</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/23/linux-level-3-bug/" class="archive-article-date">
-  	<time datetime="2021-12-23T02:28:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="踩坑1：服务器无法登录"><a href="#踩坑1：服务器无法登录" class="headerlink" title="踩坑1：服务器无法登录"></a>踩坑1：服务器无法登录</h2><ol>
-<li>禁用 <code>root</code> 帐号登录<ol>
-<li>修改 <code>/etc/ssh/sshd_config</code> 文件增加 <code>PermitRootLogin no</code> 配置</li>
-</ol>
-</li>
-<li>设置密码有效期；例如：设置密码有效期30天，30天后密码过期，必须修改密码才能登录<ol>
-<li>修改 <code>/etc/login.defs</code> 文件增加 <code>PASS_MAX_DAYS 30</code> 配置</li>
-</ol>
-</li>
-<li>设置文件属性：<code>chattr +i /etc/shadow</code></li>
-</ol>
-<p>静候30天你会发现惊喜：登录服务器提示必须修改密码，但是修改密码失败</p>
-        
-          <a class="article-more-a" href="/2021/12/23/linux-level-3-bug/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">三级等保</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安全基线</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/23/linux-level-3-bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-socks5-to-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/07/socks5-to-http/">通过 Privoxy 把 Shadowsocks 转成 Http 代理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/07/socks5-to-http/" class="archive-article-date">
-  	<time datetime="2020-11-06T18:18:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这个脚本放在草稿里面很久了，今天放出来。</p>
-<p>通过一个脚本一键把一个普通的 <code>Ubuntu Docker</code> 容器变成一个代理转发 <code>Socks5</code> 的服务器。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># https://qastack.cn/superuser/423563/convert-http-requests-to-socks5</span></span><br><span class="line"><span class="comment"># https://gist.github.com/xwsg/5ecd015be95a61875d43df87c451aca4</span></span><br><span class="line"><span class="comment"># https://edxi.github.io/2018/07/09/Shadowsocks_Privoxy_Squid_GFWlist/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件</span></span><br><span class="line">apt update &amp;&amp; apt install shadowsocks-libev privoxy systemctl -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换 Privoxy 配置文件</span></span><br><span class="line"><span class="comment"># 去除注释内容</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="subst">$(awk &#x27;/^[^#]/&#x27; /etc/privoxy/config)</span>&quot;</span> &gt;/etc/privoxy/config</span><br><span class="line"><span class="comment"># 替换监听IP配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="subst">$(sed &#x27;s/127.0.0.1/0.0.0.0/g&#x27; /etc/privoxy/config | sed &#x27;/listen.*\[.*/&#x27;d)</span>&quot;</span> &gt;/etc/privoxy/config</span><br><span class="line"><span class="comment"># 加入转发配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;forward-socks5t / 127.0.0.1:1080 .&quot;</span> &gt;&gt;/etc/privoxy/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换 ss-local 配置文件</span></span><br><span class="line">cat &lt;&lt;<span class="string">EOF &gt;/etc/shadowsocks-libev/config.json</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;server&quot;:&quot;server.host&quot;,</span></span><br><span class="line"><span class="string">    &quot;mode&quot;:&quot;tcp_and_udp&quot;,</span></span><br><span class="line"><span class="string">    &quot;server_port&quot;:8044,</span></span><br><span class="line"><span class="string">    &quot;local_port&quot;:1080,</span></span><br><span class="line"><span class="string">    &quot;local_address&quot;:&quot;0.0.0.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;password&quot;:&quot;my password&quot;,</span></span><br><span class="line"><span class="string">    &quot;timeout&quot;:60,</span></span><br><span class="line"><span class="string">    &quot;method&quot;:&quot;aes-256-cfb&quot;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地 SS</span></span><br><span class="line">nohup ss-local -c /etc/shadowsocks-libev/config.json &gt;sslocal.log &amp;</span><br><span class="line"><span class="comment"># 启动 Privoxy</span></span><br><span class="line">/etc/init.d/privoxy start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/11/07/socks5-to-http/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/07/socks5-to-http/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next »</a>
+      <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next »</a>
     </nav>
   
 
@@ -987,7 +942,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 侯坤林
+    		&copy; 2026 侯坤林
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1088,15 +1043,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WebStorm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1192,6 +1147,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Atlassian</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Jira</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">postgres</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博纳</a>
               </li>
              
@@ -1208,6 +1175,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
@@ -1216,7 +1187,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">LVM扩容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rust</a>
               </li>
             
             <div class="clearfix"></div>

@@ -18,7 +18,7 @@
 <meta property="article:published_time" content="2024-05-21T08:07:26.000Z">
 <meta property="article:modified_time" content="2024-05-21T08:07:26.000Z">
 <meta property="article:author" content="侯坤林">
-<meta property="article:tag" content="侯坤林,侯坤林博客,前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,java,spring,kotlin,用户体验">
+<meta property="article:tag" content="OpenStack">
 <meta name="twitter:card" content="summary">
   
   
@@ -188,9 +188,9 @@
 </ul>
 <h2 id="2-制作-Ubuntu-Server-虚拟机镜像"><a href="#2-制作-Ubuntu-Server-虚拟机镜像" class="headerlink" title="2. 制作 Ubuntu Server 虚拟机镜像"></a>2. 制作 Ubuntu Server 虚拟机镜像</h2><ol>
 <li>创建一个 8G 大小的虚拟机镜像文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img create -f raw ubuntu-24.04-live-server-amd64.img 8g</span><br></pre></td></tr></table></figure></li>
-<li>通过 ISO 镜像启动虚拟机<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里直接用图形化启动，也可以指定不需要图形化，而是使用 VNC 服务</span></span><br><span class="line">qemu-system-x86_64 -m 1024 -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -boot d</span><br></pre></td></tr></table></figure>
+<li>通过 ISO 镜像启动虚拟机<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 图形化界面启动</span></span><br><span class="line">qemu-system-x86_64 -smp 2 -m 1024 -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -boot d</span><br><span class="line"><span class="comment"># VNC 服务启动</span></span><br><span class="line">qemu-system-x86_64 -smp 2 -m 1024 -cdrom ubuntu-24.04-live-server-amd64.iso -drive file=ubuntu-24.04-live-server-amd64.img -boot d -vnc :0</span><br></pre></td></tr></table></figure>
 虚拟机启动后，需要慢慢等待，然后就可以看到正常的 Ubuntu Server 安装界面了，根据Ubuntu Server 的安装步骤，安装完成后，就可以退出虚拟机。</li>
-<li>验证安装是否成功<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动虚拟机</span></span><br><span class="line">qemu-system-x86_64 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -boot c</span><br></pre></td></tr></table></figure></li>
+<li>验证安装是否成功<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动虚拟机</span></span><br><span class="line"><span class="comment"># 图形化界面启动</span></span><br><span class="line">qemu-system-x86_64 -smp 2 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -boot c</span><br><span class="line"><span class="comment"># VNC 服务启动</span></span><br><span class="line">qemu-system-x86_64 -smp 2 -m 1024 -drive file=ubuntu-24.04-live-server-amd64.img -boot c -vnc :0</span><br></pre></td></tr></table></figure></li>
 <li>转换为 qcow2 格式（可以忽略）<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-img convert -f raw -O qcow2 ubuntu-24.04-live-server-amd64.img ubuntu-24.04-live-server-amd64.qcow2</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -206,6 +206,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -256,7 +267,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3awW7CMBAE0P7/T7dSrxSYnY1DDy8nRCHxcyXbzO7XV3x9/17PXj9er7+V3DO5w2UXHh4eXjX0fKAJcvr+42e6af1jCvDw8PCO8fLN4NnUJFPWLf3JdD99Hw8PD++jvG57SAb6eoKmE4GHh4f3f3jJoh89Mr4PHh4e3n/mJYfgjrSPOW7KWvDw8PBi3r4Adv/rW+t7eHh4ePGWMF18p0tzHm10o8XDw8M7wdsMK4lZ82N0h4w2DDw8PLxjvC5mTdj5VF47Ejw8PLxzvHx7yAHJnTcB7piNh4eHdykvJ+WLdY7pylqDSBcPDw/vAC8hJUtz10aQF7qmsS8eHh7ead6mjanbPPItJDnQX9BZhoeHhxfzkoW4O+Dmke5+KssCGB4eHt6lvCk+32D20cZgU8HDw8O7hbdvSO1aBKaBSDQePDw8vEt5XZtUEp4mxa095s1n8PDw8A7w8gdMC/bTA3QX1JYFMDw8PLwFb1qgmoYFXZyxCZ3x8PDwTvPKklJ8dN5HFdPY4s3/EA8PD2/Nm/7I76KK5GCdRBvjoz8eHh7eAV5eLRp3v66P7NNC3aoYhoeHhxd/d7NYd8fr5K9lB8TjHfDw8PBu4SWhwLRJqwtqu80JDw8P7zQvPwQnS3b+sBzQNRzg4eHh3cnrQoHukD1tt5rGHHh4eHjneMnyPZ2tfegwBUelLzw8PLxjvOnjk+1hUxjL74+Hh4d3mrcPFKaB7+ttIwmLB01XeHh4eAd4+ZVHsV0su5m4MnHBw8PDW/Dycle3ZOfFsP1TxjU9PDw8vAXvqqarZKBJFDLdtN5EEnh4eHgf5U1bBPaMVdsWHh4e3kd5eRyQh8KDw3Hc6ICHh4d3Dy8ZRBewdsFEsjGMT9x4eHh4F/G6Q20ewubB675l4bL6Hh4eHt7f9/wBrdfFOkr7NpMAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3awW7CMBAE0P7/T7dSrxSYnY1DDy8nRCHxcyXbzO7XV3x9/17PXj9er7+V3DO5w2UXHh4eXjX0fKAJcvr+42e6af1jCvDw8PCO8fLN4NnUJFPWLf3JdD99Hw8PD++jvG57SAb6eoKmE4GHh4f3f3jJoh89Mr4PHh4e3n/mJYfgjrSPOW7KWvDw8PBi3r4Adv/rW+t7eHh4ePGWMF18p0tzHm10o8XDw8M7wdsMK4lZ82N0h4w2DDw8PLxjvC5mTdj5VF47Ejw8PLxzvHx7yAF5Y9Y+8ojYeHh4eJfyclK+WOeYrqw1iHTx8PDwDvASUrI0d20Em4aq6Ujw8PDwruVt2pi6zSPfQpID/QWdZXh4eHgxL1mIuwNuHunup7IsgOHh4eFdypvi8w1mH20MNhU8PDy8W3j7htSuRWAaiETjwcPDw7uU17VJJeFpUtzaY958Bg8PD+8AL3/AtGA/PUB3QW1ZAMPDw8Nb8KYFqmlY0MUZm9AZDw8P7zSvLCnFR+d9VDGNLd78D/Hw8PDWvOmP/C6qSA7WSbQxPvrj4eHhHeDl1aJx9+v6yD4t1K2KYXh4eHjxdzeLdXe8Tv5adkA83gEPDw/vFl4SCkybtLqgttuc8PDw8E7z8kNwsmTnD8sBXcMBHh4e3p28LhToDtnTdqtpzIGHh4d3jjdtD82bAzahwxQclb7w8PDwjvGmj0+2h01hLL8/Hh4e3mnePlCYBr6vt428SavsKcPDw8Nb8/Irj2K7WHYzcWXigoeHh7fg5eWubsnOi2H7p4xrenh4eHgL3lVNV8lAkyhkumm9iSTw8PDwPsqbtgjsGau2LTw8PLyP8vI4YNr2Og04BuEIHh4e3jFeMoguYO2CiWRjGJ+48fDw8C7idYfaPITNg9d9y8Jl9T08PDy8v+/5A63XxTrob6xYAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -270,11 +281,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2024/05/21/kvm-openstack-ubuntu-lvm-extend-disk/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/05/21/kvm-openstack-ubuntu-24-04-lvm-extend-disk/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          OpenStack KVM Ubuntu LVM 扩容磁盘（不新增分区，维持原有分区）
+          OpenStack KVM Ubuntu 24.04 LVM 扩容磁盘（不新增分区，维持原有分区）
         
       </div>
     </a>
@@ -337,7 +348,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 侯坤林
+    		&copy; 2026 侯坤林
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -438,15 +449,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WebStorm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,6 +553,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Atlassian</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Jira</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">postgres</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博纳</a>
               </li>
              
@@ -558,6 +581,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
@@ -566,7 +593,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">LVM扩容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rust</a>
               </li>
             
             <div class="clearfix"></div>

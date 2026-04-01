@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://houkunlin.gitee.io">
   <title>提交软著文档时清理源代码注释的正则表达式 | 侯坤林博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="适用于 Java   (\x20*)&#x2F;&#x2F;.* 删除单行的注释内容 (\x20*)&#x2F;\*.*\n(.*\*.*\n)* 删除多行的注释内容 .*&#x2F;&#x2F;.*\n 删除单行的注释内容 .*&#x2F;\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125; 删除多行的注释内容 \n+ 替换成 \n 删除空白行  合并多个文件的代码内容：type *.java &gt; 00-code.txt ，注意：必须使用">
+  <meta name="description" content="适用于 Java   .*&#x2F;&#x2F;.*\n 删除单行的注释内容 \x20+&#x2F;&#x2F;.* 删除单行的注释内容 (\x20*)&#x2F;&#x2F;.* 删除单行的注释内容 .*&#x2F;\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125; 删除多行的注释内容 (\x20*)&#x2F;\*.*\n(.*\*.*\n)* 删除多行的注释内容 \n+ 替换成 \n 删除空白行  合并多个文件的代码内容：type *.java &gt; 0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提交软著文档时清理源代码注释的正则表达式">
 <meta property="og:url" content="https://houkunlin.gitee.io/2023/02/09/%E6%8F%90%E4%BA%A4%E8%BD%AF%E8%91%97%E6%96%87%E6%A1%A3%E6%97%B6%E6%B8%85%E7%90%86%E6%BA%90%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="侯坤林博客">
-<meta property="og:description" content="适用于 Java   (\x20*)&#x2F;&#x2F;.* 删除单行的注释内容 (\x20*)&#x2F;\*.*\n(.*\*.*\n)* 删除多行的注释内容 .*&#x2F;&#x2F;.*\n 删除单行的注释内容 .*&#x2F;\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125; 删除多行的注释内容 \n+ 替换成 \n 删除空白行  合并多个文件的代码内容：type *.java &gt; 00-code.txt ，注意：必须使用">
+<meta property="og:description" content="适用于 Java   .*&#x2F;&#x2F;.*\n 删除单行的注释内容 \x20+&#x2F;&#x2F;.* 删除单行的注释内容 (\x20*)&#x2F;&#x2F;.* 删除单行的注释内容 .*&#x2F;\*.*\n(.*\*.*\n)&amp;#123;0,&amp;#125; 删除多行的注释内容 (\x20*)&#x2F;\*.*\n(.*\*.*\n)* 删除多行的注释内容 \n+ 替换成 \n 删除空白行  合并多个文件的代码内容：type *.java &gt; 0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-09T02:48:45.000Z">
 <meta property="article:modified_time" content="2024-02-23T07:48:45.000Z">
@@ -180,10 +180,11 @@
       
         <p>适用于 Java </p>
 <ul>
-<li><code>(\x20*)//.*</code> 删除单行的注释内容</li>
-<li><code>(\x20*)/\*.*\n(.*\*.*\n)*</code> 删除多行的注释内容</li>
 <li><del><code>.*//.*\n</code> 删除单行的注释内容</del></li>
+<li><del><code>\x20+//.*</code> 删除单行的注释内容</del></li>
+<li><code>(\x20*)//.*</code> 删除单行的注释内容</li>
 <li><del><code>.*/\*.*\n(.*\*.*\n)&#123;0,&#125;</code> 删除多行的注释内容</del></li>
+<li><code>(\x20*)/\*.*\n(.*\*.*\n)*</code> 删除多行的注释内容</li>
 <li><code>\n+</code> 替换成 <code>\n</code> 删除空白行</li>
 </ul>
 <p>合并多个文件的代码内容：<code>type *.java &gt; 00-code.txt</code> ，注意：<strong>必须使用 CMD 执行，请不要使用 Windows PowerShell 执行</strong>，在 Windows PowerShell 中会出现中文乱码，而在 CMD 中正常</p>
@@ -250,7 +251,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,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" alt="微信分享二维码">
+      <img src="data:image/png;base64,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" alt="微信分享二维码">
     </div>
 </div>
 
@@ -331,7 +332,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 侯坤林
+    		&copy; 2026 侯坤林
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -432,15 +433,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WebStorm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,6 +537,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Atlassian</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Jira</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">postgres</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博纳</a>
               </li>
              
@@ -552,6 +565,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
@@ -560,7 +577,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">LVM扩容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rust</a>
               </li>
             
             <div class="clearfix"></div>
