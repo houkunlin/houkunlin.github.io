@@ -39,6 +39,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -82,6 +84,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
      * 配置文件加密值后缀
      */
     public static final String SUFFIX = ")";
+    /**
+     * 日志输出时间格式
+     */
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     /**
      * 从 JVM 参数 / 环境变量 / 密钥文件中读取到的 SM4 解密密钥（HEX 格式）
@@ -101,10 +107,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
      */
     @Override
     public void postProcessEnvironment(@NonNull ConfigurableEnvironment environment, @NonNull SpringApplication application) {
-        System.out.println("[DEBUG] " + getClass().getName() + ".postProcessEnvironment 被调用");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [DEBUG] " + getClass().getName() + ".postProcessEnvironment 被调用");
         secretKey = geSecretKey();
         if (secretKey == null) {
-            System.out.println("[WARN] 未找到 SM4 解密密钥，跳过配置文件解密");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 未找到 SM4 解密密钥，跳过配置文件解密");
             logTips();
             return;
         }
@@ -123,7 +129,7 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
         replacements.forEach(propertySources::replace);
 
         if (!replacements.isEmpty()) {
-            System.out.println("[INFO] SM4 配置文件解密完成，共处理 " + replacements.size() + " 个 PropertySource");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] SM4 配置文件解密完成，共处理 " + replacements.size() + " 个 PropertySource");
         }
     }
 
@@ -151,9 +157,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
                         decrypted.put(name, OriginTrackedValue.of(decryptedValue, origin));
                     }
                     hasEncrypted = true;
-                    System.out.println("[INFO] 解密配置属性：" + name + "，配置来源：" + source.getName());
+                    System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] 解密配置属性：" + name + "，配置来源：" + source.getName());
                 } catch (Exception e) {
-                    System.err.println("[ERROR] 无法解密配置属性: " + name + "，原始值: " + value + "，配置来源：" + source.getName());
+                    System.err.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [ERROR] 无法解密配置属性: " + name + "，原始值: " + value + "，配置来源：" + source.getName());
+                    System.err.println(TIME_FORMATTER.format(LocalDateTime.now()));
                     e.printStackTrace(System.err);
                     throw new RuntimeException("无法解密配置属性: " + name + "，原始值: " + value + "，配置来源：" + source.getName(), e);
                 }
@@ -184,9 +191,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
                     String decryptedValue = getDecryptText(value);
                     decrypted.put(name, decryptedValue);
                     hasEncrypted = true;
-                    System.out.println("[INFO] 解密配置属性：" + name + "，配置来源：" + source.getName());
+                    System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] 解密配置属性：" + name + "，配置来源：" + source.getName());
                 } catch (Exception e) {
-                    System.err.println("[ERROR] 无法解密配置属性: " + name + "，原始值: " + value + "，配置来源：" + source.getName());
+                    System.err.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [ERROR] 无法解密配置属性: " + name + "，原始值: " + value + "，配置来源：" + source.getName());
+                    System.err.println(TIME_FORMATTER.format(LocalDateTime.now()));
                     e.printStackTrace(System.err);
                     throw new RuntimeException("无法解密配置属性: " + name + "，原始值: " + value + "，配置来源：" + source.getName(), e);
                 }
@@ -239,15 +247,15 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
      * <p>当无法获取解密密钥时，输出所有可行的密钥配置方式供运维参考。</p>
      */
     private void logTips() {
-        System.out.println("[WARN] 程序启动时无法从JVM参数、环境变量、密钥文件中读取到解密密钥，因此无法解密数据，程序可能会启动失败、运行错误，您可以从以下方案中任选一种方案设置 SM4 密钥");
-        System.out.println("[WARN] 1. 请从 JVM参数 设置 SM4 密钥：-D" + KEY + "=SM4密钥（HEX格式）  或  -D" + KEY.toUpperCase() + "=SM4密钥（HEX格式）");
-        System.out.println("[WARN] 2. 请从 环境变量 设置 SM4 密钥：" + KEY + "=SM4密钥（HEX格式）  或  " + KEY.toUpperCase() + "=SM4密钥（HEX格式）");
-        System.out.println("[WARN] 3. 请在 [filesystem] " + new File(KEY + ".key").getAbsolutePath() + " 文件写入密钥内容：SM4密钥（HEX格式）");
-        System.out.println("[WARN] 4. 请在 [filesystem] " + new File(KEY + ".properties").getAbsolutePath() + " 文件写入密钥内容：secret_key=SM4密钥（HEX格式）");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 程序启动时无法从JVM参数、环境变量、密钥文件中读取到解密密钥，因此无法解密数据，程序可能会启动失败、运行错误，您可以从以下方案中任选一种方案设置 SM4 密钥");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 1. 请从 JVM参数 设置 SM4 密钥：-D" + KEY + "=SM4密钥（HEX格式）  或  -D" + KEY.toUpperCase() + "=SM4密钥（HEX格式）");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 2. 请从 环境变量 设置 SM4 密钥：" + KEY + "=SM4密钥（HEX格式）  或  " + KEY.toUpperCase() + "=SM4密钥（HEX格式）");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 3. 请在 [filesystem] " + new File(KEY + ".key").getAbsolutePath() + " 文件写入密钥内容：SM4密钥（HEX格式）");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 4. 请在 [filesystem] " + new File(KEY + ".properties").getAbsolutePath() + " 文件写入密钥内容：secret_key=SM4密钥（HEX格式）");
         try {
             Path filePath = new ClassPathResource("").getFilePath();
-            System.out.println("[WARN] 5. 请在 [classpath] " + filePath + File.separator + KEY + ".key" + " 文件写入密钥内容：SM4密钥（HEX格式）");
-            System.out.println("[WARN] 6. 请在 [classpath] " + filePath + File.separator + KEY + ".properties" + " 文件写入密钥内容：secret_key=SM4密钥（HEX格式）");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 5. 请在 [classpath] " + filePath + File.separator + KEY + ".key" + " 文件写入密钥内容：SM4密钥（HEX格式）");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 6. 请在 [classpath] " + filePath + File.separator + KEY + ".properties" + " 文件写入密钥内容：secret_key=SM4密钥（HEX格式）");
         } catch (IOException ignore) {
         }
     }
@@ -260,22 +268,22 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
     private String geSecretKey() {
         String property = System.getProperty(KEY);
         if (StringUtils.hasText(property)) {
-            System.out.println("[INFO] 从JVM参数 " + KEY + " 获取到 SM4 解密密钥");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] 从JVM参数 " + KEY + " 获取到 SM4 解密密钥");
             return property;
         }
         property = System.getProperty(KEY.toUpperCase());
         if (StringUtils.hasText(property)) {
-            System.out.println("[INFO] 从JVM参数 " + KEY.toUpperCase() + " 获取到 SM4 解密密钥");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] 从JVM参数 " + KEY.toUpperCase() + " 获取到 SM4 解密密钥");
             return property;
         }
         property = System.getenv(KEY);
         if (StringUtils.hasText(property)) {
-            System.out.println("[INFO] 从环境变量 " + KEY + " 获取到 SM4 解密密钥");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] 从环境变量 " + KEY + " 获取到 SM4 解密密钥");
             return property;
         }
         property = System.getenv(KEY.toUpperCase());
         if (StringUtils.hasText(property)) {
-            System.out.println("[INFO] 从环境变量 " + KEY.toUpperCase() + " 获取到 SM4 解密密钥");
+            System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] 从环境变量 " + KEY.toUpperCase() + " 获取到 SM4 解密密钥");
             return property;
         }
 
@@ -287,7 +295,7 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
         if (StringUtils.hasText(key)) {
             return key;
         }
-        System.out.println("[WARN] 无法加载 SM4 配置文件属性解密密钥，如果配置文件中存在 SM4 加密的密文配置，系统有可能无法正常运行。如果系统没有使用到 SM4 加密配置文件属性，那么请忽略该提示内容");
+        System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [WARN] 无法加载 SM4 配置文件属性解密密钥，如果配置文件中存在 SM4 加密的密文配置，系统有可能无法正常运行。如果系统没有使用到 SM4 加密配置文件属性，那么请忽略该提示内容");
         return null;
     }
 
@@ -309,10 +317,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
                 String text = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
                 String key = text.replace("\r", "").replace("\n", "");
                 if (StringUtils.hasText(key)) {
-                    System.out.println("[INFO] [filesystem] 从密钥文件获取到 SM4 解密密钥：" + keyFile.getAbsolutePath());
+                    System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] [filesystem] 从密钥文件获取到 SM4 解密密钥：" + keyFile.getAbsolutePath());
                     return key;
                 }
-                System.err.println("[ERROR] [filesystem] 密钥文件无密钥内容：" + keyFile.getAbsolutePath());
+                System.err.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [ERROR] [filesystem] 密钥文件无密钥内容：" + keyFile.getAbsolutePath());
             } catch (IOException e) {
                 throw new RuntimeException("[filesystem] 无法读取 \"" + keyFile.getAbsolutePath() + "\" 文件", e);
             }
@@ -324,10 +332,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
                 properties.load(inputStream);
                 String key = properties.getProperty("secret_key", null);
                 if (StringUtils.hasText(key)) {
-                    System.out.println("[INFO] [filesystem] 从属性配置文件获取到 SM4 解密密钥：" + propertiesFile.getAbsolutePath());
+                    System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] [filesystem] 从属性配置文件获取到 SM4 解密密钥：" + propertiesFile.getAbsolutePath());
                     return key;
                 }
-                System.err.println("[ERROR] [filesystem] 属性配置文件无密钥内容：" + propertiesFile.getAbsolutePath());
+                System.err.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [ERROR] [filesystem] 属性配置文件无密钥内容：" + propertiesFile.getAbsolutePath());
             } catch (IOException e) {
                 throw new RuntimeException("[filesystem] 无法读取 \"" + propertiesFile.getAbsolutePath() + "\" 文件", e);
             }
@@ -353,10 +361,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
                 String text = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
                 String key = text.replace("\r", "").replace("\n", "");
                 if (StringUtils.hasText(key)) {
-                    System.out.println("[INFO] [classpath] 从密钥文件获取到 SM4 解密密钥：" + keyResource.getURI());
+                    System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] [classpath] 从密钥文件获取到 SM4 解密密钥：" + keyResource.getURI());
                     return key;
                 }
-                System.err.println("[ERROR] [classpath] 密钥文件无密钥内容：" + keyResource.getURI());
+                System.err.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [ERROR] [classpath] 密钥文件无密钥内容：" + keyResource.getURI());
             } catch (IOException e) {
                 throw new RuntimeException("[classpath] 无法读取 \"" + KEY + ".key" + "\" 文件", e);
             }
@@ -368,10 +376,10 @@ public class SM4DecryptEnvironmentPostProcessor implements EnvironmentPostProces
                 properties.load(inputStream);
                 String key = properties.getProperty("secret_key", null);
                 if (StringUtils.hasText(key)) {
-                    System.out.println("[INFO] [classpath] 从属性配置文件获取到 SM4 解密密钥：" + propertiesResource.getURI());
+                    System.out.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [INFO] [classpath] 从属性配置文件获取到 SM4 解密密钥：" + propertiesResource.getURI());
                     return key;
                 }
-                System.err.println("[ERROR] [classpath] 属性配置文件无密钥内容：" + propertiesResource.getURI());
+                System.err.println(TIME_FORMATTER.format(LocalDateTime.now()) + " [ERROR] [classpath] 属性配置文件无密钥内容：" + propertiesResource.getURI());
             } catch (IOException e) {
                 throw new RuntimeException("[classpath] 无法读取 \"" + KEY + ".properties" + "\" 文件", e);
             }
