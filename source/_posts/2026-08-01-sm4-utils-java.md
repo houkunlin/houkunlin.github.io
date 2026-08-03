@@ -15,16 +15,20 @@ SM4 国密算法工具 — 密钥生成 / 加解密
 用法: java main.SM4Utils [选项]
 
 选项:
-  -m, --mode <ECB|CBC>  加密模式（默认 ECB）
-  -k, --key <hex>       SM4 密钥（32 字符 HEX，可选，未指定则自动生成）
-  -i, --iv <hex>        初始化向量 IV（CBC 模式使用，32 字符 HEX，未指定则自动生成）
-  -e, --encrypt <text>  待加密的明文字符串
-  -d, --decrypt <hex>   待解密的密文（HEX 格式，兼容 SM4ENC(...) 格式）
-  -h, --help            显示此帮助信息
+  -m, --mode <ECB|CBC>           加密模式（默认 ECB）
+  -k, --key <data>               SM4 密钥（编码格式由 --key-encoding 指定，可选，未指定则自动生成；须 16 字节）
+  -i, --iv <data>                初始化向量 IV（CBC 模式使用，编码格式与密钥一致，未指定则自动生成；须 16 字节）
+  -e, --encrypt <text>           待加密的明文字符串
+  -d, --decrypt <data>           待解密的密文（编码格式由 --cipher-encoding 指定，兼容 SM4ENC(...) 格式）
+  -ke, --key-encoding <fmt>      密钥 / IV 编码格式：HEX | BASE64 | BASE64URL | BASE32 | UTF8 | BINARY（默认 HEX；UTF8 仅适用于密钥 / IV）
+  -ce, --cipher-encoding <fmt>   密文输入 / 输出编码格式：HEX | BASE64 | BASE64URL | BASE32 | BINARY（默认 HEX，不支持 UTF8）
+  -h, --help                     显示此帮助信息
 
 使用示例:
   java main.SM4Utils -k 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld
   java main.SM4Utils -k 0123456789ABCDEFFEDCBA9876543210 -d 3F4A...
+  java main.SM4Utils -ke BASE64 -k ASNFZ4mrze8= -ce BASE64 -e HelloWorld
+  java main.SM4Utils -ke UTF8 -k 1234567890abcdef -e HelloWorld
   java main.SM4Utils -e HelloWorld
   java main.SM4Utils -m CBC -k 0123456789ABCDEFFEDCBA9876543210 -i 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld
   java main.SM4Utils -m CBC -k 0123456789ABCDEFFEDCBA9876543210 -d 3F4A...
@@ -38,16 +42,18 @@ package main;
 /**
  * <p>纯 Java 实现的 SM4 国密算法工具（无外部依赖）。</p>
  *
- * <p>支持 ECB / CBC 模式加解密、16 进制 HEX 编码输出。
- * 可直接通过 {@code java main.SM4Utils} 命令行调用。</p>
+ * <p>支持 ECB / CBC 模式加解密，密钥、IV 及密文均支持 HEX / BASE64 / BASE64URL / BASE32 / UTF8 / BINARY
+ * 多种编码格式（默认 HEX），可直接通过 {@code java main.SM4Utils} 命令行调用。</p>
  *
  * <p>命令行参数：</p>
  * <ul>
  *     <li>{@code -m <ECB|CBC>} / {@code --mode <ECB|CBC>} — 加密模式（默认 ECB）</li>
- *     <li>{@code -k <hex>} / {@code --key <hex>} — SM4 密钥（32 字符 HEX，可选，未指定则自动生成）</li>
- *     <li>{@code -i <hex>} / {@code --iv <hex>} — 初始化向量 IV（CBC 模式使用，未指定则自动生成）</li>
+ *     <li>{@code -k <data>} / {@code --key <data>} — SM4 密钥（编码格式由 {@code --key-encoding} 指定，可选，未指定则自动生成）</li>
+ *     <li>{@code -i <data>} / {@code --iv <data>} — 初始化向量 IV（CBC 模式使用，编码格式与密钥一致，未指定则自动生成）</li>
  *     <li>{@code -e <text>} / {@code --encrypt <text>} — 待加密的明文字符串</li>
- *     <li>{@code -d <hex>} / {@code --decrypt <hex>} — 待解密的密文（HEX 格式，兼容 SM4ENC(...) 格式）</li>
+ *     <li>{@code -d <data>} / {@code --decrypt <data>} — 待解密的密文（编码格式由 {@code --cipher-encoding} 指定，兼容 SM4ENC(...) 格式）</li>
+ *     <li>{@code -ke <HEX|BASE64|BASE64URL|BASE32|UTF8|BINARY>} / {@code --key-encoding} — 密钥 / IV 编码格式（默认 HEX；UTF8 表示直接按 UTF-8 字节序列使用，仅适用于密钥 / IV）</li>
+ *     <li>{@code -ce <HEX|BASE64|BASE64URL|BASE32|BINARY>} / {@code --cipher-encoding} — 密文输入 / 输出编码格式（默认 HEX，不支持 UTF8）</li>
  *     <li>{@code -h} / {@code --help} — 显示帮助信息</li>
  * </ul>
  *
@@ -56,12 +62,61 @@ package main;
  * java main.SM4Utils -k 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld
  * java main.SM4Utils -m CBC -k 0123456789ABCDEFFEDCBA9876543210 -i 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld
  * java main.SM4Utils -k 0123456789ABCDEFFEDCBA9876543210 -d 3F4A...
+ * java main.SM4Utils -ke BASE64 -k ASNFZ4mrze8= -ce BASE64 -e HelloWorld
+ * java main.SM4Utils -ke UTF8 -k 1234567890abcdef -e HelloWorld
  * java main.SM4Utils -e HelloWorld
  * }</pre>
  *
  * @author HouKunLin
  */
 public class SM4Utils {
+
+    // ======================== 编码格式 ========================
+
+    /**
+     * 密钥 / IV / 密文支持的编码格式
+     */
+    public enum Encoding {
+        /**
+         * 十六进制（每字节 2 个字符）
+         */
+        HEX,
+        /**
+         * Base64（RFC 4648，带 {@code =} 填充）
+         */
+        BASE64,
+        /**
+         * Base64 URL 安全变体（RFC 4648 §5，{@code -_} 替换 {@code +/}，带 {@code =} 填充）
+         */
+        BASE64URL,
+        /**
+         * Base32（RFC 4648 §6，带 {@code =} 填充）
+         */
+        BASE32,
+        /**
+         * UTF-8 明文（密钥 / IV 专用，直接按 UTF-8 字节序列使用）
+         */
+        UTF8,
+        /**
+         * 二进制 0/1 字符串（每字节 8 个字符）
+         */
+        BINARY;
+
+        /**
+         * 解析编码格式（不区分大小写）
+         *
+         * @param value 编码格式字符串
+         * @return 对应的 {@link Encoding}
+         * @throws IllegalArgumentException 不支持的编码格式
+         */
+        public static Encoding parse(String value) {
+            try {
+                return Encoding.valueOf(value.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("不支持的编码格式: " + value + "（仅支持 HEX / BASE64 / BASE64URL / BASE32 / UTF8 / BINARY）");
+            }
+        }
+    }
 
     // ======================== S 盒（16x16 = 256 字节） ========================
 
@@ -272,16 +327,28 @@ public class SM4Utils {
     // ======================== 公开 API ========================
 
     /**
+     * 密码学安全的随机数生成器（JDK 自带，无外部依赖）
+     */
+    private static final java.security.SecureRandom SECURE_RANDOM = new java.security.SecureRandom();
+
+    /**
      * 生成 16 字节（128 位）随机 SM4 密钥，返回 HEX 字符串
      *
      * @return 32 字符 HEX 密钥
      */
     public static String generateKey() {
+        return bytesToHex(generateKeyBytes());
+    }
+
+    /**
+     * 生成 16 字节（128 位）随机 SM4 密钥（使用 {@link java.security.SecureRandom}，密码学安全）
+     *
+     * @return 16 字节随机密钥
+     */
+    public static byte[] generateKeyBytes() {
         byte[] key = new byte[16];
-        for (int i = 0; i < 16; i++) {
-            key[i] = (byte) (Math.random() * 256);
-        }
-        return bytesToHex(key);
+        SECURE_RANDOM.nextBytes(key);
+        return key;
     }
 
     /**
@@ -290,11 +357,18 @@ public class SM4Utils {
      * @return 32 字符 HEX IV
      */
     public static String generateIv() {
+        return bytesToHex(generateIvBytes());
+    }
+
+    /**
+     * 生成 16 字节（128 位）随机 IV（初始化向量）（使用 {@link java.security.SecureRandom}，密码学安全）
+     *
+     * @return 16 字节随机 IV
+     */
+    public static byte[] generateIvBytes() {
         byte[] iv = new byte[16];
-        for (int i = 0; i < 16; i++) {
-            iv[i] = (byte) (Math.random() * 256);
-        }
-        return bytesToHex(iv);
+        SECURE_RANDOM.nextBytes(iv);
+        return iv;
     }
 
     /**
@@ -314,11 +388,10 @@ public class SM4Utils {
      * SM4 ECB 模式加密
      *
      * @param plaintext 明文字节数组
-     * @param keyHex    HEX 格式密钥（32 字符，16 字节）
-     * @return 密文 HEX 字符串
+     * @param key       16 字节密钥
+     * @return 密文字节数组
      */
-    public static String encryptECB(byte[] plaintext, String keyHex) {
-        byte[] key = hexToBytes(keyHex);
+    public static byte[] encryptECB(byte[] plaintext, byte[] key) {
         int[] rk = keyExpansion(key);
         byte[] padded = pkcs7Pad(plaintext);
         byte[] result = new byte[padded.length];
@@ -328,7 +401,18 @@ public class SM4Utils {
             byte[] enc = encryptBlock(block, rk);
             System.arraycopy(enc, 0, result, i, 16);
         }
-        return bytesToHex(result);
+        return result;
+    }
+
+    /**
+     * SM4 ECB 模式加密（密钥为 HEX 格式）
+     *
+     * @param plaintext 明文字节数组
+     * @param keyHex    HEX 格式密钥（32 字符，16 字节）
+     * @return 密文 HEX 字符串
+     */
+    public static String encryptECB(byte[] plaintext, String keyHex) {
+        return bytesToHex(encryptECB(plaintext, hexToBytes(keyHex)));
     }
 
     /**
@@ -345,13 +429,11 @@ public class SM4Utils {
     /**
      * SM4 ECB 模式解密
      *
-     * @param cipherHex 密文 HEX 字符串
-     * @param keyHex    HEX 格式密钥
+     * @param ciphertext 密文字节数组
+     * @param key        16 字节密钥
      * @return 解密后的字节数组（已去除填充）
      */
-    public static byte[] decryptECB(String cipherHex, String keyHex) {
-        byte[] ciphertext = hexToBytes(cipherHex);
-        byte[] key = hexToBytes(keyHex);
+    public static byte[] decryptECB(byte[] ciphertext, byte[] key) {
         int[] rk = keyExpansion(key);
         byte[] result = new byte[ciphertext.length];
         for (int i = 0; i < ciphertext.length; i += 16) {
@@ -361,6 +443,17 @@ public class SM4Utils {
             System.arraycopy(dec, 0, result, i, 16);
         }
         return pkcs7Unpad(result);
+    }
+
+    /**
+     * SM4 ECB 模式解密（密钥为 HEX 格式）
+     *
+     * @param cipherHex 密文 HEX 字符串
+     * @param keyHex    HEX 格式密钥
+     * @return 解密后的字节数组（已去除填充）
+     */
+    public static byte[] decryptECB(String cipherHex, String keyHex) {
+        return decryptECB(hexToBytes(cipherHex), hexToBytes(keyHex));
     }
 
     /**
@@ -380,13 +473,11 @@ public class SM4Utils {
      * SM4 CBC 模式加密
      *
      * @param plaintext 明文字节数组
-     * @param keyHex    HEX 格式密钥
-     * @param ivHex     HEX 格式初始化向量（32 字符，16 字节）
-     * @return 密文 HEX 字符串
+     * @param key       16 字节密钥
+     * @param iv        16 字节初始化向量
+     * @return 密文字节数组
      */
-    public static String encryptCBC(byte[] plaintext, String keyHex, String ivHex) {
-        byte[] key = hexToBytes(keyHex);
-        byte[] iv = hexToBytes(ivHex);
+    public static byte[] encryptCBC(byte[] plaintext, byte[] key, byte[] iv) {
         int[] rk = keyExpansion(key);
         byte[] padded = pkcs7Pad(plaintext);
         byte[] result = new byte[padded.length];
@@ -399,7 +490,19 @@ public class SM4Utils {
             System.arraycopy(enc, 0, result, i, 16);
             prev = enc;
         }
-        return bytesToHex(result);
+        return result;
+    }
+
+    /**
+     * SM4 CBC 模式加密（密钥 / IV 为 HEX 格式）
+     *
+     * @param plaintext 明文字节数组
+     * @param keyHex    HEX 格式密钥
+     * @param ivHex     HEX 格式初始化向量（32 字符，16 字节）
+     * @return 密文 HEX 字符串
+     */
+    public static String encryptCBC(byte[] plaintext, String keyHex, String ivHex) {
+        return bytesToHex(encryptCBC(plaintext, hexToBytes(keyHex), hexToBytes(ivHex)));
     }
 
     /**
@@ -417,15 +520,12 @@ public class SM4Utils {
     /**
      * SM4 CBC 模式解密
      *
-     * @param cipherHex 密文 HEX 字符串
-     * @param keyHex    HEX 格式密钥
-     * @param ivHex     HEX 格式初始化向量
+     * @param ciphertext 密文字节数组
+     * @param key        16 字节密钥
+     * @param iv         16 字节初始化向量
      * @return 解密后的字节数组（已去除填充）
      */
-    public static byte[] decryptCBC(String cipherHex, String keyHex, String ivHex) {
-        byte[] ciphertext = hexToBytes(cipherHex);
-        byte[] key = hexToBytes(keyHex);
-        byte[] iv = hexToBytes(ivHex);
+    public static byte[] decryptCBC(byte[] ciphertext, byte[] key, byte[] iv) {
         int[] rk = keyExpansion(key);
         byte[] result = new byte[ciphertext.length];
         byte[] prev = iv;
@@ -438,6 +538,18 @@ public class SM4Utils {
             prev = block;
         }
         return pkcs7Unpad(result);
+    }
+
+    /**
+     * SM4 CBC 模式解密（密钥 / IV 为 HEX 格式）
+     *
+     * @param cipherHex 密文 HEX 字符串
+     * @param keyHex    HEX 格式密钥
+     * @param ivHex     HEX 格式初始化向量
+     * @return 解密后的字节数组（已去除填充）
+     */
+    public static byte[] decryptCBC(String cipherHex, String keyHex, String ivHex) {
+        return decryptCBC(hexToBytes(cipherHex), hexToBytes(keyHex), hexToBytes(ivHex));
     }
 
     /**
@@ -476,6 +588,159 @@ public class SM4Utils {
             sb.append(String.format("%02X", b & 0xFF));
         }
         return sb.toString();
+    }
+
+    // ======================== BASE64 / BASE64URL / BASE32 / UTF8 / BINARY 编码工具 ========================
+
+    /**
+     * Base32 字母表（RFC 4648，去除 I、L、O、0、1 等易混淆字符）
+     */
+    private static final char[] BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".toCharArray();
+
+    /**
+     * 字节数组转 BASE32 字符串（RFC 4648，带 {@code =} 填充）
+     *
+     * @param bytes 字节数组
+     * @return BASE32 字符串
+     */
+    public static String bytesToBase32(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        int buffer = 0;
+        int bitsLeft = 0;
+        for (byte b : bytes) {
+            buffer = (buffer << 8) | (b & 0xFF);
+            bitsLeft += 8;
+            while (bitsLeft >= 5) {
+                bitsLeft -= 5;
+                sb.append(BASE32_ALPHABET[(buffer >>> bitsLeft) & 0x1F]);
+            }
+        }
+        if (bitsLeft > 0) {
+            sb.append(BASE32_ALPHABET[(buffer << (5 - bitsLeft)) & 0x1F]);
+        }
+        while (sb.length() % 8 != 0) {
+            sb.append('=');
+        }
+        return sb.toString();
+    }
+
+    /**
+     * BASE32 字符串转字节数组（RFC 4648，兼容 {@code =} 填充）
+     *
+     * @param data BASE32 字符串
+     * @return 字节数组
+     */
+    public static byte[] base32ToBytes(String data) {
+        String cleaned = data.replace("=", "").toUpperCase();
+        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        int buffer = 0;
+        int bitsLeft = 0;
+        for (int i = 0; i < cleaned.length(); i++) {
+            int val = base32CharValue(cleaned.charAt(i));
+            if (val < 0) {
+                throw new IllegalArgumentException("非法 BASE32 字符: " + cleaned.charAt(i));
+            }
+            buffer = (buffer << 5) | val;
+            bitsLeft += 5;
+            if (bitsLeft >= 8) {
+                bitsLeft -= 8;
+                out.write((buffer >>> bitsLeft) & 0xFF);
+            }
+        }
+        return out.toByteArray();
+    }
+
+    /**
+     * 获取 Base32 字符对应的 5 位值
+     *
+     * @param c Base32 字符
+     * @return 5 位值，非法字符返回 -1
+     */
+    private static int base32CharValue(char c) {
+        if (c >= 'A' && c <= 'Z') {
+            return c - 'A';
+        }
+        if (c >= '2' && c <= '7') {
+            return c - '2' + 26;
+        }
+        return -1;
+    }
+
+    /**
+     * 字节数组转 BINARY（二进制 0/1 字符串，每字节 8 位）
+     *
+     * @param bytes 字节数组
+     * @return 二进制字符串
+     */
+    public static String bytesToBinary(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 8);
+        for (byte b : bytes) {
+            for (int i = 7; i >= 0; i--) {
+                sb.append((b >>> i) & 1);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * BINARY（二进制 0/1 字符串）转字节数组
+     *
+     * @param data 二进制字符串（长度须为 8 的倍数）
+     * @return 字节数组
+     */
+    public static byte[] binaryToBytes(String data) {
+        if (data.length() % 8 != 0) {
+            throw new IllegalArgumentException("二进制字符串长度必须是 8 的倍数");
+        }
+        byte[] out = new byte[data.length() / 8];
+        for (int i = 0; i < out.length; i++) {
+            int val = 0;
+            for (int j = 0; j < 8; j++) {
+                char c = data.charAt(i * 8 + j);
+                if (c != '0' && c != '1') {
+                    throw new IllegalArgumentException("非法二进制字符: " + c);
+                }
+                val = (val << 1) | (c - '0');
+            }
+            out[i] = (byte) val;
+        }
+        return out;
+    }
+
+    /**
+     * 按指定编码格式将字节数组编码为字符串
+     *
+     * @param bytes    字节数组
+     * @param encoding 编码格式
+     * @return 编码后的字符串
+     */
+    public static String encodeBytes(byte[] bytes, Encoding encoding) {
+        return switch (encoding) {
+            case HEX -> bytesToHex(bytes);
+            case BASE64 -> java.util.Base64.getEncoder().encodeToString(bytes);
+            case BASE64URL -> java.util.Base64.getUrlEncoder().encodeToString(bytes);
+            case BASE32 -> bytesToBase32(bytes);
+            case UTF8 -> new String(bytes, java.nio.charset.StandardCharsets.UTF_8);
+            case BINARY -> bytesToBinary(bytes);
+        };
+    }
+
+    /**
+     * 按指定编码格式将字符串解码为字节数组
+     *
+     * @param data     编码后的字符串
+     * @param encoding 编码格式
+     * @return 字节数组
+     */
+    public static byte[] decodeBytes(String data, Encoding encoding) {
+        return switch (encoding) {
+            case HEX -> hexToBytes(data);
+            case BASE64 -> java.util.Base64.getDecoder().decode(data);
+            case BASE64URL -> java.util.Base64.getUrlDecoder().decode(data);
+            case BASE32 -> base32ToBytes(data);
+            case UTF8 -> data.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            case BINARY -> binaryToBytes(data);
+        };
     }
 
     /**
@@ -520,25 +785,35 @@ public class SM4Utils {
      *
      * <p>参数说明：</p>
      * <ul>
-     *     <li>{@code -k <hex>} / {@code --key <hex>} — SM4 密钥（32 字符 HEX，可选，未指定则自动生成）</li>
+     *     <li>{@code -m <ECB|CBC>} / {@code --mode <ECB|CBC>} — 加密模式（默认 ECB）</li>
+     *     <li>{@code -k <data>} / {@code --key <data>} — SM4 密钥（编码格式由 {@code --key-encoding} 指定，可选，未指定则自动生成）</li>
+     *     <li>{@code -i <data>} / {@code --iv <data>} — 初始化向量 IV（CBC 模式使用，编码格式与密钥一致，未指定则自动生成）</li>
      *     <li>{@code -e <text>} / {@code --encrypt <text>} — 待加密的明文字符串</li>
-     *     <li>{@code -d <hex>} / {@code --decrypt <hex>} — 待解密的密文（HEX 格式）</li>
+     *     <li>{@code -d <data>} / {@code --decrypt <data>} — 待解密的密文（编码格式由 {@code --cipher-encoding} 指定，兼容 SM4ENC(...) 格式）</li>
+     *     <li>{@code -ke <HEX|BASE64|BASE64URL|BASE32|UTF8|BINARY>} / {@code --key-encoding} — 密钥 / IV 编码格式（默认 HEX；UTF8 表示直接按 UTF-8 字节序列使用，仅适用于密钥 / IV）</li>
+     *     <li>{@code -ce <HEX|BASE64|BASE64URL|BASE32|BINARY>} / {@code --cipher-encoding} — 密文输入 / 输出编码格式（默认 HEX，不支持 UTF8）</li>
+     *     <li>{@code -h} / {@code --help} — 显示帮助信息</li>
      * </ul>
      *
      * <p>使用示例：</p>
      * <pre>{@code
      * java main.SM4Utils -k 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld
+     * java main.SM4Utils -m CBC -k 0123456789ABCDEFFEDCBA9876543210 -i 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld
      * java main.SM4Utils -k 0123456789ABCDEFFEDCBA9876543210 -d 3F4A...
+     * java main.SM4Utils -ke BASE64 -k ASNFZ4mrze8= -ce BASE64 -e HelloWorld
+     * java main.SM4Utils -ke UTF8 -k 1234567890abcdef -e HelloWorld
      * java main.SM4Utils -e HelloWorld
      * }</pre>
      */
     public static void main(String[] args) {
         String key = null;
         String encryptText = null;
-        String decryptHex = null;
+        String decryptText = null;
         String iv = null;
         boolean cbcMode = false;
         boolean showHelp = false;
+        Encoding keyEncoding = Encoding.HEX;
+        Encoding cipherEncoding = Encoding.HEX;
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
@@ -588,7 +863,40 @@ public class SM4Utils {
                         printUsage();
                         return;
                     }
-                    decryptHex = args[++i];
+                    decryptText = args[++i];
+                }
+                case "-ke", "--key-encoding" -> {
+                    if (i + 1 >= args.length) {
+                        System.err.println("错误：-ke 缺少编码格式参数");
+                        printUsage();
+                        return;
+                    }
+                    try {
+                        keyEncoding = Encoding.parse(args[++i]);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("错误：" + e.getMessage());
+                        printUsage();
+                        return;
+                    }
+                }
+                case "-ce", "--cipher-encoding" -> {
+                    if (i + 1 >= args.length) {
+                        System.err.println("错误：-ce 缺少编码格式参数");
+                        printUsage();
+                        return;
+                    }
+                    try {
+                        cipherEncoding = Encoding.parse(args[++i]);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("错误：" + e.getMessage());
+                        printUsage();
+                        return;
+                    }
+                    if (cipherEncoding == Encoding.UTF8) {
+                        System.err.println("错误：UTF8 明文编码仅适用于密钥 / IV（--key-encoding），密文编码请使用 HEX / BASE64 / BASE64URL / BASE32 / BINARY");
+                        printUsage();
+                        return;
+                    }
                 }
                 default -> {
                     // 忽略未知参数
@@ -596,52 +904,71 @@ public class SM4Utils {
             }
         }
 
-        if (showHelp || (encryptText == null && decryptHex == null)) {
+        if (showHelp || (encryptText == null && decryptText == null)) {
             printUsage();
             return;
         }
 
-        if (cbcMode && iv == null) {
-            iv = generateIv();
-            System.out.println("IV（自动生成）：" + iv.toUpperCase());
-        } else if (cbcMode) {
-            System.out.println("IV：" + iv.toUpperCase());
-        }
-
-        if (key == null) {
-            key = generateKey();
-            System.out.println("密钥（自动生成）：" + key.toUpperCase());
-        } else {
-            System.out.println("密钥：" + key.toUpperCase());
+        byte[] keyBytes;
+        byte[] ivBytes = null;
+        try {
+            if (key == null) {
+                keyBytes = generateKeyBytes();
+                System.out.println("密钥（自动生成）：" + encodeBytes(keyBytes, keyEncoding));
+            } else {
+                keyBytes = decodeBytes(key, keyEncoding);
+                System.out.println("密钥：" + encodeBytes(keyBytes, keyEncoding));
+            }
+            if (keyBytes.length != 16) {
+                System.err.println("错误：SM4 密钥必须为 16 字节，当前为 " + keyBytes.length + " 字节");
+                return;
+            }
+            if (cbcMode) {
+                if (iv == null) {
+                    ivBytes = generateIvBytes();
+                    System.out.println("IV（自动生成）：" + encodeBytes(ivBytes, keyEncoding));
+                } else {
+                    ivBytes = decodeBytes(iv, keyEncoding);
+                    System.out.println("IV：" + encodeBytes(ivBytes, keyEncoding));
+                }
+                if (ivBytes.length != 16) {
+                    System.err.println("错误：IV 必须为 16 字节，当前为 " + ivBytes.length + " 字节");
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("密钥 / IV 解码失败：" + e.getMessage());
+            return;
         }
 
         String modeLabel = cbcMode ? "CBC" : "ECB";
 
         try {
             if (encryptText != null) {
-                String encrypted = cbcMode
-                        ? encryptCBCFromString(encryptText, key, iv)
-                        : encryptECBFromString(encryptText, key);
+                byte[] encrypted = cbcMode
+                        ? encryptCBC(encryptText.getBytes(java.nio.charset.StandardCharsets.UTF_8), keyBytes, ivBytes)
+                        : encryptECB(encryptText.getBytes(java.nio.charset.StandardCharsets.UTF_8), keyBytes);
                 System.out.println("加密模式：" + modeLabel);
                 System.out.println("加密明文：" + encryptText);
-                System.out.println("加密密文：" + encrypted.toUpperCase());
+                System.out.println("加密密文：" + encodeBytes(encrypted, cipherEncoding));
             }
         } catch (Exception e) {
             System.err.println("SM4 加密失败：" + e.getMessage());
         }
 
         try {
-            if (decryptHex != null) {
-                String plain = decryptHex;
+            if (decryptText != null) {
+                String plain = decryptText;
                 if (plain.startsWith("SM4ENC(") && plain.endsWith(")")) {
                     plain = plain.substring(7, plain.length() - 1);
                 }
-                String decrypted = cbcMode
-                        ? decryptCBCToString(plain, key, iv)
-                        : decryptECBToString(plain, key);
+                byte[] cipherBytes = decodeBytes(plain, cipherEncoding);
+                byte[] plainBytes = cbcMode
+                        ? decryptCBC(cipherBytes, keyBytes, ivBytes)
+                        : decryptECB(cipherBytes, keyBytes);
                 System.out.println("解密模式：" + modeLabel);
-                System.out.println("解密密文：" + decryptHex);
-                System.out.println("解密明文：" + decrypted);
+                System.out.println("解密密文：" + decryptText);
+                System.out.println("解密明文：" + new String(plainBytes, java.nio.charset.StandardCharsets.UTF_8));
             }
         } catch (Exception e) {
             System.err.println("SM4 解密失败：" + e.getMessage());
@@ -654,16 +981,20 @@ public class SM4Utils {
         System.out.println("用法: java " + SM4Utils.class.getName() + " [选项]");
         System.out.println();
         System.out.println("选项:");
-        System.out.println("  -m, --mode <ECB|CBC>  加密模式（默认 ECB）");
-        System.out.println("  -k, --key <hex>       SM4 密钥（32 字符 HEX，可选，未指定则自动生成）");
-        System.out.println("  -i, --iv <hex>        初始化向量 IV（CBC 模式使用，32 字符 HEX，未指定则自动生成）");
-        System.out.println("  -e, --encrypt <text>  待加密的明文字符串");
-        System.out.println("  -d, --decrypt <hex>   待解密的密文（HEX 格式，兼容 SM4ENC(...) 格式）");
-        System.out.println("  -h, --help            显示此帮助信息");
+        System.out.println("  -m, --mode <ECB|CBC>           加密模式（默认 ECB）");
+        System.out.println("  -k, --key <data>               SM4 密钥（编码格式由 --key-encoding 指定，可选，未指定则自动生成；须 16 字节）");
+        System.out.println("  -i, --iv <data>                初始化向量 IV（CBC 模式使用，编码格式与密钥一致，未指定则自动生成；须 16 字节）");
+        System.out.println("  -e, --encrypt <text>           待加密的明文字符串");
+        System.out.println("  -d, --decrypt <data>           待解密的密文（编码格式由 --cipher-encoding 指定，兼容 SM4ENC(...) 格式）");
+        System.out.println("  -ke, --key-encoding <fmt>      密钥 / IV 编码格式：HEX | BASE64 | BASE64URL | BASE32 | UTF8 | BINARY（默认 HEX；UTF8 仅适用于密钥 / IV）");
+        System.out.println("  -ce, --cipher-encoding <fmt>   密文输入 / 输出编码格式：HEX | BASE64 | BASE64URL | BASE32 | BINARY（默认 HEX，不支持 UTF8）");
+        System.out.println("  -h, --help                     显示此帮助信息");
         System.out.println();
         System.out.println("使用示例:");
         System.out.println("  java " + SM4Utils.class.getName() + " -k 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld");
         System.out.println("  java " + SM4Utils.class.getName() + " -k 0123456789ABCDEFFEDCBA9876543210 -d 3F4A...");
+        System.out.println("  java " + SM4Utils.class.getName() + " -ke BASE64 -k ASNFZ4mrze8= -ce BASE64 -e HelloWorld");
+        System.out.println("  java " + SM4Utils.class.getName() + " -ke UTF8 -k 1234567890abcdef -e HelloWorld");
         System.out.println("  java " + SM4Utils.class.getName() + " -e HelloWorld");
         System.out.println("  java " + SM4Utils.class.getName() + " -m CBC -k 0123456789ABCDEFFEDCBA9876543210 -i 0123456789ABCDEFFEDCBA9876543210 -e HelloWorld");
         System.out.println("  java " + SM4Utils.class.getName() + " -m CBC -k 0123456789ABCDEFFEDCBA9876543210 -d 3F4A...");
